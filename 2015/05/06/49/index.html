@@ -6,18 +6,21 @@
   <title>PHP的魔术方法 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="PHP中的魔术方法总结 :construct, destruct , call, callStatic,get, set, isset, unset , sleep, wakeup, toString, set_state, clone and autoload
-1、get、set这两个方法是为在类和他们的父类中没有声明的属性而设计的get( $property ) 当调用一个未定义的属性时访问此">
+1、get、set
+这两个方法是为在类和他们的父类中没有声明的属性而设计的get( $property ) 当调用一个未定义的属性时访问">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP的魔术方法">
 <meta property="og:url" content="http://longlongblog.cn/2015/05/06/49/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
 <meta property="og:description" content="PHP中的魔术方法总结 :construct, destruct , call, callStatic,get, set, isset, unset , sleep, wakeup, toString, set_state, clone and autoload
-1、get、set这两个方法是为在类和他们的父类中没有声明的属性而设计的get( $property ) 当调用一个未定义的属性时访问此">
-<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+1、get、set
+这两个方法是为在类和他们的父类中没有声明的属性而设计的get( $property ) 当调用一个未定义的属性时访问">
+<meta property="og:updated_time" content="2016-05-25T08:07:07.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP的魔术方法">
 <meta name="twitter:description" content="PHP中的魔术方法总结 :construct, destruct , call, callStatic,get, set, isset, unset , sleep, wakeup, toString, set_state, clone and autoload
-1、get、set这两个方法是为在类和他们的父类中没有声明的属性而设计的get( $property ) 当调用一个未定义的属性时访问此">
+1、get、set
+这两个方法是为在类和他们的父类中没有声明的属性而设计的get( $property ) 当调用一个未定义的属性时访问">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -92,10 +95,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>PHP中的魔术方法总结 :<strong>construct, </strong>destruct , <strong>call, </strong>callStatic,<strong>get, </strong>set, <strong>isset, </strong>unset , <strong>sleep, </strong>wakeup, <strong>toString, </strong>set_state, <strong>clone and </strong>autoload</p>
-<p>1、<strong>get、</strong>set<br>这两个方法是为在类和他们的父类中没有声明的属性而设计的<br><strong>get( $property ) 当调用一个未定义的属性时访问此方法
+<p>1、<strong>get、</strong>set</p>
+<p>这两个方法是为在类和他们的父类中没有声明的属性而设计的<br><strong>get( $property ) 当调用一个未定义的属性时访问此方法
 </strong>set( $property, $value ) 给一个未定义的属性赋值时调用<br>这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）</p>
-<p>2、<strong>isset、</strong>unset<br><strong>isset( $property ) 当在一个未定义的属性上调用isset()函数时调用此方法
-</strong>unset( $property ) 当在一个未定义的属性上调用unset()函数时调用此方法<br>与<strong>get方法和</strong>set方法相同，这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）<br>3、<strong>call
+<p>2、<strong>isset、</strong>unset</p>
+<p><strong>isset( $property ) 当在一个未定义的属性上调用isset()函数时调用此方法
+</strong>unset( $property ) 当在一个未定义的属性上调用unset()函数时调用此方法<br>与<strong>get方法和</strong>set方法相同，这里的没有声明包括当使用对象调用时，访问控制为proteced,private的属性（即没有权限访问的属性）</p>
+<p>3、<strong>call
 </strong>call( $method, $arg_array ) 当调用一个未定义的方法是调用此访求<br>这里的未定义的方法包括没有权限访问的方法</p>
 <p>4、<strong>autoload
 </strong>autoload 函数，它会在试图使用尚未被定义的类时自动调用。通过调用此函数，脚本引擎在 PHP 出错失败前有了最后一个机会加载所需的类。<br>注意: 在 __autoload 函数中抛出的异常不能被 catch 语句块捕获并导致致命错误。</p>
@@ -185,7 +191,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -203,7 +209,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 

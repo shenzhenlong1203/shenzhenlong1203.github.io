@@ -6,18 +6,27 @@
   <title>浅谈PHP大数据处理 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。
-1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。3">
+
+尽量不要用inner join，内连接查询速度慢，建议为left jion。
+建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。
+limi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈PHP大数据处理">
 <meta property="og:url" content="http://longlongblog.cn/2015/04/27/30/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
 <meta property="og:description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。
-1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。3">
-<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+
+尽量不要用inner join，内连接查询速度慢，建议为left jion。
+建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。
+limi">
+<meta property="og:updated_time" content="2016-05-25T07:59:58.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈PHP大数据处理">
 <meta name="twitter:description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。
-1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。3">
+
+尽量不要用inner join，内连接查询速度慢，建议为left jion。
+建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。
+limi">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -72,7 +81,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Mysql/">Mysql</a>►<a class="article-category-link" href="/categories/Mysql/PHP/">PHP</a>
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
   </div>
 
   </div>
@@ -92,7 +101,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。</p>
-<p>1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。<br>2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。<br>3. limit 分段处理，每次取2000条，处理完之后再取数据处理。<br>4. mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。<br>5. 优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。<br>6.利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="external">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></p>
+<ol>
+<li>尽量不要用inner join，内连接查询速度慢，建议为left jion。</li>
+<li>建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。</li>
+<li>limit 分段处理，每次取2000条，处理完之后再取数据处理。</li>
+<li>mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。</li>
+<li>优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。</li>
+<li>利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="external">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></li>
+</ol>
 <p>其实归根结底是数据库方面的优化，当然数据量很大的情况下，要提前预知好，更换数据库是避免查询宕机的关键，如果提前预知用oracle数据库的话，就不会出现现在的情况，现在改数据库，花费的代价很大。</p>
 
       
@@ -169,7 +185,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -187,7 +203,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 

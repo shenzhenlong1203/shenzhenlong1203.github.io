@@ -5,22 +5,34 @@
   
   <title>J2ME时间显示 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象，并且创建一个线程让时间占用这个线程进行。`public Shijianxianshi() {
-display=Display.getDisplay(this);canvas=new testCanvas();
-quit=new Command(“Quit”,Command.EXIT,2);canvas.">
+  <meta name="description" content="这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象并且创建一个线程让时间占用这个线程进行。
+public Shijianxianshi() {
+
+display=Display.getDisplay(this);
+canvas=new testCanvas();
+
+quit=new Command(&amp;quot;Quit&amp;quot;,Command.EXI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="J2ME时间显示">
 <meta property="og:url" content="http://longlongblog.cn/2013/08/27/28/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象，并且创建一个线程让时间占用这个线程进行。`public Shijianxianshi() {
-display=Display.getDisplay(this);canvas=new testCanvas();
-quit=new Command(“Quit”,Command.EXIT,2);canvas.">
-<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+<meta property="og:description" content="这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象并且创建一个线程让时间占用这个线程进行。
+public Shijianxianshi() {
+
+display=Display.getDisplay(this);
+canvas=new testCanvas();
+
+quit=new Command(&amp;quot;Quit&amp;quot;,Command.EXI">
+<meta property="og:updated_time" content="2016-05-25T07:59:30.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J2ME时间显示">
-<meta name="twitter:description" content="这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象，并且创建一个线程让时间占用这个线程进行。`public Shijianxianshi() {
-display=Display.getDisplay(this);canvas=new testCanvas();
-quit=new Command(“Quit”,Command.EXIT,2);canvas.">
+<meta name="twitter:description" content="这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象并且创建一个线程让时间占用这个线程进行。
+public Shijianxianshi() {
+
+display=Display.getDisplay(this);
+canvas=new testCanvas();
+
+quit=new Command(&amp;quot;Quit&amp;quot;,Command.EXI">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -75,7 +87,7 @@ quit=new Command(“Quit”,Command.EXIT,2);canvas.">
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/J2ME/">J2ME</a>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
   </div>
 
   </div>
@@ -94,42 +106,205 @@ quit=new Command(“Quit”,Command.EXIT,2);canvas.">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><span style="padding-left: 30px;font-size: 14px;"><span style="color: #000000;"> 这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象，并且创建一个线程让时间占用这个线程进行。</span></span><br>`<br>public Shijianxianshi() {</p>
-<p>display=Display.getDisplay(this);<br>canvas=new testCanvas();</p>
-<p>quit=new Command(“Quit”,Command.EXIT,2);<br>canvas.addCommand(quit);<br>canvas.setCommandListener(this);</p>
-<p>}<br><span style="color: #ff6600;">protected void startApp()</span> throws MIDletStateChangeException {</p>
-<p>display.setCurrent(canvas);<br>}<br>protected void destroyApp(boolean unconditional)throws MIDletStateChangeException {<br>// TODO 自动生成方法存根</p>
-<p>}<br><span style="color: #ff6600;">protected void pauseApp()</span><br>{<br>// TODO 自动生成方法存根</p>
-<p>}<br><span style="color: #ff6600;">public void commandAction</span>(Command c, Displayable d)<br>{<br>try<br>{<br>if(c == quit)<br>{<br><span style="color: #ff6600;">destroyApp(true);</span><br>notifyDestroyed();<br>}</p>
-<p>}<br>catch(MIDletStateChangeException me)<br>{<br>System.out.println(me+”caught.”);<br>}<br>}<br>}</p>
-<p><span style="color: #ff6600;">class testCanvas extends Canvas implements Runnable</span>{<br>private Image image=null;<br>private Font font;<br>TimeZone t;<br>Calendar c;<br>int h,  min, sec, year, month, day, week=0;</p>
-<p>public testCanvas()<br>{</p>
-<p>t = TimeZone.getTimeZone(“GMT+08:00”);//获取东8区TimeZone 否则会使用默认的时区<br>c = Calendar.getInstance(t); //创建一个日历对象<br>h = c.get(Calendar.HOUR_OF_DAY); //从日历对象获取想要的日期、时间信息<br>min = c.get(Calendar.MINUTE);<br>sec = c.get(Calendar.SECOND);<br>year=c.get(Calendar.YEAR);<br>month=c.get(Calendar.MONTH);<br>day=c.get(Calendar.DAY_OF_MONTH);<br>week=c.get(Calendar.DAY_OF_WEEK);<br>}</p>
-<p>// int h = c.get(Calendar.HOUR_OF_DAY); //从日历对象获取想要的日期、时间信息</p>
-<p><span style="color: #ff6600;">protected void paint</span>(Graphics g){</p>
-<p><span style="color: #ff6600;">new Thread(this).start();</span><br>font=Font.getFont(Font.FACE_SYSTEM,Font.STYLE_BOLD,Font.SIZE_MEDIUM);<br>g.setFont(font);<br>String hour;<br>String minute;<br>String second;<br>String m;<br>String d;<br>String w = null;</p>
-<p>switch(week){<br>case 1: w=” 一”;<br>case 2: w=” 二”;<br>case 3: w=” 三”;<br>case 4: w=” 四”;<br>case 5: w=” 五”;<br>case 6: w=” 六”;<br>case 7: w=” 日”;<br>}</p>
-<p>if(h&lt;10)<br>{<br>hour=”0”+String.valueOf(h);<br>}<br>else<br>{<br>hour=String.valueOf(h);<br>}<br>if(min&lt;10)<br>{<br>minute=”0”+String.valueOf(min);<br>}<br>else<br>{<br>minute=String.valueOf(min);<br>}</p>
-<p>if(sec&lt;10)<br>{<br>second=”0”+String.valueOf(sec);<br>}<br>else<br>{<br>second=String.valueOf(sec);<br>}</p>
-<p>String y=String.valueOf(year);</p>
-<p>if(month+1&lt;10)<br>{<br>m=”0”+String.valueOf(month+1);<br>}<br>else<br>{<br>m=String.valueOf(month+1);<br>}</p>
-<p>if(day&lt;10)<br>{<br>d=”0”+String.valueOf(day);<br>}<br>else<br>{<br>d=String.valueOf(day);<br>}</p>
-<p>try {<br>image=Image.createImage(“/2.png”);<br>} catch (IOException ex) {<br>System.out.println(“图片导入失败”);<br>}</p>
-<p>g.drawImage(image, 0, 0, Graphics.HCENTER|Graphics.TOP);<br>g.drawString(“我的时钟”, getWidth()/2, 20, Graphics.HCENTER|Graphics.TOP);<br>g.drawString(“当前的日期为:”,60,60,Graphics.HCENTER|Graphics.TOP);<br>g.drawString(“星期:”,30,100,Graphics.HCENTER|Graphics.TOP);<br>g.drawString(“当前的时间为:”,60,130,Graphics.HCENTER|Graphics.TOP);</p>
-<p>g.drawString(hour,50,150,Graphics.HCENTER|Graphics.TOP);//时间的显示<br>g.drawString(“:”,65,150,Graphics.HCENTER|Graphics.TOP);<br>g.drawString(minute,80,150,Graphics.HCENTER|Graphics.TOP);<br>g.drawString(“:”,95,150,Graphics.HCENTER|Graphics.TOP);<br>g.drawString(second,110,150,Graphics.HCENTER|Graphics.TOP);</p>
-<p>g.drawString(w,60,100,Graphics.HCENTER|Graphics.TOP);//星期的显示</p>
-<p>g.drawString(y,50,80,Graphics.HCENTER|Graphics.TOP);//年月的显示<br>g.drawString(“/“,75,80,Graphics.HCENTER|Graphics.TOP);<br>g.drawString(m,90,80,Graphics.HCENTER|Graphics.TOP);<br>g.drawString(“/“,105,80,Graphics.HCENTER|Graphics.TOP);<br>g.drawString(d,120,80,Graphics.HCENTER|Graphics.TOP);<br>if(sec&lt;60)<br>{</p>
-<p>sec++;<br>}<br>else<br>{<br>sec=0;</p>
-<p>if(min&lt;60)<br>{<br>min++;<br>}<br>else<br>{</p>
-<p>min=0;</p>
-<p>if(h&lt;13)<br>h++;<br>else<br>h=1;</p>
-<p>}<br>}</p>
-<p>}</p>
-<p><span style="color: #ff6600;">public void run() {</span></p>
-<p>try {<br>Thread.sleep(1000);<br>} catch (InterruptedException ex) {<br>// ex.printStackTrace();<br>}<br><span style="color: #ff6600;">repaint();</span></p>
-<p>}</p>
-<p>}<br>`<br><span style="padding-left: 30px;">备注：以上高亮颜色显示的为重要类与方法，供大家借鉴。我已在自己的java手机上运行过，没有问题的。</span></p>
-<p>&nbsp;</p>
+        <p><span style="padding-left: 30px;font-size: 14px;"><span style="color: #000000;"> 这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象<br>并且创建一个线程让时间占用这个线程进行。</span></span></p>
+<pre><code>public Shijianxianshi() {
+
+display=Display.getDisplay(this);
+canvas=new testCanvas();
+
+quit=new Command(&quot;Quit&quot;,Command.EXIT,2);
+canvas.addCommand(quit);
+canvas.setCommandListener(this);
+
+}
+&lt;span style=&quot;color: #ff6600;&quot;&gt;protected void startApp()&lt;/span&gt; throws MIDletStateChangeException {
+
+display.setCurrent(canvas);
+}
+protected void destroyApp(boolean unconditional)throws MIDletStateChangeException {
+// TODO 自动生成方法存根
+
+}
+&lt;span style=&quot;color: #ff6600;&quot;&gt;protected void pauseApp()&lt;/span&gt;
+{
+// TODO 自动生成方法存根
+
+}
+&lt;span style=&quot;color: #ff6600;&quot;&gt;public void commandAction&lt;/span&gt;(Command c, Displayable d)
+{
+try
+{
+if(c == quit)
+{
+&lt;span style=&quot;color: #ff6600;&quot;&gt;destroyApp(true);&lt;/span&gt;
+notifyDestroyed();
+}
+
+}
+catch(MIDletStateChangeException me)
+{
+System.out.println(me+&quot;caught.&quot;);
+}
+}
+}
+
+&lt;span style=&quot;color: #ff6600;&quot;&gt;class testCanvas extends Canvas implements Runnable&lt;/span&gt;{
+private Image image=null;
+private Font font;
+TimeZone t;
+Calendar c;
+int h,  min, sec, year, month, day, week=0;
+
+public testCanvas()
+{
+
+t = TimeZone.getTimeZone(&quot;GMT+08:00&quot;);//获取东8区TimeZone 否则会使用默认的时区
+c = Calendar.getInstance(t); //创建一个日历对象
+h = c.get(Calendar.HOUR_OF_DAY); //从日历对象获取想要的日期、时间信息
+min = c.get(Calendar.MINUTE);
+sec = c.get(Calendar.SECOND);
+year=c.get(Calendar.YEAR);
+month=c.get(Calendar.MONTH);
+day=c.get(Calendar.DAY_OF_MONTH);
+week=c.get(Calendar.DAY_OF_WEEK);
+}
+
+// int h = c.get(Calendar.HOUR_OF_DAY); //从日历对象获取想要的日期、时间信息
+
+&lt;span style=&quot;color: #ff6600;&quot;&gt;protected void paint&lt;/span&gt;(Graphics g){
+
+&lt;span style=&quot;color: #ff6600;&quot;&gt;new Thread(this).start();&lt;/span&gt;
+font=Font.getFont(Font.FACE_SYSTEM,Font.STYLE_BOLD,Font.SIZE_MEDIUM);
+g.setFont(font);
+String hour;
+String minute;
+String second;
+String m;
+String d;
+String w = null;
+
+switch(week){
+case 1: w=&quot; 一&quot;;
+case 2: w=&quot; 二&quot;;
+case 3: w=&quot; 三&quot;;
+case 4: w=&quot; 四&quot;;
+case 5: w=&quot; 五&quot;;
+case 6: w=&quot; 六&quot;;
+case 7: w=&quot; 日&quot;;
+}
+
+if(h&amp;lt;10)
+{
+hour=&quot;0&quot;+String.valueOf(h);
+}
+else
+{
+hour=String.valueOf(h);
+}
+if(min&amp;lt;10)
+{
+minute=&quot;0&quot;+String.valueOf(min);
+}
+else
+{
+minute=String.valueOf(min);
+}
+
+if(sec&amp;lt;10)
+{
+second=&quot;0&quot;+String.valueOf(sec);
+}
+else
+{
+second=String.valueOf(sec);
+}
+
+String y=String.valueOf(year);
+
+if(month+1&amp;lt;10)
+{
+m=&quot;0&quot;+String.valueOf(month+1);
+}
+else
+{
+m=String.valueOf(month+1);
+}
+
+if(day&amp;lt;10)
+{
+d=&quot;0&quot;+String.valueOf(day);
+}
+else
+{
+d=String.valueOf(day);
+}
+
+try {
+image=Image.createImage(&quot;/2.png&quot;);
+} catch (IOException ex) {
+System.out.println(&quot;图片导入失败&quot;);
+}
+
+g.drawImage(image, 0, 0, Graphics.HCENTER|Graphics.TOP);
+g.drawString(&quot;我的时钟&quot;, getWidth()/2, 20, Graphics.HCENTER|Graphics.TOP);
+g.drawString(&quot;当前的日期为:&quot;,60,60,Graphics.HCENTER|Graphics.TOP);
+g.drawString(&quot;星期:&quot;,30,100,Graphics.HCENTER|Graphics.TOP);
+g.drawString(&quot;当前的时间为:&quot;,60,130,Graphics.HCENTER|Graphics.TOP);
+
+g.drawString(hour,50,150,Graphics.HCENTER|Graphics.TOP);//时间的显示
+g.drawString(&quot;:&quot;,65,150,Graphics.HCENTER|Graphics.TOP);
+g.drawString(minute,80,150,Graphics.HCENTER|Graphics.TOP);
+g.drawString(&quot;:&quot;,95,150,Graphics.HCENTER|Graphics.TOP);
+g.drawString(second,110,150,Graphics.HCENTER|Graphics.TOP);
+
+g.drawString(w,60,100,Graphics.HCENTER|Graphics.TOP);//星期的显示
+
+g.drawString(y,50,80,Graphics.HCENTER|Graphics.TOP);//年月的显示
+g.drawString(&quot;/&quot;,75,80,Graphics.HCENTER|Graphics.TOP);
+g.drawString(m,90,80,Graphics.HCENTER|Graphics.TOP);
+g.drawString(&quot;/&quot;,105,80,Graphics.HCENTER|Graphics.TOP);
+g.drawString(d,120,80,Graphics.HCENTER|Graphics.TOP);
+if(sec&amp;lt;60)
+{
+
+sec++;
+}
+else
+{
+sec=0;
+
+if(min&amp;lt;60)
+{
+min++;
+}
+else
+{
+
+min=0;
+
+if(h&amp;lt;13)
+h++;
+else
+h=1;
+
+}
+}
+
+}
+
+&lt;span style=&quot;color: #ff6600;&quot;&gt;public void run() {&lt;/span&gt;
+
+try {
+Thread.sleep(1000);
+} catch (InterruptedException ex) {
+// ex.printStackTrace();
+}
+&lt;span style=&quot;color: #ff6600;&quot;&gt;repaint();&lt;/span&gt;
+
+}
+
+}
+</code></pre><p><span style="padding-left: 30px;">备注：以上高亮颜色显示的为重要类与方法，供大家借鉴。我已在自己的java手机上运行过，没有问题的。</span></p>
 
       
     </div>
@@ -200,7 +375,7 @@ quit=new Command(“Quit”,Command.EXIT,2);canvas.">
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -218,7 +393,7 @@ quit=new Command(“Quit”,Command.EXIT,2);canvas.">
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 

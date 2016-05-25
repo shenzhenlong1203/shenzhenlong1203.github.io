@@ -5,19 +5,16 @@
   
   <title>浅谈Redis与Memcache的异同点 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。
-1、 Redis和Memcache都是将数据存放在">
+  <meta name="description" content="前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。1、 Redis和Memcache都是将数据存放在内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅谈Redis与Memcache的异同点">
 <meta property="og:url" content="http://longlongblog.cn/2015/04/23/31/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。
-1、 Redis和Memcache都是将数据存放在">
-<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+<meta property="og:description" content="前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。1、 Redis和Memcache都是将数据存放在内">
+<meta property="og:updated_time" content="2016-05-25T08:00:34.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Redis与Memcache的异同点">
-<meta name="twitter:description" content="前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。
-1、 Redis和Memcache都是将数据存放在">
+<meta name="twitter:description" content="前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。1、 Redis和Memcache都是将数据存放在内">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -91,29 +88,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。
-1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。
-2、 数据类型--Memcache在添加数据时就要指定数据的字节长度，例如：
-`
-  set key3 0 0 8
-  lxsymcto
-  STORED
-`
-而redis不需要，如：
-`
-  redis 127.0.0.1:6379&gt;set key2 &quot;lxsymblog&quot;
-  OK
-  redis 127.0.0.1:6379&gt;get key2
- &quot;lxsymblog&quot;
- `
-3、虚拟内存--Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。
-4、过期策略--memcache在set时就指定，例如set key1 0 0 8,即永不过期。
-   Redis可以通过例如expire 设定，例如expire name 10
-5、分布式--设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。
-6、存储数据安全--memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。
-7、灾难恢复--memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。
-以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。
-</code></pre>
+        <p>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。<br>1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。<br>2、 数据类型–Memcache在添加数据时就要指定数据的字节长度，例如：</p>
+<pre><code>set key3 0 0 8
+lxsymcto
+STORED
+</code></pre><p>而redis不需要，如：</p>
+<pre><code>redis 127.0.0.1:6379&gt;set key2 &quot;lxsymblog&quot;
+OK
+
+redis 127.0.0.1:6379&gt;get key2
+&quot;lxsymblog&quot;
+</code></pre><p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。<br>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。<br>   Redis可以通过例如expire 设定，例如expire name 10<br>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。<br>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。<br>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。<br>以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。</p>
+
       
     </div>
     <footer class="article-footer">
@@ -188,7 +174,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -206,7 +192,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 

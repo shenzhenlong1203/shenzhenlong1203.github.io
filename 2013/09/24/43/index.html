@@ -7,26 +7,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在网上发现一个大牛的神奇解法，当时我就震惊了，与大家分享一下。
 java代码：
-`import java.math.BigDecimal;
-public class huangjin {public static void main(String[] args) {
-int i;BigDecimal a = new BigDecimal(100);for (i = 0; i &amp;lt; 500; i">
+import java.math.BigDecimal;
+
+public class huangjin {
+public static void main(String[] args) {
+
+int i;
+BigDecimal a = new BigDecimal(100);
+for (i = 0; i &amp;amp;lt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="黄金分割取100位小数（蓝桥杯）">
 <meta property="og:url" content="http://longlongblog.cn/2013/09/24/43/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
 <meta property="og:description" content="在网上发现一个大牛的神奇解法，当时我就震惊了，与大家分享一下。
 java代码：
-`import java.math.BigDecimal;
-public class huangjin {public static void main(String[] args) {
-int i;BigDecimal a = new BigDecimal(100);for (i = 0; i &amp;lt; 500; i">
-<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+import java.math.BigDecimal;
+
+public class huangjin {
+public static void main(String[] args) {
+
+int i;
+BigDecimal a = new BigDecimal(100);
+for (i = 0; i &amp;amp;lt">
+<meta property="og:updated_time" content="2016-05-25T08:02:30.381Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="黄金分割取100位小数（蓝桥杯）">
 <meta name="twitter:description" content="在网上发现一个大牛的神奇解法，当时我就震惊了，与大家分享一下。
 java代码：
-`import java.math.BigDecimal;
-public class huangjin {public static void main(String[] args) {
-int i;BigDecimal a = new BigDecimal(100);for (i = 0; i &amp;lt; 500; i">
+import java.math.BigDecimal;
+
+public class huangjin {
+public static void main(String[] args) {
+
+int i;
+BigDecimal a = new BigDecimal(100);
+for (i = 0; i &amp;amp;lt">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -81,7 +96,7 @@ int i;BigDecimal a = new BigDecimal(100);for (i = 0; i &amp;lt; 500; i">
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/J2SE/">J2SE</a>►<a class="article-category-link" href="/categories/J2SE/Java/">Java</a>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
   </div>
 
   </div>
@@ -101,10 +116,22 @@ int i;BigDecimal a = new BigDecimal(100);for (i = 0; i &amp;lt; 500; i">
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>在网上发现一个大牛的神奇解法，当时我就震惊了，与大家分享一下。</strong></p>
-<pre><code>java代码：
-</code></pre><p>`<br>import java.math.BigDecimal;</p>
-<p>public class huangjin {<br>public static void main(String[] args) {</p>
-<p>int i;<br>BigDecimal a = new BigDecimal(100);<br>for (i = 0; i &lt; 500; i++) {<br>a = BigDecimal.ONE.add(BigDecimal.ONE.divide(a, 102, BigDecimal.ROUND_DOWN));<br>}<br>a = a.subtract(BigDecimal.ONE);<br>System.out.println(a);<br>}<br>}<br>`<br><span style="color: #993300; font-size: 15px;">解析：这是使用了java的大数方法，通过对公式的循环递归，然后取100位数即可。</span></p>
+<p>java代码：</p>
+<pre><code>import java.math.BigDecimal;
+
+public class huangjin {
+public static void main(String[] args) {
+
+int i;
+BigDecimal a = new BigDecimal(100);
+for (i = 0; i &amp;lt; 500; i++) {
+a = BigDecimal.ONE.add(BigDecimal.ONE.divide(a, 102, BigDecimal.ROUND_DOWN));
+}
+a = a.subtract(BigDecimal.ONE);
+System.out.println(a);
+}
+}
+</code></pre><p><span style="color: #993300; font-size: 15px;">解析：这是使用了java的大数方法，通过对公式的循环递归，然后取100位数即可。</span></p>
 
       
     </div>
@@ -178,7 +205,7 @@ int i;BigDecimal a = new BigDecimal(100);for (i = 0; i &amp;lt; 500; i">
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -196,7 +223,7 @@ int i;BigDecimal a = new BigDecimal(100);for (i = 0; i &amp;lt; 500; i">
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 

@@ -5,25 +5,16 @@
   
   <title>mongodb数据导入导出以及备份恢复 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、数据导出 mongoexport假设库里有一张user 表，里面有2 条记录，我们要将它导出&amp;gt; use my_mongodb
-switched to db my_mongodb
-&amp;gt; db.user.find();
-{ &amp;quot;_id&amp;quot; : ObjectId(&amp;quot;4f81a4a1779282ca68fd8a5a&amp;quot;), &amp;quot;uid&amp;quot; :">
+  <meta name="description" content="一、数据导出 mongoexport假设库里有一张user 表，里面有2 条记录，我们要将它导出    &amp;gt; use my_mongodb    switched to db my_mongodb    &amp;gt; db.user.find();    { “_id” : ObjectId(“4f81a4a1779282ca68fd8a5a”), “uid” : 2, “username” :">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongodb数据导入导出以及备份恢复">
 <meta property="og:url" content="http://longlongblog.cn/2015/02/03/46/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="一、数据导出 mongoexport假设库里有一张user 表，里面有2 条记录，我们要将它导出&amp;gt; use my_mongodb
-switched to db my_mongodb
-&amp;gt; db.user.find();
-{ &amp;quot;_id&amp;quot; : ObjectId(&amp;quot;4f81a4a1779282ca68fd8a5a&amp;quot;), &amp;quot;uid&amp;quot; :">
-<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+<meta property="og:description" content="一、数据导出 mongoexport假设库里有一张user 表，里面有2 条记录，我们要将它导出    &amp;gt; use my_mongodb    switched to db my_mongodb    &amp;gt; db.user.find();    { “_id” : ObjectId(“4f81a4a1779282ca68fd8a5a”), “uid” : 2, “username” :">
+<meta property="og:updated_time" content="2016-05-25T08:04:26.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb数据导入导出以及备份恢复">
-<meta name="twitter:description" content="一、数据导出 mongoexport假设库里有一张user 表，里面有2 条记录，我们要将它导出&amp;gt; use my_mongodb
-switched to db my_mongodb
-&amp;gt; db.user.find();
-{ &amp;quot;_id&amp;quot; : ObjectId(&amp;quot;4f81a4a1779282ca68fd8a5a&amp;quot;), &amp;quot;uid&amp;quot; :">
+<meta name="twitter:description" content="一、数据导出 mongoexport假设库里有一张user 表，里面有2 条记录，我们要将它导出    &amp;gt; use my_mongodb    switched to db my_mongodb    &amp;gt; db.user.find();    { “_id” : ObjectId(“4f81a4a1779282ca68fd8a5a”), “uid” : 2, “username” :">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -78,7 +69,7 @@ switched to db my_mongodb
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Mongodb/">Mongodb</a>►<a class="article-category-link" href="/categories/Mongodb/NodeJs/">NodeJs</a>
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
   </div>
 
   </div>
@@ -97,73 +88,8 @@ switched to db my_mongodb
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br><code>&gt; use my_mongodb
-switched to db my_mongodb
-&gt; db.user.find();
-{ &quot;_id&quot; : ObjectId(&quot;4f81a4a1779282ca68fd8a5a&quot;), &quot;uid&quot; : 2, &quot;username&quot; : &quot;Jerry&quot;, &quot;age&quot; : 100 }
-{ &quot;_id&quot; : ObjectId(&quot;4f844d1847d25a9ce5f120c4&quot;), &quot;uid&quot; : 1, &quot;username&quot; : &quot;Tom&quot;, &quot;age&quot; : 25 }
-&gt;</code><br>1 常用导出方法<br><code>[root@localhost bin]# ./mongoexport -d my_mongodb -c user -o user.dat
-connected to: 127.0.0.1
-exported 2 records
-[root@localhost bin]# cat user.dat
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;4f81a4a1779282ca68fd8a5a&quot; }, &quot;uid&quot; : 2, &quot;username&quot; : &quot;Jerry&quot;, &quot;age&quot; : 100 }
-{ &quot;_id&quot; : { &quot;$oid&quot; : &quot;4f844d1847d25a9ce5f120c4&quot; }, &quot;uid&quot; : 1, &quot;username&quot; : &quot;Tom&quot;, &quot;age&quot; : 25 }
-[root@localhost bin]#</code><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br><code>[root@localhost bin]# ./mongoexport -d my_mongodb -c user --csv -f uid,username,age -o
-user_csv.dat
-connected to: 127.0.0.1
-exported 2 records
-[root@localhost bin]# cat user_csv.dat
-uid,username,age
-2,&quot;Jerry&quot;,100
-1,&quot;Tom&quot;,25
-[root@localhost bin]#</code><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br><code>&gt; db.user.drop();
-true
-&gt; show collections;
-system.indexes
-&gt;</code><br>然后导入数据<br><code>[root@localhost bin]# ./mongoimport -d my_mongodb -c user user.dat
-connected to: 127.0.0.1
-imported 2 objects
-[root@localhost bin]#</code><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br><code>&gt; db.user.drop();
-true
-&gt; show collections;
-system.indexes
-&gt;</code><br>然后导入数据<br><code>[root@localhost bin]# ./mongoimport -d my_mongodb -c user --type csv --headerline --file
-user_csv.dat
-connected to: 127.0.0.1
-imported 3 objects
-[root@localhost bin]#</code><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br><code>[root@localhost bin]# ./mongodump -d my_mongodb
-connected to: 127.0.0.1
-DATABASE: my_mongodb to dump/my_mongodb
-my_mongodb.system.indexes to dump/my_mongodb/system.indexes.bson
-1 objects
-my_mongodb.user to dump/my_mongodb/user.bson
-2 objects
-[root@localhost bin]# ll</code><br>总计 67648<br>-rwxr-xr-x 1 root root 7508756 2011-04-06 bsondump<br>drwxr-xr-x 3 root root 4096 04-10 23:54 dump<br>-rwxr-xr-x 1 root root 2978016 2011-04-06 mongo<br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br><code>[root@localhost bin]# ./mongodump -d my_mongodb -o my_mongodb_dump
-connected to: 127.0.0.1
-DATABASE: my_mongodb to my_mongodb_dump/my_mongodb
-my_mongodb.system.indexes to
-my_mongodb_dump/my_mongodb/system.indexes.bson
-1 objects
-my_mongodb.user to my_mongodb_dump/my_mongodb/user.bson
-2 objects
-[root@localhost bin]#</code><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br><code>&gt; use my_mongodb
-switched to db my_mongodb
-&gt; db.dropDatabase()
-{ &quot;dropped&quot; : &quot;my_mongodb&quot;, &quot;ok&quot; : 1 }
-&gt; show dbs
-admin (empty)
-local (empty)
-test (empty)
-&gt;</code><br>接下来我们进行数据库恢复<br><code>[root@localhost bin]# ./mongorestore -d my_mongodb my_mongodb_dump/*
-connected to: 127.0.0.1
-Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/user.bson
-Wed Apr 11 00:03:03 going into namespace [my_mongodb.user]
-Wed Apr 11 00:03:03 2 objects found
-Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/system.indexes.bson
-Wed Apr 11 00:03:03 going into namespace [my_mongodb.system.indexes]
-Wed Apr 11 00:03:03 { name: &quot;_id_&quot;, ns: &quot;my_mongodb.user&quot;, key: { _id: 1 }, v: 0 }
-Wed Apr 11 00:03:03 1 objects found
-[root@localhost bin]#</code><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="external">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>
+        <div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br><br>    &gt; use my_mongodb<br>    switched to db my_mongodb<br>    &gt; db.user.find();<br>    { “_id” : ObjectId(“4f81a4a1779282ca68fd8a5a”), “uid” : 2, “username” : “Jerry”, “age” : 100 }<br>    { “_id” : ObjectId(“4f844d1847d25a9ce5f120c4”), “uid” : 1, “username” : “Tom”, “age” : 25 }<br>    &gt;<br>1 常用导出方法<br><br>    [root@localhost bin]# ./mongoexport -d my_mongodb -c user -o user.dat<br>    connected to: 127.0.0.1<br>    exported 2 records<br>    [root@localhost bin]# cat user.dat<br>    { “_id” : { “$oid” : “4f81a4a1779282ca68fd8a5a” }, “uid” : 2, “username” : “Jerry”, “age” : 100 }<br>    { “_id” : { “$oid” : “4f844d1847d25a9ce5f120c4” }, “uid” : 1, “username” : “Tom”, “age” : 25 }<br>    [root@localhost bin]#<br><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br><br>    [root@localhost bin]# ./mongoexport -d my_mongodb -c user –csv -f uid,username,age -o<br>    user_csv.dat<br>    connected to: 127.0.0.1<br>    exported 2 records<br>    [root@localhost bin]# cat user_csv.dat<br>    uid,username,age<br>    2,”Jerry”,100<br>    1,”Tom”,25<br>    [root@localhost bin]#<br><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br><br>    &gt; db.user.drop();<br>    true<br>    &gt; show collections;<br>    system.indexes<br>    &gt;<br><br>然后导入数据<br><br>    [root@localhost bin]# ./mongoimport -d my_mongodb -c user user.dat<br>    connected to: 127.0.0.1<br>    imported 2 objects<br>    [root@localhost bin]#<br><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br><br>    &gt; db.user.drop();<br>    true<br>    &gt; show collections;<br>    system.indexes<br>    &gt;<br><br>然后导入数据<br><br>    [root@localhost bin]# ./mongoimport -d my_mongodb -c user –type csv –headerline –file<br>    user_csv.dat<br>    connected to: 127.0.0.1<br>    imported 3 objects<br>    [root@localhost bin]#<br><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br><br>    [root@localhost bin]# ./mongodump -d my_mongodb<br>    connected to: 127.0.0.1<br>    DATABASE: my_mongodb to dump/my_mongodb<br>    my_mongodb.system.indexes to dump/my_mongodb/system.indexes.bson<br>    1 objects<br>    my_mongodb.user to dump/my_mongodb/user.bson<br>    2 objects<br>    [root@localhost bin]# ll<br><br>总计 67648<br>    -rwxr-xr-x 1 root root 7508756 2011-04-06 bsondump<br>    drwxr-xr-x 3 root root 4096 04-10 23:54 dump<br>    -rwxr-xr-x 1 root root 2978016 2011-04-06 mongo<br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br><br>    [root@localhost bin]# ./mongodump -d my_mongodb -o my_mongodb_dump<br>    connected to: 127.0.0.1<br>    DATABASE: my_mongodb to my_mongodb_dump/my_mongodb<br>    my_mongodb.system.indexes to<br>    my_mongodb_dump/my_mongodb/system.indexes.bson<br>    1 objects<br>    my_mongodb.user to my_mongodb_dump/my_mongodb/user.bson<br>    2 objects<br>    [root@localhost bin]#<br><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br><br>    &gt; use my_mongodb<br>    switched to db my_mongodb<br>    &gt; db.dropDatabase()<br>    { “dropped” : “my_mongodb”, “ok” : 1 }<br>    &gt; show dbs<br>    admin (empty)<br>    local (empty)<br>    test (empty)<br>    &gt;<br><br>接下来我们进行数据库恢复<br><br>    [root@localhost bin]# ./mongorestore -d my_mongodb my_mongodb_dump/*<br>    connected to: 127.0.0.1<br>    Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/user.bson<br>    Wed Apr 11 00:03:03 going into namespace [my_mongodb.user]<br>    Wed Apr 11 00:03:03 2 objects found<br>    Wed Apr 11 00:03:03 my_mongodb_dump/my_mongodb/system.indexes.bson<br>    Wed Apr 11 00:03:03 going into namespace [my_mongodb.system.indexes]<br>    Wed Apr 11 00:03:03 { name: “<em>id</em>“, ns: “my_mongodb.user”, key: { _id: 1 }, v: 0 }<br>    Wed Apr 11 00:03:03 1 objects found<br>    [root@localhost bin]#<br><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="external">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>
+
       
     </div>
     <footer class="article-footer">
@@ -238,7 +164,7 @@ Wed Apr 11 00:03:03 1 objects found
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -256,7 +182,7 @@ Wed Apr 11 00:03:03 1 objects found
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 

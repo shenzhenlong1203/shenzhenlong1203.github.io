@@ -5,16 +5,16 @@
   
   <title>Mongodb的基本操作 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. #存储嵌套的对象db.mydb.save({‘name’:’ysz’,’address’:{‘city’:’beijing’,’post’:100096},’phone’:[138,139]})2. #存储数组对象db.mydb.save({‘Uid’:’yushunzhi@sohu.com’,’Al’:[‘test-1@sohu.com’,’test-2@sohu.com’]})3. #根">
+  <meta name="description" content="1. #存储嵌套的对象    db.mydb.save({‘name’:’ysz’,’address’:{‘city’:’beijing’,’post’:100096},’phone’:[138,139]})2. #存储数组对象    db.mydb.save({‘Uid’:’yushunzhi@sohu.com’,’Al’:[‘test-1@sohu.com’,’test-2@sohu.com’">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mongodb的基本操作">
 <meta property="og:url" content="http://longlongblog.cn/2013/10/17/47/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="1. #存储嵌套的对象db.mydb.save({‘name’:’ysz’,’address’:{‘city’:’beijing’,’post’:100096},’phone’:[138,139]})2. #存储数组对象db.mydb.save({‘Uid’:’yushunzhi@sohu.com’,’Al’:[‘test-1@sohu.com’,’test-2@sohu.com’]})3. #根">
-<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+<meta property="og:description" content="1. #存储嵌套的对象    db.mydb.save({‘name’:’ysz’,’address’:{‘city’:’beijing’,’post’:100096},’phone’:[138,139]})2. #存储数组对象    db.mydb.save({‘Uid’:’yushunzhi@sohu.com’,’Al’:[‘test-1@sohu.com’,’test-2@sohu.com’">
+<meta property="og:updated_time" content="2016-05-25T08:06:04.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mongodb的基本操作">
-<meta name="twitter:description" content="1. #存储嵌套的对象db.mydb.save({‘name’:’ysz’,’address’:{‘city’:’beijing’,’post’:100096},’phone’:[138,139]})2. #存储数组对象db.mydb.save({‘Uid’:’yushunzhi@sohu.com’,’Al’:[‘test-1@sohu.com’,’test-2@sohu.com’]})3. #根">
+<meta name="twitter:description" content="1. #存储嵌套的对象    db.mydb.save({‘name’:’ysz’,’address’:{‘city’:’beijing’,’post’:100096},’phone’:[138,139]})2. #存储数组对象    db.mydb.save({‘Uid’:’yushunzhi@sohu.com’,’Al’:[‘test-1@sohu.com’,’test-2@sohu.com’">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -69,7 +69,7 @@
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Mongodb/">Mongodb</a>
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
   </div>
 
   </div>
@@ -88,7 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div style="padding: 20px 20px 10px 20px;"><br><br>1. #存储嵌套的对象db.mydb.save({‘name’:’ysz’,’address’:{‘city’:’beijing’,’post’:100096},’phone’:[138,139]})<br><br>2. #存储数组对象db.mydb.save({‘Uid’:’yushunzhi@sohu.com’,’Al’:[‘test-1@sohu.com’,’test-2@sohu.com’]})<br><br>3. #根据query条件修改，如果不存在则插入，允许修改多条记录<br><br>db.mydb.update({‘yy’:5},{‘$set’:{‘xx’:2}},upsert=true,multi=true)<br><br>4. #删除yy=5的记录 db.mydb.remove({‘yy’:5})<br><br>5. #删除所有的记录 db.mydb.remove()<br><br>6.#查询有限的数据 db.mydb.find().limit()<br><br>7.#查询一条数据 db.mydb.findOne()<br><br>8. #sort排序 db.mydb.find({‘From’:’ixigua@sina.com’}).sort({‘Dt’,-1})<br><br>db.mydb.find().sort({‘Ct’:-1}).limit(1)<br><br>9. #count操作 db.mydb.count()<br><br>10.#distinct操作,查询指定列，去重复 db.mydb.distinct(‘msg’)<br><br>11. #”&gt;=”操作 db.mydb.find({“timestamp”: {“$gte” : 2}})<br><br>12. #子对象的查找 db.mydb.find({‘address.city’:’beijing’})<br><br>13. #查询所有的记录 db.mydb.find()<br><br><span style="color: #ff6600;">总结：Mongodb的存储方式就是json格式，这样存储的数据易存易取，效率非常高，值得应用。</span><br><br></div>
+        <div style="padding: 20px 20px 10px 20px;"><br><br>1. #存储嵌套的对象<br><br>    db.mydb.save({‘name’:’ysz’,’address’:{‘city’:’beijing’,’post’:100096},’phone’:[138,139]})<br><br>2. #存储数组对象<br><br>    db.mydb.save({‘Uid’:’yushunzhi@sohu.com’,’Al’:[‘test-1@sohu.com’,’test-2@sohu.com’]})<br><br>3. #根据query条件修改，如果不存在则插入，允许修改多条记录<br><br>    db.mydb.update({‘yy’:5},{‘$set’:{‘xx’:2}},upsert=true,multi=true)<br><br>4. #删除yy=5的记录<br><br>    db.mydb.remove({‘yy’:5})<br><br>5. #删除所有的记录<br><br>    db.mydb.remove()<br><br>6.#查询有限的数据<br><br>    db.mydb.find().limit()<br><br>7.#查询一条数据<br><br>    db.mydb.findOne()<br><br>8. #sort排序<br><br>    db.mydb.find({‘From’:’ixigua@sina.com’}).sort({‘Dt’,-1})<br>    db.mydb.find().sort({‘Ct’:-1}).limit(1)<br><br>9. #count操作<br><br>    db.mydb.count()<br><br>10.#distinct操作,查询指定列，去重复<br><br>    db.mydb.distinct(‘msg’)<br><br>11. #”&gt;=”操作<br><br>    db.mydb.find({“timestamp”: {“$gte” : 2}})<br><br>12. #子对象的查找<br><br>    db.mydb.find({‘address.city’:’beijing’})<br><br>13. #查询所有的记录<br><br>    db.mydb.find()<br><br><span style="color: #ff6600;">总结：Mongodb的存储方式就是json格式，这样存储的数据易存易取，效率非常高，值得应用。</span><br><br></div>
       
     </div>
     <footer class="article-footer">
@@ -163,7 +163,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -181,7 +181,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 

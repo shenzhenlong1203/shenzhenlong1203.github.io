@@ -17,7 +17,7 @@ linux下安装方法：
 首先，无论新旧版本，都得安装mysql驱动，类似与jdbc驱动的东西。
 linux下安装方法：
 安装mysql 插件npm install mysql安装成功后的位置：C:\Users\用户名\node_modules\mysql//此为windows下的安装路径，自己可以任意设置，不过要">
-<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+<meta property="og:updated_time" content="2016-05-25T08:06:49.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NodeJs连接数据库">
 <meta name="twitter:description" content="NodeJs链接数据库的问题，这里涉及到node的版本的问题,所以这里就说一下新旧版本链接数据库的方法问题。
@@ -100,113 +100,7 @@ linux下安装方法：
         <p><span style="color: #993300;"><strong>NodeJs链接数据库的问题，这里涉及到node的版本的问题,所以这里就说一下新旧版本链接数据库的方法问题。</strong></span></p>
 <p><strong><span style="color: #993300; font-size: 16px;">首先，无论新旧版本，都得安装mysql驱动，类似与jdbc驱动的东西。</span></strong></p>
 <p>linux下安装方法：</p>
-<div id="cnblogs_post_body"><br><br>安装mysql 插件<br>npm install mysql<br><br>安装成功后的位置：<br>C:\Users\用户名\node_modules\mysql//此为windows下的安装路径，自己可以任意设置，不过要记住安装路径<br>/opt/mysql/node_modules/mysql //此为linux下的安装路径<br>查看readme.md文件的方法<br><a href="http://daringfireball.net/projects/markdown/dingus" target="_blank" rel="external">http://daringfireball.net/projects/markdown/dingus</a><br><br><strong><span style="color: #993300; font-size: 16px;">其次，编写一个小例子进行测试。</span></strong><br><br><span style="color: #993300; font-size: 14px;">//此为较低版本的的数据库链接方式</span><br><code>var mysql = require(&#39;mysql&#39;); &lt;span style=&quot;color: #993300;&quot;&gt; //mysql与项目在一个目录&lt;/span&gt;
-
-   var TEST_DATABASE = &#39;nodejs_db&#39;;  
-  var TEST_TABLE = &#39;test&#39;;  
-
-//创建连接
-   var client = mysql.createClient({  
-      user: &#39;root&#39;,  
-      password: &#39;rainbow&#39;,  
-    });  
-
-//创建数据库
-client.query(&#39;CREATE DATABASE &#39;+TEST_DATABASE, function(err) {
-if (err &amp;amp;&amp;amp; err.number != mysql.ERROR_DB_CREATE_EXISTS) {
-throw err;
-}
-});
-
-//不指定回调函数，如果出错，则体现为客户端错误
-client.query(&#39;USE &#39;+TEST_DATABASE);
-
-//创建表格,插入数据
-client.query(
-&#39;CREATE TABLE &#39;+TEST_TABLE+
-&#39;(id INT(11) AUTO_INCREMENT, &#39;+
-&#39;name VARCHAR(255), &#39;+
-&#39;PRIMARY KEY (id))&#39;
-);
-
-client.query(
-&#39;INSERT INTO &#39;+TEST_TABLE+&#39; &#39;+
-&#39;SET name = ?&#39;,
-[&#39;nodejs1&#39;]
-);
-
-var query = client.query(
-&#39;INSERT INTO &#39;+TEST_TABLE+&#39; &#39;+
-&#39;SET name = ?&#39;,
-[&#39;nodejs2&#39;]
-);
-
-//查询，并设置回调函数
-client.query(
-&#39;SELECT * FROM &#39;+TEST_TABLE,
-function selectCb(err, results, fields) {
-if (err) {
-throw err;
-}
-
-console.log(results);
-console.log(fields);
-client.end();
-}
-);
-
-&lt;span style=&quot;color: #993300; font-size: 14px;&quot;&gt;//此为较高版本的的数据库链接方式&lt;/span&gt;
-
-var mysql = require(&#39;&lt;span style=&quot;color: #993300;&quot;&gt;/usr/local/lib/node_modules/mysql&lt;/span&gt;&#39;);&lt;span style=&quot;color: #993300;&quot;&gt;//此路径为mysql的驱动安装路径&lt;/span&gt;
-
-&lt;span style=&quot;color: #993300;&quot;&gt;var connection = mysql.createConnection({&lt;/span&gt;
-&lt;span style=&quot;color: #993300;&quot;&gt; host : &#39;localhost&#39;,&lt;/span&gt;
-&lt;span style=&quot;color: #993300;&quot;&gt; port : 3306,&lt;/span&gt;
-&lt;span style=&quot;color: #993300;&quot;&gt; user : &#39;root&#39;,&lt;/span&gt;
-&lt;span style=&quot;color: #993300;&quot;&gt; password : &#39;mysql&#39;,&lt;/span&gt;
-&lt;span style=&quot;color: #993300;&quot;&gt; database : &#39;testMysql&#39;,&lt;/span&gt;
-&lt;span style=&quot;color: #993300;&quot;&gt; charset : &#39;UTF8_GENERAL_CI&#39;,&lt;/span&gt;
-&lt;span style=&quot;color: #993300;&quot;&gt; debug : false&lt;/span&gt;
-&lt;span style=&quot;color: #993300;&quot;&gt;});&lt;/span&gt;
-
-//connection.connect();
-console.log(&#39;Connection to Mysql&#39;);
-
-http = require(&quot;http&quot;);
-
-var server = http.createServer(function(request, response) {
-response.writeHeader(200, {&quot;Content-Type&quot;: &quot;text/html&quot;});
-
-&lt;span style=&quot;color: #993300;&quot;&gt;connection.query(&#39;USE testMysql&#39;);&lt;/span&gt;
-
-&lt;span style=&quot;color: #993300;&quot;&gt;connection.query(&#39;SELECT * FROM myTable&#39;, function(err, results, fields)&lt;/span&gt; {
-if (err) {
-throw err;
-}
-
-var data = &#39;&amp;lt;html&amp;gt; &amp;lt;head&amp;gt;&#39;+
-&#39;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;div align=&quot;center&quot;&amp;gt;&amp;lt;h1&amp;gt;TestMysql&amp;lt;/h1&amp;gt;&#39;+
-&#39;&amp;lt;table border=&quot;1&quot; style=&quot;text-align:center;&quot;&amp;gt;&amp;lt;tr&amp;gt;&#39;+
-&#39;&amp;lt;th style=&quot;width:150px;&quot;&amp;gt;Id&amp;lt;/th&amp;gt;&amp;lt;th style=&quot;width:150px;&quot;&amp;gt;firstName&amp;lt;/th&amp;gt;&#39;+
-&#39;&amp;lt;th style=&quot;width:150px;&quot;&amp;gt;LastName&amp;lt;/th&amp;gt;&amp;lt;th style=&quot;width:150px;&quot;&amp;gt;Message&amp;lt;/th&amp;gt;&amp;lt;/tr&amp;gt;&#39;;
-for (var i=0; i&amp;lt;results.length; i++) {
-var firstResult = results[i];
-data += &#39;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&#39; + firstResult[&#39;id&#39;]+&#39;&amp;lt;/td&amp;gt;&#39;
-+&#39;&amp;lt;td&amp;gt;&#39; + firstResult[&#39;firstname&#39;]+&#39;&amp;lt;/td&amp;gt;&#39;
-+&#39;&amp;lt;td&amp;gt;&#39; + firstResult[&#39;lastname&#39;]+&#39;&amp;lt;/td&amp;gt;&#39;
-+&#39;&amp;lt;td&amp;gt;&#39; + firstResult[&#39;message&#39;]+&#39;&amp;lt;/td&amp;gt;&#39;
-+&#39;&amp;lt;/tr&amp;gt;&#39;;
-}
-data +=&#39;&amp;lt;/table&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&#39;;
-response.write(data);
-response.end();
-});
-});
-
-server.listen(8888);
-
-var sys = require(&quot;util&quot;);
-sys.puts(&quot;Server running at http://localhost:8888/&quot;);</code><br>//connection.end();<span style="color: #993300;">//此处用不到end()</span><br><div style="color: #993300; font-size: 16px;"><strong>最后，总结一下，两种方式有着不同的链接方式，自己认为还是第一种方式比较通俗易懂，很适合初学者学习。第二种方式，比较你接近面向对象化，是未来的一种发展趋势，也是非常好的方式，面向企业化的链接，易于管理。在实际应用中，根据自己的情况自己确定。</strong></div><br></div><br><div id="MySignature"></div><br><div></div><br><div id="blog_post_info_block"></div>
+<div id="cnblogs_post_body"><br><br>安装mysql 插件<br>npm install mysql<br><br>安装成功后的位置：<br>C:\Users\用户名\node_modules\mysql//此为windows下的安装路径，自己可以任意设置，不过要记住安装路径<br>/opt/mysql/node_modules/mysql //此为linux下的安装路径<br>查看readme.md文件的方法<br><a href="http://daringfireball.net/projects/markdown/dingus" target="_blank" rel="external">http://daringfireball.net/projects/markdown/dingus</a><br><br><strong><span style="color: #993300; font-size: 16px;">其次，编写一个小例子进行测试。</span></strong><br><br><span style="color: #993300; font-size: 14px;">//此为较低版本的的数据库链接方式</span><br><br>    var mysql = require(‘mysql’); <span style="color: #993300;"> //mysql与项目在一个目录</span><br><br>       var TEST_DATABASE = ‘nodejs_db’;<br>      var TEST_TABLE = ‘test’;<br><br>    //创建连接<br>       var client = mysql.createClient({<br>          user: ‘root’,<br>          password: ‘rainbow’,<br>        });<br><br>    //创建数据库<br>    client.query(‘CREATE DATABASE ‘+TEST_DATABASE, function(err) {<br>    if (err &amp;&amp; err.number != mysql.ERROR_DB_CREATE_EXISTS) {<br>    throw err;<br>    }<br>    });<br><br>    //不指定回调函数，如果出错，则体现为客户端错误<br>    client.query(‘USE ‘+TEST_DATABASE);<br><br>    //创建表格,插入数据<br>    client.query(<br>    ‘CREATE TABLE ‘+TEST_TABLE+<br>    ‘(id INT(11) AUTO_INCREMENT, ‘+<br>    ‘name VARCHAR(255), ‘+<br>    ‘PRIMARY KEY (id))’<br>    );<br><br>    client.query(<br>    ‘INSERT INTO ‘+TEST_TABLE+’ ‘+<br>    ‘SET name = ?’,<br>    [‘nodejs1’]<br>    );<br><br>    var query = client.query(<br>    ‘INSERT INTO ‘+TEST_TABLE+’ ‘+<br>    ‘SET name = ?’,<br>    [‘nodejs2’]<br>    );<br><br>    //查询，并设置回调函数<br>    client.query(<br>    ‘SELECT <em> FROM ‘+TEST_TABLE,<br>    function selectCb(err, results, fields) {<br>    if (err) {<br>    throw err;<br>    }<br><br>    console.log(results);<br>    console.log(fields);<br>    client.end();<br>    }<br>    );<br><br><span style="color: #993300; font-size: 14px;">//此为较高版本的的数据库链接方式</span><br><br>    var mysql = require(‘<span style="color: #993300;">/usr/local/lib/node_modules/mysql</span>‘);<span style="color: #993300;">//此路径为mysql的驱动安装路径</span><br><br>    <span style="color: #993300;">var connection = mysql.createConnection({</span><br>    <span style="color: #993300;"> host : ‘localhost’,</span><br>    <span style="color: #993300;"> port : 3306,</span><br>    <span style="color: #993300;"> user : ‘root’,</span><br>    <span style="color: #993300;"> password : ‘mysql’,</span><br>    <span style="color: #993300;"> database : ‘testMysql’,</span><br>    <span style="color: #993300;"> charset : ‘UTF8_GENERAL_CI’,</span><br>    <span style="color: #993300;"> debug : false</span><br>    <span style="color: #993300;">});</span><br><br>    //connection.connect();<br>    console.log(‘Connection to Mysql’);<br><br>    http = require(“http”);<br><br>    var server = http.createServer(function(request, response) {<br>    response.writeHeader(200, {“Content-Type”: “text/html”});<br><br>    <span style="color: #993300;">connection.query(‘USE testMysql’);</span><br><br>    <span style="color: #993300;">connection.query(‘SELECT </span></em> FROM myTable’, function(err, results, fields) {<br>    if (err) {<br>    throw err;<br>    }<br><br>    var data = ‘&lt;html&gt; &lt;head&gt;’+<br>    ‘&lt;/head&gt;&lt;body&gt;&lt;div align=”center”&gt;&lt;h1&gt;TestMysql&lt;/h1&gt;’+<br>    ‘&lt;table border=”1” style=”text-align:center;”&gt;&lt;tr&gt;’+<br>    ‘&lt;th style=”width:150px;”&gt;Id&lt;/th&gt;&lt;th style=”width:150px;”&gt;firstName&lt;/th&gt;’+<br>    ‘&lt;th style=”width:150px;”&gt;LastName&lt;/th&gt;&lt;th style=”width:150px;”&gt;Message&lt;/th&gt;&lt;/tr&gt;’;<br>    for (var i=0; i&lt;results.length; i++) {<br>    var firstResult = results[i];<br>    data += ‘&lt;tr&gt;&lt;td&gt;’ + firstResult[‘id’]+’&lt;/td&gt;’<br>    +’&lt;td&gt;’ + firstResult[‘firstname’]+’&lt;/td&gt;’<br>    +’&lt;td&gt;’ + firstResult[‘lastname’]+’&lt;/td&gt;’<br>    +’&lt;td&gt;’ + firstResult[‘message’]+’&lt;/td&gt;’<br>    +’&lt;/tr&gt;’;<br>    }<br>    data +=’&lt;/table&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;’;<br>    response.write(data);<br>    response.end();<br>    });<br>    });<br><br>    server.listen(8888);<br><br>    var sys = require(“util”);<br>    sys.puts(“Server running at <a href="http://localhost:8888/" target="_blank" rel="external">http://localhost:8888/</a>“);<br><br>//connection.end();<span style="color: #993300;">//此处用不到end()</span><br><div style="color: #993300; font-size: 16px;"><strong>最后，总结一下，两种方式有着不同的链接方式，自己认为还是第一种方式比较通俗易懂，很适合初学者学习。第二种方式，比较你接近面向对象化，是未来的一种发展趋势，也是非常好的方式，面向企业化的链接，易于管理。在实际应用中，根据自己的情况自己确定。</strong></div><br></div><br><div id="MySignature"></div><br><div></div><br><div id="blog_post_info_block"></div>
       
     </div>
     <footer class="article-footer">
@@ -281,7 +175,7 @@ sys.puts(&quot;Server running at http://localhost:8888/&quot;);</code><br>//conn
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -299,7 +193,7 @@ sys.puts(&quot;Server running at http://localhost:8888/&quot;);</code><br>//conn
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 10px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
     </div>
   </div>
 
