@@ -93,8 +93,7 @@
         2. 一个文件中加载多个类文件。
 </code></pre></li>
 </ul>
-<p>###类的懒加载</p>
-<ul>
+<h3 id="类的懒加载"><a href="#类的懒加载" class="headerlink" title="类的懒加载"></a>类的懒加载</h3><ul>
 <li>__autoload : 根据类名，找出类文件，然后require _once()</li>
 <li><p>spl _autoload : spl _autoload _register注册多个自定义的autoload函数</p>
 </li>
@@ -104,8 +103,7 @@
 <pre><code>缺陷： __autoload的最大缺陷是无法有多个autoload方法 
 </code></pre></li>
 </ul>
-<p>###MVC加载原理</p>
-<p><img src="http://123.56.234.128/szl/flow.png" alt="http://123.56.234.128/szl/flow.png"></p>
+<h3 id="MVC加载原理"><a href="#MVC加载原理" class="headerlink" title="MVC加载原理"></a>MVC加载原理</h3><p><img src="http://123.56.234.128/szl/flow.png" alt="http://123.56.234.128/szl/flow.png"></p>
 <ol>
 <li><p>include 配置</p>
 <pre><code>&apos;include&apos; =&gt; array( &apos;application/catalog/controllers&apos;,
@@ -143,8 +141,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 } 
 </code></pre></li>
 </ol>
-<p>###Composer加载原理</p>
-<ul>
+<h3 id="Composer加载原理"><a href="#Composer加载原理" class="headerlink" title="Composer加载原理"></a>Composer加载原理</h3><ul>
 <li><p>__autoload 只能全局下加载，但在命名空间下无法实现</p>
 </li>
 <li><p>composer（包管理器）的应用</p>
@@ -193,10 +190,8 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
 <li>加载原理</li>
 </ul>
 <p><img src="http://123.56.234.128/szl/autoload.png" alt="http://123.56.234.128/szl/autoload.png"></p>
-<p>其他</p>
-<p>composer加载第三方库的演示</p>
-<p>参考文档</p>
-<ol>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>composer加载第三方库的演示</p>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
 <li><a href="&quot;http://www.cnblogs.com/xia520pi/p/3697099.html&quot;">http://www.cnblogs.com/xia520pi/p/3697099.html</a></li>
 <li><a href="&quot;http://www.jb51.net/article/31399.htm&quot;">http://www.jb51.net/article/31399.htm</a></li>
 <li><a href="&quot;http://www.jb51.net/article/53876.htm&quot;">http://www.jb51.net/article/53876.htm</a></li>
@@ -205,7 +200,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2016/05/25/4/" data-id="ciomhbcts003fdsowflv35tm7" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2016/05/25/4/" data-id="ciomhez2s0036mkowz9sdza9p" class="article-share-link">Share</a>
       
       
     </footer>
@@ -246,7 +241,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/06/30/5/" data-id="ciomhbcum004edsow9pt15dso" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/06/30/5/" data-id="ciomhez3w004kmkowt6ebvxb0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -289,7 +284,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/06/26/8/" data-id="ciomhbcvg0059dsowcd00v9uh" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/06/26/8/" data-id="ciomhez46004rmkowpgryack0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -330,7 +325,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/05/07/20/" data-id="ciomhbcra000ydsowkiltqehk" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/05/07/20/" data-id="ciomhez0a0015mkow7zz9u3rp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
@@ -391,7 +386,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/05/06/49/" data-id="ciomhbcum004cdsow48y1941c" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/05/06/49/" data-id="ciomhez4q005rmkowvfn26ina" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
@@ -434,7 +429,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/04/29/42/" data-id="ciomhbcu2003rdsowsojj376y" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/04/29/42/" data-id="ciomhez2s003gmkowbljyd516" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
@@ -479,7 +474,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/04/27/30/" data-id="ciomhbcsy002qdsowh1v7c6fv" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/04/27/30/" data-id="ciomhez1y002hmkowht1xupkv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
@@ -543,7 +538,7 @@ spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/04/23/31/" data-id="ciomhbct8002udsow7vz0lid1" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/04/23/31/" data-id="ciomhez1y002kmkow4lryulsf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
@@ -651,7 +646,7 @@ Wed Apr 11 00:03:03 1 objects found
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/02/03/46/" data-id="ciomhbcuc0041dsowsdtd2as8" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/02/03/46/" data-id="ciomhez3c003tmkow5u9qlrjj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
@@ -699,7 +694,7 @@ Wed Apr 11 00:03:03 1 objects found
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="ciomhbcs4001ydsow2n20m2zr" class="article-share-link">Share</a>
+      <a data-url="http://longlongblog.cn/2015/01/04/3/" data-id="ciomhez1o0029mkowr1at0k9q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/感悟/">感悟</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/生活/">生活</a></li></ul>
