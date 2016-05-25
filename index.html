@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Dragon_SZ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="沈振龙的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dragon_SZ">
+<meta property="og:url" content="http://longlongblog.tk/index.html">
+<meta property="og:site_name" content="Dragon_SZ">
+<meta property="og:description" content="沈振龙的个人博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dragon_SZ">
+<meta name="twitter:description" content="沈振龙的个人博客">
+  
+    <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Dragon_SZ</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">http://longlongblog.tk</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://longlongblog.tk"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-autoload" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/25/autoload/" class="article-date">
+  <time datetime="2016-05-25T03:13:08.295Z" itemprop="datePublished">2016-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="PHP类的自动加载"><a href="#PHP类的自动加载" class="headerlink" title="PHP类的自动加载"></a>PHP类的自动加载</h2><h3 id="类的加载"><a href="#类的加载" class="headerlink" title="类的加载"></a>类的加载</h3><ul>
+<li>require()和include()语句是语言结构，不是真正的函数。</li>
+<li>require()和include()语句也可以不加圆括号而直接加参数。</li>
+<li>require_once() 判断并加载文件。</li>
+<li><p>include_once() 判断并加载文件。 </p>
+<pre><code>相同点：在脚本执行期间包括运行指定文件
+
+不同点： 1.incluce在用到时加载，require在一开始就加载
+           2.include_once()和require_once()文件中的代码已经被包括了，则不会再次包括，
+        以避免函数重定义以及变量重新赋值等问题。
+        3.include引入文件的时候，如果碰到错误，会给出提示，并继续运行下边的代码。
+        4.require引入文件的时候，如果碰到错误，会给出提示，并停止运行下边的代码。
+问题：   1.多个文件中，类的命名重复问题。
+        2. 一个文件中加载多个类文件。
+</code></pre></li>
+</ul>
+<p>###类的懒加载</p>
+<ul>
+<li>__autoload : 根据类名，找出类文件，然后require _once()</li>
+<li><p>spl _autoload : spl _autoload _register注册多个自定义的autoload函数</p>
+</li>
+<li><p>__autoload : 定义路径法（path）和直接映射法（array）</p>
+</li>
+<li><p>spl _autoload : autoload调用堆栈，注册多个自定义的autoload函数</p>
+<pre><code>缺陷： __autoload的最大缺陷是无法有多个autoload方法 
+</code></pre></li>
+</ul>
+<p>###MVC加载原理</p>
+<p><img src="http://123.56.234.128/szl/flow.png" alt="http://123.56.234.128/szl/flow.png"></p>
+<ol>
+<li><p>include 配置</p>
+<pre><code>&apos;include&apos; =&gt; array( &apos;application/catalog/controllers&apos;,
+&apos;application/catalog/models&apos;, ),
+$include =&gt; array(&apos;application/controllers&apos;, &apos;application/models&apos;, &apos;application/library&apos;); 
+set_include_path(get_include_path() . PATH_SEPARATOR .implode(PATH_SEPARATOR, $config[&apos;include&apos;]));
+</code></pre></li>
+<li><p>autoload 方式</p>
+<pre><code>public static function autoload($class) 
+    { 
+        $path = &apos;&apos;; 
+        $path = str_replace(&apos;_&apos;, &apos;/&apos;, $class) . &apos;.php&apos;; 
+        include_once($path); 
+    } 
+} 
+/** 
+* sql自动加载 
+*/ 
+spl_autoload_register(array(&apos;Loader&apos;, &apos;autoload&apos;)); 
+</code></pre></li>
+<li><p>路由实例化并唤醒类方法</p>
+</li>
+<li><pre><code>public function route() 
+{ 
+    if (class_exists($this-&gt;getController())) { 
+    $rc = new ReflectionClass($this-&gt;getController()); 
+    if ($rc-&gt;hasMethod($this-&gt;getAction())) { 
+        $controller = $rc-&gt;newInstance(); 
+        $method = $rc-&gt;getMethod($this-&gt;getAction()); 
+        $method-&gt;invoke($controller); 
+    } else 
+        throw new Exception(&apos;no action&apos;); 
+    } else 
+        throw new Exception(&apos;no controller&apos;); 
+} 
+</code></pre></li>
+</ol>
+<p>###Composer加载原理</p>
+<ul>
+<li><p>__autoload 只能全局下加载，但在命名空间下无法实现</p>
+</li>
+<li><p>composer（包管理器）的应用</p>
+</li>
+</ul>
+<p><img src="http://123.56.234.128/szl/composer.png" alt="http://123.56.234.128/szl/composer.png"></p>
+<ol>
+<li><p>psr-0</p>
+<pre><code>{
+      &quot;autoload&quot;: {
+        &quot;psr-0&quot;: {
+      &quot;Foo\\&quot;: &quot;src/&quot;,
+        }
+      }
+}
+路径生成： &quot;Foo\\Bar\\Baz.php&quot; 
+</code></pre></li>
+<li><p>psr-4</p>
+<pre><code>{
+      &quot;autoload&quot;: {
+        &quot;psr-4&quot;: {
+      &quot;Foo\\&quot;: &quot;src/&quot;,
+        }
+      }
+}
+路径生成： &quot;src/Foo/Bar/Baz.php&quot;
+</code></pre></li>
+<li><p>class-map</p>
+<pre><code>{
+    &quot;autoload&quot;: {
+    &quot;classmap&quot;: [&quot;src/&quot;, &quot;lib/&quot;, &quot;Something.php&quot;]
+    }
+}
+路径生成： &quot;src/Something.php&quot;
+</code></pre></li>
+<li><p>files</p>
+<pre><code>{
+  &quot;autoload&quot;: {
+    &quot;files&quot;: [&quot;src/MyLibrary/functions.php&quot;]
+  }
+}
+生成一个array
+</code></pre></li>
+</ol>
+<ul>
+<li>加载原理</li>
+</ul>
+<p><img src="http://123.56.234.128/szl/autoload.png" alt="http://123.56.234.128/szl/autoload.png"></p>
+<p>###其他</p>
+<p>composer加载第三方库的演示</p>
+<p>###参考文档</p>
+<ol>
+<li><a href="&quot;http://www.cnblogs.com/xia520pi/p/3697099.html&quot;">http://www.cnblogs.com/xia520pi/p/3697099.html</a></li>
+<li><a href="&quot;http://www.jb51.net/article/31399.htm&quot;">http://www.jb51.net/article/31399.htm</a></li>
+<li><a href="&quot;http://www.jb51.net/article/53876.htm&quot;">http://www.jb51.net/article/53876.htm</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://longlongblog.tk/2016/05/25/autoload/" data-id="ciombr2k10000rkowop1xnt3u" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/25/autoload/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Dragon_SZ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
