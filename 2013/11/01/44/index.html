@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaEE+Mysql中文乱码 | Dragon_SZ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。
+1.在数据库链接字符串上要形如：jdbc:mysql://localhost:3306/db?useUnicode=true&amp;amp;characterEncoding=UTF-8(注意要加characterEncoding=UTF-8)。
+2.在数据库表和相应的字段都要的charset要选择utf8，字段也要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaEE+Mysql中文乱码">
+<meta property="og:url" content="http://longlongblog.tk/2013/11/01/44/index.html">
+<meta property="og:site_name" content="Dragon_SZ">
+<meta property="og:description" content="我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。
+1.在数据库链接字符串上要形如：jdbc:mysql://localhost:3306/db?useUnicode=true&amp;amp;characterEncoding=UTF-8(注意要加characterEncoding=UTF-8)。
+2.在数据库表和相应的字段都要的charset要选择utf8，字段也要">
+<meta property="og:image" content="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8-300x225.jpg">
+<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaEE+Mysql中文乱码">
+<meta name="twitter:description" content="我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。
+1.在数据库链接字符串上要形如：jdbc:mysql://localhost:3306/db?useUnicode=true&amp;amp;characterEncoding=UTF-8(注意要加characterEncoding=UTF-8)。
+2.在数据库表和相应的字段都要的charset要选择utf8，字段也要">
+<meta name="twitter:image" content="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8-300x225.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Dragon_SZ</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">http://longlongblog.tk</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://longlongblog.tk"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-44" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/11/01/44/" class="article-date">
+  <time datetime="2013-11-01T03:43:11.000Z" itemprop="datePublished">2013-11-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/J2EE/">J2EE</a>►<a class="article-category-link" href="/categories/J2EE/Mysql/">Mysql</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaEE+Mysql中文乱码
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><span style="font-size: 14px;"><strong><a href="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8.jpg" target="_blank" rel="external"><img src="http://longlongblog-wordpress.stor.sinaapp.com/uploads/2013/11/ebc8-300x225.jpg" alt="" title="ebc8"></a><span style="font-size: 14px;">我们在开发jsp时，会经常遇到中文乱码的问题，现在把以下的方法做完，编码问题迎刃而解。</span></strong></span></p>
+<p>1.在数据库链接字符串上要形如：<span style="color: #ff6600;">jdbc:mysql://localhost:3306/db?useUnicode=true&amp;characterEncoding=<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="external"><span style="color: #ff6600;">UTF-8</span></a>(注意要加characterEncoding=<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="external"><span style="color: #ff6600;">UTF-8</span></a>)。</span></p>
+<p>2.在数据库表和相应的字段都要的charset要选择utf8，字段也要加，参照<a href="http://blog.csdn.net/xuanner/article/details/1573616" target="_blank" rel="external">http://blog.csdn.net/xuanner/article/details/1573616</a>。<span style="color: #ff6600;">（最根本的解决方案是将mysql里的bin目录下的my.ini修改或者加入编码utf-8，重新启动服务，重新建立数据库即可）。</span></p>
+<p>3.在servlet的java中去参数时要加上<span style="color: #ff6600;">：httpServletRequest.setCharacterEncoding(“<a href="http://zhidao.baidu.com/search?word=UTF-8&amp;fr=qb_search_exp&amp;ie=utf8" target="_blank" rel="external"><span style="color: #ff6600;">UTF-8</span></a>“);</span>（最好写一个filter来过滤所有的的代码，并设置为utf-8，参照<a href="http://www.cnblogs.com/yqskj/articles/2226774.html" target="_blank" rel="external">http://www.cnblogs.com/yqskj/articles/2226774.html</a>）。</p>
+<p>4.jsp页面要<span style="color: #000000;">加</span>上<span style="color: #000000;">字符集</span>：<span style="color: #ff6600;"> &lt;%@ page language=”java” contentType=”text/html; charset=UTF-8” pageEncoding=”UTF-8”%&gt;</span> 保证页码的编码是utf-8.</p>
+<p>5.在一个javaEE项目时，有一个Servers，将里边的server.xml中修改为&lt;Connector connectionTimeout=”20000” port=”8080” protocol=”HTTP/1.1” redirectPort=”8443” <span style="color: #ff6600;"> URIEncoding=”UTF-8”</span>/&gt;。</p>
+<p><strong>这样做完以上五个步骤，中文乱码问题就不复存在了。</strong></p>
+<p>&nbsp;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://longlongblog.tk/2013/11/01/44/" data-id="ciomcnxzu003dpwowcd5h6204" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013/11/09/11/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          久违的睡眠
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/10/23/41/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">那时花开</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人简历/">个人简历</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">21</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/25/4/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/30/5/">不知从何说起</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/26/8/">一意孤行</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/06/49/">PHP的魔术方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Dragon_SZ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>浅谈PHP大数据处理 | Dragon_SZ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。
+1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈PHP大数据处理">
+<meta property="og:url" content="http://longlongblog.tk/2015/04/27/30/index.html">
+<meta property="og:site_name" content="Dragon_SZ">
+<meta property="og:description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。
+1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。3">
+<meta property="og:updated_time" content="2016-05-25T03:58:38.792Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈PHP大数据处理">
+<meta name="twitter:description" content="新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。
+1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。3">
+  
+    <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Dragon_SZ</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">http://longlongblog.tk</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://longlongblog.tk"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-30" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/27/30/" class="article-date">
+  <time datetime="2015-04-27T10:44:57.000Z" itemprop="datePublished">2015-04-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Mysql/">Mysql</a>►<a class="article-category-link" href="/categories/Mysql/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浅谈PHP大数据处理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。</p>
+<p>1. 尽量不要用inner join，内连接查询速度慢，建议为left jion。<br>2. 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。<br>3. limit 分段处理，每次取2000条，处理完之后再取数据处理。<br>4. mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。<br>5. 优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。<br>6.利用Explain获取的信息来实现mysql优化，参考地址：<a href="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" title="http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html" target="_blank" rel="external">http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html</a></p>
+<p>其实归根结底是数据库方面的优化，当然数据量很大的情况下，要提前预知好，更换数据库是避免查询宕机的关键，如果提前预知用oracle数据库的话，就不会出现现在的情况，现在改数据库，花费的代价很大。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://longlongblog.tk/2015/04/27/30/" data-id="ciomcnxyg0020pwowqt8rolqk" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/29/42/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/04/23/31/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">浅谈Redis与Memcache的异同点</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/">J2EE</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2EE/Mysql/">Mysql</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2ME/">J2ME</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/">J2SE</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/J2SE/Java/">Java</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/">Mongodb</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mongodb/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/">Mysql</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mysql/PHP/">PHP</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/RedHat/">RedHat</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人日记/">个人日记</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人简历/">个人简历</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习/">学习</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/感悟/">感悟</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a><span class="tag-list-count">21</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/学习/" style="font-size: 20px;">学习</a> <a href="/tags/感悟/" style="font-size: 15px;">感悟</a> <a href="/tags/生活/" style="font-size: 10px;">生活</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/25/4/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/30/5/">不知从何说起</a>
+          </li>
+        
+          <li>
+            <a href="/2015/06/26/8/">一意孤行</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/06/49/">PHP的魔术方法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Dragon_SZ<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
