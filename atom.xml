@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://longlongblog.cn/"/>
-  <updated>2016-05-31T06:06:03.593Z</updated>
+  <updated>2016-05-31T06:17:50.425Z</updated>
   <id>http://longlongblog.cn/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>企业级Redis环境部署</title>
+    <link href="http://longlongblog.cn/2016/05/31/57/"/>
+    <id>http://longlongblog.cn/2016/05/31/57/</id>
+    <published>2016-05-31T03:12:40.000Z</published>
+    <updated>2016-05-31T06:17:50.425Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;哨兵配置文件参考：&lt;/p&gt;
+&lt;p&gt;   哨兵配置文件: etc/redis/sentinel.conf&lt;/p&gt;
+  &lt;figure class=&quot;highlight smali&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sentinel&lt;span class=&quot;built_in&quot;&gt; monitor &lt;/span&gt;test1 10.10.10.152 6386 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sentinel down-after-milliseconds test1 5000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sentinel failover-timeout test1 900000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sentinel can-failover test1 yes&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sentinel parallel-syncs test1 2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sentinel config-epoch test1 45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sentinel leader-epoch test1 45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sentinel known-slave test1 10.10.10.155 6387&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;port 26379&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;dir &lt;span class=&quot;string&quot;&gt;&quot;/usr/local/etc&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sentinel current-epoch 45&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;备注： &lt;/p&gt;
+  &lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;redis&lt;/span&gt;哨兵10&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.155&lt;/span&gt;， 哨兵端口（26379）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;test1&lt;/span&gt; 10&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.152&lt;/span&gt; 6386  为其中一个监控的&lt;span class=&quot;selector-tag&quot;&gt;redis&lt;/span&gt; 主服务端口&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;前提：&lt;/p&gt;
+  &lt;figure class=&quot;highlight x86asm&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;哨兵：&lt;span class=&quot;number&quot;&gt;10.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.155&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   redis端口 &lt;span class=&quot;number&quot;&gt;10.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.155&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;26379&lt;/span&gt; 实例启动 为哨兵服务&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;命令： redis-server /usr/local/etc/sentinel.conf --sentinel&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   本机：&lt;span class=&quot;number&quot;&gt;10.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.152&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   redis端口 &lt;span class=&quot;number&quot;&gt;10.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.152&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;6386&lt;/span&gt; 实例启动 为主master服务，&amp;lt;/br&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;命令： sudo redis-server  /etc/redis/redis_master_6386.conf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   其他机：&lt;span class=&quot;number&quot;&gt;10.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.155&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   redis端口 &lt;span class=&quot;number&quot;&gt;10.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;meta&quot;&gt;.155&lt;/span&gt;  &lt;span class=&quot;number&quot;&gt;6387&lt;/span&gt; 实例启动 为从slave服务&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;命令： sudo redis-server  /etc/redis/redis_slave_6387.conf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;操作：&lt;/p&gt;
+  &lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;在10&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.155&lt;/span&gt;机器上命令：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1. &lt;span class=&quot;selector-tag&quot;&gt;redis-cli&lt;/span&gt; &lt;span class=&quot;selector-tag&quot;&gt;-h&lt;/span&gt;  10&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.155&lt;/span&gt; &lt;span class=&quot;selector-tag&quot;&gt;-p&lt;/span&gt; 6387 进入&lt;span class=&quot;selector-tag&quot;&gt;redis&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2. &lt;span class=&quot;selector-tag&quot;&gt;slaveof&lt;/span&gt; 10&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.152&lt;/span&gt; 6386  这样本机（10&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.155&lt;/span&gt;）作为主（10&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.10&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.152&lt;/span&gt; 端口 6386）的从数据库了&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;测试要点：&lt;/p&gt;
+  &lt;figure class=&quot;highlight stylus&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;. 修改 &lt;span class=&quot;number&quot;&gt;27&lt;/span&gt;行 script_redis_monitor&lt;span class=&quot;selector-class&quot;&gt;.php&lt;/span&gt; 文件 修改哨兵$_sentinels监控的IP和端口，修改为&lt;span class=&quot;number&quot;&gt;10.10&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;10.155&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;26379&lt;/span&gt;。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;. 修改 &lt;span class=&quot;number&quot;&gt;141&lt;/span&gt;行 script_redis_monitor&lt;span class=&quot;selector-class&quot;&gt;.php&lt;/span&gt; 文件 修改&lt;span class=&quot;variable&quot;&gt;$address&lt;/span&gt;  为自己的邮件地址。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;. 停掉哨兵服务 redis-server /usr/local/etc/sentinel&lt;span class=&quot;selector-class&quot;&gt;.conf&lt;/span&gt; --sentinel 这个进程停掉，运行 php script_redis_monitor&lt;span class=&quot;selector-class&quot;&gt;.php&lt;/span&gt; 看邮件报警。&amp;lt;&lt;span class=&quot;selector-tag&quot;&gt;span&lt;/span&gt; style=&lt;span class=&quot;string&quot;&gt;&quot;color:red&quot;&lt;/span&gt;&amp;gt;记得重新启动&amp;lt;/span&amp;gt;。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;. 停掉master服务sudo redis-server  /etc/redis/redis_master_6386&lt;span class=&quot;selector-class&quot;&gt;.conf&lt;/span&gt; 这个进程停掉， &amp;lt;&lt;span class=&quot;selector-tag&quot;&gt;span&lt;/span&gt; style=&lt;span class=&quot;string&quot;&gt;&quot;color:red&quot;&lt;/span&gt;&amp;gt;&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;秒内&amp;lt;/span&amp;gt; 运行 php script_redis_monitor&lt;span class=&quot;selector-class&quot;&gt;.php&lt;/span&gt; 看邮件报警。&amp;lt;&lt;span class=&quot;selector-tag&quot;&gt;span&lt;/span&gt; style=&lt;span class=&quot;string&quot;&gt;&quot;color:red&quot;&lt;/span&gt;&amp;gt;记得重新启动&amp;lt;/span&amp;gt;。&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;number&quot;&gt;5&lt;/span&gt;. 停掉master服务sudo redis-server  /etc/redis/redis_master_6386&lt;span class=&quot;selector-class&quot;&gt;.conf&lt;/span&gt; 这个进程停掉， &amp;lt;&lt;span class=&quot;selector-tag&quot;&gt;span&lt;/span&gt; style=&lt;span class=&quot;string&quot;&gt;&quot;color:red&quot;&lt;/span&gt;&amp;gt;同时&amp;lt;/span&amp;gt; 停掉slave服务sudo redis-server  /etc/redis/redis_slave_6387&lt;span class=&quot;selector-class&quot;&gt;.conf&lt;/span&gt; 这个进程停掉，运行php script_redis_monitor&lt;span class=&quot;selector-class&quot;&gt;.php&lt;/span&gt; 看邮件报警。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;哨兵配置文件参考：&lt;/p&gt;
+&lt;p&gt;   哨兵配置文件: etc/redis/sentinel.conf&lt;/p&gt;
+  &lt;figure class=&quot;highlight smali&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;sp
+    
+    </summary>
+    
+      <category term="SQL" scheme="http://longlongblog.cn/categories/SQL/"/>
+    
+    
+      <category term="学习" scheme="http://longlongblog.cn/tags/%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>监控系统工具对比</title>
@@ -598,33 +641,6 @@
     
     
       <category term="学习" scheme="http://longlongblog.cn/tags/%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>幸福终点站</title>
-    <link href="http://longlongblog.cn/2014/04/21/21/"/>
-    <id>http://longlongblog.cn/2014/04/21/21/</id>
-    <published>2014-04-20T16:17:15.000Z</published>
-    <updated>2016-05-31T05:51:27.389Z</updated>
-    
-    <content type="html">&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;看完了《幸福终点站》这个电影，感觉平平淡淡的，简简单单的，但是往往就是简单平淡中蕴含着伟大。&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;首先还是先赞一下主人公的适应能力和应变能力，以及观察能力，再就是个人技能。一个人能够在社会上生存下来，必须有自己的一技之长，比如说男主人公的粉刷技能。敏锐的洞察力才会让自己在关键时刻把握好机会，灵活的应变，才能让自己在关键时刻镇定自如。&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;其次赞一下男女主人公的爱情火花的碰撞吧，一个憨厚的男主人公，却含着细腻的爱情细胞，以自己特有的方式去打动对方，前提是对女主人公有了一定的了解。做的事情做到了女主人公的心里，是真心让对方感受到了爱的气息，一种无法抗拒的爱情。而女主人公更是为了男人的梦想，牺牲了自己，离开了懂自己的人，默默的祝福着男主人公，这就是女主人公的表达爱情的方式。两个相爱的人，不一定要在一起，彼此爱着对方，为了对方甘愿牺牲一切，这才是最纯真的爱情，也是最珍贵的。&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;再者谈一下，两个主人公的等待，等待是缘分，等待是彼此的吸引。男主人公正是自己不懈的坚持，最终等到了自由的一天，等到了自己对上眼的女人，而这其中不乏自己努力的追求，是让人心动的追求。一个憨厚的人，也能做到浪漫的表白，只是每个人表达的方式不同而已。遇到了就不应该轻易放弃，两个人相互了解中，难免会有分歧，求同存异是最好的良药。要懂得对方的良苦用心，并给与支持，给对方最大的支持，才会有安全感。&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;最后呢，幸福终点站，塞翁失马焉知非福。当你感觉这是结束时，其实这才是刚刚开始。总之，不轻易放弃，为了值得的人等待，幸福就在眼前！&lt;/span&gt;&lt;/div&gt;
-
-
-</content>
-    
-    <summary type="html">
-    
-      &lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;看完了《幸福终点站》这个电影，感觉平平淡淡的，简简单单的，但是往往就是简单平淡中蕴含着伟大。&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;f
-    
-    </summary>
-    
-      <category term="Note" scheme="http://longlongblog.cn/categories/Note/"/>
-    
-    
-      <category term="生活" scheme="http://longlongblog.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="感悟" scheme="http://longlongblog.cn/tags/%E6%84%9F%E6%82%9F/"/>
     
   </entry>
   

@@ -63,6 +63,82 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-57" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/31/57/" class="article-date">
+  <time datetime="2016-05-31T03:12:40.000Z" itemprop="datePublished">2016-05-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/SQL/">SQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/31/57/">企业级Redis环境部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>哨兵配置文件参考：</p>
+<p>   哨兵配置文件: etc/redis/sentinel.conf</p>
+  <figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sentinel<span class="built_in"> monitor </span>test1 10.10.10.152 6386 1</span><br><span class="line">sentinel down-after-milliseconds test1 5000</span><br><span class="line">sentinel failover-timeout test1 900000</span><br><span class="line">sentinel can-failover test1 yes</span><br><span class="line">sentinel parallel-syncs test1 2</span><br><span class="line"></span><br><span class="line">sentinel config-epoch test1 45</span><br><span class="line">sentinel leader-epoch test1 45</span><br><span class="line">sentinel known-slave test1 10.10.10.155 6387</span><br><span class="line"></span><br><span class="line">port 26379</span><br><span class="line">dir <span class="string">"/usr/local/etc"</span></span><br><span class="line">sentinel current-epoch 45</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>备注： </p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">redis</span>哨兵10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.155</span>， 哨兵端口（26379）</span><br><span class="line"><span class="selector-tag">test1</span> 10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.152</span> 6386  为其中一个监控的<span class="selector-tag">redis</span> 主服务端口</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>前提：</p>
+  <figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">哨兵：<span class="number">10.10</span><span class="meta">.10</span><span class="meta">.155</span></span><br><span class="line">   redis端口 <span class="number">10.10</span><span class="meta">.10</span><span class="meta">.155</span>  <span class="number">26379</span> 实例启动 为哨兵服务</span><br><span class="line">命令： redis-server /usr/local/etc/sentinel.conf --sentinel</span><br><span class="line"></span><br><span class="line">   本机：<span class="number">10.10</span><span class="meta">.10</span><span class="meta">.152</span></span><br><span class="line">   redis端口 <span class="number">10.10</span><span class="meta">.10</span><span class="meta">.152</span>  <span class="number">6386</span> 实例启动 为主master服务，&lt;/br&gt;</span><br><span class="line">命令： sudo redis-server  /etc/redis/redis_master_6386.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   其他机：<span class="number">10.10</span><span class="meta">.10</span><span class="meta">.155</span></span><br><span class="line">   redis端口 <span class="number">10.10</span><span class="meta">.10</span><span class="meta">.155</span>  <span class="number">6387</span> 实例启动 为从slave服务</span><br><span class="line">命令： sudo redis-server  /etc/redis/redis_slave_6387.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>操作：</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.155</span>机器上命令：</span><br><span class="line">1. <span class="selector-tag">redis-cli</span> <span class="selector-tag">-h</span>  10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.155</span> <span class="selector-tag">-p</span> 6387 进入<span class="selector-tag">redis</span></span><br><span class="line">2. <span class="selector-tag">slaveof</span> 10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.152</span> 6386  这样本机（10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.155</span>）作为主（10<span class="selector-class">.10</span><span class="selector-class">.10</span><span class="selector-class">.152</span> 端口 6386）的从数据库了</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试要点：</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 修改 <span class="number">27</span>行 script_redis_monitor<span class="selector-class">.php</span> 文件 修改哨兵$_sentinels监控的IP和端口，修改为<span class="number">10.10</span>.<span class="number">10.155</span> <span class="number">26379</span>。</span><br><span class="line"><span class="number">2</span>. 修改 <span class="number">141</span>行 script_redis_monitor<span class="selector-class">.php</span> 文件 修改<span class="variable">$address</span>  为自己的邮件地址。</span><br><span class="line"><span class="number">3</span>. 停掉哨兵服务 redis-server /usr/local/etc/sentinel<span class="selector-class">.conf</span> --sentinel 这个进程停掉，运行 php script_redis_monitor<span class="selector-class">.php</span> 看邮件报警。&lt;<span class="selector-tag">span</span> style=<span class="string">"color:red"</span>&gt;记得重新启动&lt;/span&gt;。</span><br><span class="line"><span class="number">4</span>. 停掉master服务sudo redis-server  /etc/redis/redis_master_6386<span class="selector-class">.conf</span> 这个进程停掉， &lt;<span class="selector-tag">span</span> style=<span class="string">"color:red"</span>&gt;<span class="number">3</span>秒内&lt;/span&gt; 运行 php script_redis_monitor<span class="selector-class">.php</span> 看邮件报警。&lt;<span class="selector-tag">span</span> style=<span class="string">"color:red"</span>&gt;记得重新启动&lt;/span&gt;。</span><br><span class="line"><span class="number">5</span>. 停掉master服务sudo redis-server  /etc/redis/redis_master_6386<span class="selector-class">.conf</span> 这个进程停掉， &lt;<span class="selector-tag">span</span> style=<span class="string">"color:red"</span>&gt;同时&lt;/span&gt; 停掉slave服务sudo redis-server  /etc/redis/redis_slave_6387<span class="selector-class">.conf</span> 这个进程停掉，运行php script_redis_monitor<span class="selector-class">.php</span> 看邮件报警。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a href="http://longlongblog.cn/2016/05/31/57/#disqus_thread" class="article-comment-link">Comments</a>
+		<!-- JiaThis Button BEGIN -->
+		<div class="jiathis_style">
+			<span class="jiathis_txt">分享到：</span>
+			<a class="jiathis_button_qzone">QQ空间</a>
+			<a class="jiathis_button_weixin">微信</a>
+			<a class="jiathis_button_tsina">新浪微博</a>
+			<a class="jiathis_button_tqq">腾讯微博</a>
+			<a href="http://www.jiathis.com/share?uid=2101388" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+			<a class="jiathis_counter_style"></a>
+		</div>
+		<script type="text/javascript">
+		var jiathis_config = {data_track_clickback:'true'};
+		</script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2101388" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
+
+    </footer>
+
+	
+  </div>
+  
+</article>
+  
     <article id="post-56" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/30/56/" class="article-date">
@@ -718,68 +794,6 @@
   
 </article>
   
-    <article id="post-46" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/03/46/" class="article-date">
-  <time datetime="2015-02-03T13:19:48.000Z" itemprop="datePublished">2015-02-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/03/46/">mongodb数据导入导出以及备份恢复</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <div style="font-size:14px;"><br>一、数据导出 mongoexport<br><br>假设库里有一张user 表，里面有2 条记录，我们要将它导出<br>    <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">use</span> my_mongodb</span><br><span class="line">switched to <span class="keyword">db</span> my_mongodb</span><br><span class="line">&gt; <span class="keyword">db</span>.user.find();</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4f81a4a1779282ca68fd8a5a"</span>), <span class="string">"uid"</span> : 2, <span class="string">"username"</span> : <span class="string">"Jerry"</span>, <span class="string">"age"</span> : 100 &#125;</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"4f844d1847d25a9ce5f120c4"</span>), <span class="string">"uid"</span> : 1, <span class="string">"username"</span> : <span class="string">"Tom"</span>, <span class="string">"age"</span> : 25 &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure><br><br>1 常用导出方法<br>    <figure class="highlight julia"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="meta">@localhost</span> bin]<span class="comment"># ./mongoexport -d my_mongodb -c user -o user.dat</span></span><br><span class="line">connected to: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">exported <span class="number">2</span> records</span><br><span class="line">[root<span class="meta">@localhost</span> bin]<span class="comment"># cat user.dat</span></span><br><span class="line">&#123; <span class="string">"_id"</span> : &#123; <span class="string">"<span class="variable">$oid</span>"</span> : <span class="string">"4f81a4a1779282ca68fd8a5a"</span> &#125;, <span class="string">"uid"</span> : <span class="number">2</span>, <span class="string">"username"</span> : <span class="string">"Jerry"</span>, <span class="string">"age"</span> : <span class="number">100</span> &#125;</span><br><span class="line">&#123; <span class="string">"_id"</span> : &#123; <span class="string">"<span class="variable">$oid</span>"</span> : <span class="string">"4f844d1847d25a9ce5f120c4"</span> &#125;, <span class="string">"uid"</span> : <span class="number">1</span>, <span class="string">"username"</span> : <span class="string">"Tom"</span>, <span class="string">"age"</span> : <span class="number">25</span> &#125;</span><br><span class="line">[root<span class="meta">@localhost</span> bin]<span class="comment">#</span></span><br></pre></td></tr></table></figure><br><br>参数说明:<br> -d 指明使用的库, 本例中为” my_mongodb”<br> -c 指明要导出的表, 本例中为”user”<br> -o 指明要导出的文件名, 本例中为”user.dat”<br>从上面可以看到导出的方式使用的是JSON 的样式<br>2 导出CSV格式的文件<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongoexport -d my_mongodb -c user --csv -f uid,username,age -o</span></span><br><span class="line">user_csv.dat</span><br><span class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">exported <span class="number">2</span> records</span><br><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># cat user_csv.dat</span></span><br><span class="line">uid,username,age</span><br><span class="line"><span class="number">2</span>,<span class="string">"Jerry"</span>,<span class="number">100</span></span><br><span class="line"><span class="number">1</span>,<span class="string">"Tom"</span>,<span class="number">25</span></span><br><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta">#</span></span><br></pre></td></tr></table></figure><br><br>参数说明:<br> -csv 指要要导出为csv 格式<br> -f 指明需要导出哪些例<br>更详细的用法可以 mongoexport –help 来查看<br><br>二、数据导入mongoimport<br><br>在上例中我们讨论的是导出工具的使用，那么本节将讨论如何向表中导入数据<br>1 导入JSON 数据<br>我们先将表user 删除掉，以便演示效果<br>    <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="selector-tag">db</span><span class="selector-class">.user</span><span class="selector-class">.drop</span>();</span><br><span class="line"><span class="selector-tag">true</span></span><br><span class="line">&gt; <span class="selector-tag">show</span> <span class="selector-tag">collections</span>;</span><br><span class="line"><span class="selector-tag">system</span><span class="selector-class">.indexes</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure><br><br>然后导入数据<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongoimport -d my_mongodb -c user user.dat</span></span><br><span class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">imported <span class="number">2</span> objects</span><br><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta">#</span></span><br></pre></td></tr></table></figure><br><br>可以看到导入数据的时候会隐式创建表结构<br><br>2 导入CSV数据<br>我们先将表user 删除掉，以便演示效果<br>    <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="selector-tag">db</span><span class="selector-class">.user</span><span class="selector-class">.drop</span>();</span><br><span class="line"><span class="selector-tag">true</span></span><br><span class="line">&gt; <span class="selector-tag">show</span> <span class="selector-tag">collections</span>;</span><br><span class="line"><span class="selector-tag">system</span><span class="selector-class">.indexes</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure><br><br>然后导入数据<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongoimport -d my_mongodb -c user --type csv --headerline --file</span></span><br><span class="line">user_csv.dat</span><br><span class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">imported <span class="number">3</span> objects</span><br><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta">#</span></span><br></pre></td></tr></table></figure><br><br>参数说明:<br> -type 指明要导入的文件格式<br> -headerline 批明不导入第一行，因为第一行是列名<br> -file 指明要导入的文件路径<br>注意:<br>CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移<br><br>三、数据备份mongodump<br><br>可以用mongodump 来做MongoDB 的库或表级别的备份，下面举例说明:<br>备份my_mongodb 数据库<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongodump -d my_mongodb</span></span><br><span class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">DATABASE: my_mongodb <span class="keyword">to</span> dump/my_mongodb</span><br><span class="line">my_mongodb.system.indexes <span class="keyword">to</span> dump/my_mongodb/system.indexes.bson</span><br><span class="line"><span class="number">1</span> objects</span><br><span class="line">my_mongodb.user <span class="keyword">to</span> dump/my_mongodb/user.bson</span><br><span class="line"><span class="number">2</span> objects</span><br><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ll</span></span><br></pre></td></tr></table></figure><br><br>总计 67648<br>    <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-rwxr-xr-x <span class="number">1</span> root root <span class="number">7508756</span> <span class="number">2011-04-06</span> bsondump</span><br><span class="line">drwxr-xr-x <span class="number">3</span> root root <span class="number">4096 04-10</span> <span class="number">23</span>:<span class="number">54</span> dump</span><br><span class="line">-rwxr-xr-x <span class="number">1</span> root root <span class="number">2978016</span> <span class="number">2011-04-06</span> mongo</span><br></pre></td></tr></table></figure><br><br>此时会在当前目录下创建一个dump 目录，用于存放备份出来的文件<br>也可以指定备份存放的目录，<br>    <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta"># ./mongodump -d my_mongodb -o my_mongodb_dump</span></span><br><span class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">DATABASE: my_mongodb <span class="keyword">to</span> my_mongodb_dump/my_mongodb</span><br><span class="line">my_mongodb.system.indexes <span class="keyword">to</span></span><br><span class="line">my_mongodb_dump/my_mongodb/system.indexes.bson</span><br><span class="line"><span class="number">1</span> objects</span><br><span class="line">my_mongodb.user <span class="keyword">to</span> my_mongodb_dump/my_mongodb/user.bson</span><br><span class="line"><span class="number">2</span> objects</span><br><span class="line">[root<span class="symbol">@localhost</span> bin]<span class="meta">#</span></span><br></pre></td></tr></table></figure><br><br>这个例子中将备份的文件存在了当前目录下的my_mongodb_dump 目录下<br><br>数据恢复mongorestore<br><br>由于刚刚已经做了备份，所以我们先将库my_mongodb 删除掉<br>    <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">use</span> my_mongodb</span><br><span class="line">switched to <span class="keyword">db</span> my_mongodb</span><br><span class="line">&gt; <span class="keyword">db</span>.dropDatabase()</span><br><span class="line">&#123; <span class="string">"dropped"</span> : <span class="string">"my_mongodb"</span>, <span class="string">"ok"</span> : 1 &#125;</span><br><span class="line">&gt; show dbs</span><br><span class="line">admin (empty)</span><br><span class="line"><span class="keyword">local</span> (empty)</span><br><span class="line"><span class="keyword">test</span> (empty)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure><br><br>接下来我们进行数据库恢复<br>    <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]<span class="comment"># ./mongorestore -d my_mongodb my_mongodb_dump/*</span></span><br><span class="line">connected <span class="keyword">to</span>: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">Wed Apr <span class="number">11</span> <span class="number">00</span>:<span class="number">03</span>:<span class="number">03</span> my_mongodb_dump/my_mongodb/user.bson</span><br><span class="line">Wed Apr <span class="number">11</span> <span class="number">00</span>:<span class="number">03</span>:<span class="number">03</span> going <span class="keyword">into</span> namespace [my_mongodb.user]</span><br><span class="line">Wed Apr <span class="number">11</span> <span class="number">00</span>:<span class="number">03</span>:<span class="number">03</span> <span class="number">2</span> objects found</span><br><span class="line">Wed Apr <span class="number">11</span> <span class="number">00</span>:<span class="number">03</span>:<span class="number">03</span> my_mongodb_dump/my_mongodb/system.indexes.bson</span><br><span class="line">Wed Apr <span class="number">11</span> <span class="number">00</span>:<span class="number">03</span>:<span class="number">03</span> going <span class="keyword">into</span> namespace [my_mongodb.system.indexes]</span><br><span class="line">Wed Apr <span class="number">11</span> <span class="number">00</span>:<span class="number">03</span>:<span class="number">03</span> &#123; <span class="built_in">name</span>: <span class="string">"_id_"</span>, ns: <span class="string">"my_mongodb.user"</span>, key: &#123; _id: <span class="number">1</span> &#125;, v: <span class="number">0</span> &#125;</span><br><span class="line">Wed Apr <span class="number">11</span> <span class="number">00</span>:<span class="number">03</span>:<span class="number">03</span> <span class="number">1</span> objects found</span><br><span class="line">[root@localhost bin]<span class="comment">#</span></span><br></pre></td></tr></table></figure><br><br>经验证数据库又回来了，其实要是想恢复库，也大可不必先删除my_mongodb 库，只要指<br>明 –drop 参数，就可以在恢复的时候先删除表然后再向表中插入数据<br>本文出处：<a href="http://blog.csdn.net/liuzhoulong/article/details/6849978" title="http://blog.csdn.net/liuzhoulong/article/details/6849978" target="_blank" rel="external">http://blog.csdn.net/liuzhoulong/article/details/6849978</a></div>
-
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a href="http://longlongblog.cn/2015/02/03/46/#disqus_thread" class="article-comment-link">Comments</a>
-		<!-- JiaThis Button BEGIN -->
-		<div class="jiathis_style">
-			<span class="jiathis_txt">分享到：</span>
-			<a class="jiathis_button_qzone">QQ空间</a>
-			<a class="jiathis_button_weixin">微信</a>
-			<a class="jiathis_button_tsina">新浪微博</a>
-			<a class="jiathis_button_tqq">腾讯微博</a>
-			<a href="http://www.jiathis.com/share?uid=2101388" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-			<a class="jiathis_counter_style"></a>
-		</div>
-		<script type="text/javascript">
-		var jiathis_config = {data_track_clickback:'true'};
-		</script>
-		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2101388" charset="utf-8"></script>
-		<!-- JiaThis Button END -->
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-
-	
-  </div>
-  
-</article>
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -793,7 +807,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类文章</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NodeJs/">NodeJs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">30</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -802,7 +816,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章档案</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -823,6 +837,10 @@
       <ul>
         
           <li>
+            <a href="/2016/05/31/57/">企业级Redis环境部署</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/30/56/">监控系统工具对比</a>
           </li>
         
@@ -836,10 +854,6 @@
         
           <li>
             <a href="/2015/06/26/8/">一意孤行</a>
-          </li>
-        
-          <li>
-            <a href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
           </li>
         
       </ul>
