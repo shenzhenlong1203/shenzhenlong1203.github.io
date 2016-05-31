@@ -220,6 +220,8 @@
 <div style="font-size: 14px;"><span style="padding-left: 30px;">如果让你三年后你再拿起自己曾经在高中时的基本能力，也许对现在大学生来说是一道鸿沟，但是这也许就是自己甚至大家很多人的弱点，如何能够在段时间内拾起曾经的自己，是战胜自己的最开始的条件。要想多经历一些，就应该做好心里准备，准备承受别人不曾承受的痛苦，别人无法遇到的孤独，不要看眼前的利益，要有宽广的胸襟去长远看待问题。</span></div>
 
 <div style="font-size: 14px;"><span style="padding-left: 30px;">做事贵在坚持，一定要坚持下去。。。</span></div>
+
+
       
     </div>
     <footer class="article-footer">
@@ -284,6 +286,8 @@
 <div style="font-size: 14px;"><span style="padding-left: 30px;">不要对自己失去信心，每一分钟都是美好的。不要让自己太早的接触不该接触的东西，上天安排我们什么时候接触，早已有定论。不要让自己太安逸，不要让自己过得太舒服。古人尚知道“居安思危”，我们不应该懈怠。最可怕的就是起点比自己高的人比你还努力，自己却全然不知，当你知道时只会抱怨别人的起点，但往往忽略了他人的努力，这就是致命的弱点。所以时刻准备着屌丝逆袭的到来。。。</span></div>
 
 <div style="font-size: 14px;"><span style="padding-left: 30px;">人生注重的是阅历，不仅仅是结果。行胜于言，屌丝们加油吧，让大学无憾，让青春无悔。</span></div>
+
+
       
     </div>
     <footer class="article-footer">
@@ -341,205 +345,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><span style="padding-left: 30px;font-size: 14px;"><span style="color: #000000;"> 这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象<br>并且创建一个线程让时间占用这个线程进行。</span></span></p>
-<pre><code>public Shijianxianshi() {
-
-display=Display.getDisplay(this);
-canvas=new testCanvas();
-
-quit=new Command(&quot;Quit&quot;,Command.EXIT,2);
-canvas.addCommand(quit);
-canvas.setCommandListener(this);
-
-}
-&lt;span style=&quot;color: #ff6600;&quot;&gt;protected void startApp()&lt;/span&gt; throws MIDletStateChangeException {
-
-display.setCurrent(canvas);
-}
-protected void destroyApp(boolean unconditional)throws MIDletStateChangeException {
-// TODO 自动生成方法存根
-
-}
-&lt;span style=&quot;color: #ff6600;&quot;&gt;protected void pauseApp()&lt;/span&gt;
-{
-// TODO 自动生成方法存根
-
-}
-&lt;span style=&quot;color: #ff6600;&quot;&gt;public void commandAction&lt;/span&gt;(Command c, Displayable d)
-{
-try
-{
-if(c == quit)
-{
-&lt;span style=&quot;color: #ff6600;&quot;&gt;destroyApp(true);&lt;/span&gt;
-notifyDestroyed();
-}
-
-}
-catch(MIDletStateChangeException me)
-{
-System.out.println(me+&quot;caught.&quot;);
-}
-}
-}
-
-&lt;span style=&quot;color: #ff6600;&quot;&gt;class testCanvas extends Canvas implements Runnable&lt;/span&gt;{
-private Image image=null;
-private Font font;
-TimeZone t;
-Calendar c;
-int h,  min, sec, year, month, day, week=0;
-
-public testCanvas()
-{
-
-t = TimeZone.getTimeZone(&quot;GMT+08:00&quot;);//获取东8区TimeZone 否则会使用默认的时区
-c = Calendar.getInstance(t); //创建一个日历对象
-h = c.get(Calendar.HOUR_OF_DAY); //从日历对象获取想要的日期、时间信息
-min = c.get(Calendar.MINUTE);
-sec = c.get(Calendar.SECOND);
-year=c.get(Calendar.YEAR);
-month=c.get(Calendar.MONTH);
-day=c.get(Calendar.DAY_OF_MONTH);
-week=c.get(Calendar.DAY_OF_WEEK);
-}
-
-// int h = c.get(Calendar.HOUR_OF_DAY); //从日历对象获取想要的日期、时间信息
-
-&lt;span style=&quot;color: #ff6600;&quot;&gt;protected void paint&lt;/span&gt;(Graphics g){
-
-&lt;span style=&quot;color: #ff6600;&quot;&gt;new Thread(this).start();&lt;/span&gt;
-font=Font.getFont(Font.FACE_SYSTEM,Font.STYLE_BOLD,Font.SIZE_MEDIUM);
-g.setFont(font);
-String hour;
-String minute;
-String second;
-String m;
-String d;
-String w = null;
-
-switch(week){
-case 1: w=&quot; 一&quot;;
-case 2: w=&quot; 二&quot;;
-case 3: w=&quot; 三&quot;;
-case 4: w=&quot; 四&quot;;
-case 5: w=&quot; 五&quot;;
-case 6: w=&quot; 六&quot;;
-case 7: w=&quot; 日&quot;;
-}
-
-if(h&amp;lt;10)
-{
-hour=&quot;0&quot;+String.valueOf(h);
-}
-else
-{
-hour=String.valueOf(h);
-}
-if(min&amp;lt;10)
-{
-minute=&quot;0&quot;+String.valueOf(min);
-}
-else
-{
-minute=String.valueOf(min);
-}
-
-if(sec&amp;lt;10)
-{
-second=&quot;0&quot;+String.valueOf(sec);
-}
-else
-{
-second=String.valueOf(sec);
-}
-
-String y=String.valueOf(year);
-
-if(month+1&amp;lt;10)
-{
-m=&quot;0&quot;+String.valueOf(month+1);
-}
-else
-{
-m=String.valueOf(month+1);
-}
-
-if(day&amp;lt;10)
-{
-d=&quot;0&quot;+String.valueOf(day);
-}
-else
-{
-d=String.valueOf(day);
-}
-
-try {
-image=Image.createImage(&quot;/2.png&quot;);
-} catch (IOException ex) {
-System.out.println(&quot;图片导入失败&quot;);
-}
-
-g.drawImage(image, 0, 0, Graphics.HCENTER|Graphics.TOP);
-g.drawString(&quot;我的时钟&quot;, getWidth()/2, 20, Graphics.HCENTER|Graphics.TOP);
-g.drawString(&quot;当前的日期为:&quot;,60,60,Graphics.HCENTER|Graphics.TOP);
-g.drawString(&quot;星期:&quot;,30,100,Graphics.HCENTER|Graphics.TOP);
-g.drawString(&quot;当前的时间为:&quot;,60,130,Graphics.HCENTER|Graphics.TOP);
-
-g.drawString(hour,50,150,Graphics.HCENTER|Graphics.TOP);//时间的显示
-g.drawString(&quot;:&quot;,65,150,Graphics.HCENTER|Graphics.TOP);
-g.drawString(minute,80,150,Graphics.HCENTER|Graphics.TOP);
-g.drawString(&quot;:&quot;,95,150,Graphics.HCENTER|Graphics.TOP);
-g.drawString(second,110,150,Graphics.HCENTER|Graphics.TOP);
-
-g.drawString(w,60,100,Graphics.HCENTER|Graphics.TOP);//星期的显示
-
-g.drawString(y,50,80,Graphics.HCENTER|Graphics.TOP);//年月的显示
-g.drawString(&quot;/&quot;,75,80,Graphics.HCENTER|Graphics.TOP);
-g.drawString(m,90,80,Graphics.HCENTER|Graphics.TOP);
-g.drawString(&quot;/&quot;,105,80,Graphics.HCENTER|Graphics.TOP);
-g.drawString(d,120,80,Graphics.HCENTER|Graphics.TOP);
-if(sec&amp;lt;60)
-{
-
-sec++;
-}
-else
-{
-sec=0;
-
-if(min&amp;lt;60)
-{
-min++;
-}
-else
-{
-
-min=0;
-
-if(h&amp;lt;13)
-h++;
-else
-h=1;
-
-}
-}
-
-}
-
-&lt;span style=&quot;color: #ff6600;&quot;&gt;public void run() {&lt;/span&gt;
-
-try {
-Thread.sleep(1000);
-} catch (InterruptedException ex) {
-// ex.printStackTrace();
-}
-&lt;span style=&quot;color: #ff6600;&quot;&gt;repaint();&lt;/span&gt;
-
-}
-
-}
-</code></pre><p><span style="padding-left: 30px;">备注：以上高亮颜色显示的为重要类与方法，供大家借鉴。我已在自己的java手机上运行过，没有问题的。</span></p>
+        <p><span style="padding-left: 30px;font-size: 14px;"><span style="color: #000000;"> 这是一个j2me的时间显示的例子。一个获取时间并且按秒计时的时间显示类，在j2me中创建对象<br>并且创建一个线程让时间占用这个线程进行。</span></span><br>    <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Shijianxianshi() &#123;</span><br><span class="line">	display=Display.getDisplay(<span class="keyword">this</span>);</span><br><span class="line">	canvas=<span class="keyword">new</span> testCanvas();</span><br><span class="line"></span><br><span class="line">	quit=<span class="keyword">new</span> Command(<span class="string">"Quit"</span>,Command.EXIT,<span class="number">2</span>);</span><br><span class="line">	canvas.addCommand(quit);</span><br><span class="line">	canvas.setCommandListener(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">protected</span> <span class="keyword">void</span> startApp()&lt;/span&gt; <span class="keyword">throws</span> MIDletStateChangeException &#123;</span><br><span class="line"></span><br><span class="line">		display.setCurrent(canvas);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> destroyApp(<span class="built_in">boolean</span> unconditional)<span class="keyword">throws</span> MIDletStateChangeException &#123;</span><br><span class="line">	<span class="comment">// TODO 自动生成方法存根</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">protected</span> <span class="keyword">void</span> pauseApp()&lt;/span&gt;</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="comment">// TODO 自动生成方法存根</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">public</span> <span class="keyword">void</span> commandAction&lt;/span&gt;(Command c, Displayable d)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">try</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(c == quit)</span><br><span class="line">		&#123;</span><br><span class="line">			&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;destroyApp(<span class="keyword">true</span>);&lt;/span&gt;</span><br><span class="line">			notifyDestroyed();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span>(MIDletStateChangeException me)</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(me+<span class="string">"caught."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;class testCanvas extends Canvas implements Runnable&lt;/span&gt;&#123;</span><br><span class="line">	<span class="keyword">private</span> Image <span class="built_in">image</span>=<span class="keyword">null</span>;</span><br><span class="line">	<span class="keyword">private</span> Font font;</span><br><span class="line">	TimeZone t;</span><br><span class="line">	Calendar c;</span><br><span class="line">	<span class="built_in">int</span> h,  <span class="built_in">min</span>, sec, <span class="built_in">year</span>, <span class="built_in">month</span>, <span class="built_in">day</span>, week=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> testCanvas()</span><br><span class="line">	&#123;</span><br><span class="line">		t = TimeZone.getTimeZone(<span class="string">"GMT+08:00"</span>);<span class="comment">//获取东8区TimeZone 否则会使用默认的时区</span></span><br><span class="line">		c = Calendar.getInstance(t); <span class="comment">//创建一个日历对象</span></span><br><span class="line">		h = c.<span class="built_in">get</span>(Calendar.HOUR_OF_DAY); <span class="comment">//从日历对象获取想要的日期、时间信息</span></span><br><span class="line">		<span class="built_in">min</span> = c.<span class="built_in">get</span>(Calendar.MINUTE);</span><br><span class="line">		sec = c.<span class="built_in">get</span>(Calendar.SECOND);</span><br><span class="line">		<span class="built_in">year</span>=c.<span class="built_in">get</span>(Calendar.YEAR);</span><br><span class="line">		<span class="built_in">month</span>=c.<span class="built_in">get</span>(Calendar.MONTH);</span><br><span class="line">		<span class="built_in">day</span>=c.<span class="built_in">get</span>(Calendar.DAY_OF_MONTH);</span><br><span class="line">		week=c.<span class="built_in">get</span>(Calendar.DAY_OF_WEEK);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// int h = c.get(Calendar.HOUR_OF_DAY); //从日历对象获取想要的日期、时间信息</span></span><br><span class="line"></span><br><span class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">protected</span> <span class="keyword">void</span> paint&lt;/span&gt;(Graphics g)&#123;</span><br><span class="line"></span><br><span class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">new</span> Thread(<span class="keyword">this</span>).start();&lt;/span&gt;</span><br><span class="line">	font=Font.getFont(Font.FACE_SYSTEM,Font.STYLE_BOLD,Font.SIZE_MEDIUM);</span><br><span class="line">	g.setFont(font);</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">hour</span>;</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">minute</span>;</span><br><span class="line">	<span class="keyword">String</span> <span class="built_in">second</span>;</span><br><span class="line">	<span class="keyword">String</span> m;</span><br><span class="line">	<span class="keyword">String</span> d;</span><br><span class="line">	<span class="keyword">String</span> w = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span>(week)&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>: w=<span class="string">" 一"</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>: w=<span class="string">" 二"</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">3</span>: w=<span class="string">" 三"</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">4</span>: w=<span class="string">" 四"</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">5</span>: w=<span class="string">" 五"</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">6</span>: w=<span class="string">" 六"</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">7</span>: w=<span class="string">" 日"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(h&amp;lt;<span class="number">10</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">hour</span>=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(h);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">hour</span>=<span class="keyword">String</span>.valueOf(h);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">min</span>&amp;lt;<span class="number">10</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">minute</span>=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(<span class="built_in">min</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">minute</span>=<span class="keyword">String</span>.valueOf(<span class="built_in">min</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(sec&amp;lt;<span class="number">10</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">second</span>=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(sec);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">second</span>=<span class="keyword">String</span>.valueOf(sec);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">String</span> y=<span class="keyword">String</span>.valueOf(<span class="built_in">year</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">month</span>+<span class="number">1</span>&amp;lt;<span class="number">10</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		m=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(<span class="built_in">month</span>+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		m=<span class="keyword">String</span>.valueOf(<span class="built_in">month</span>+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">day</span>&amp;lt;<span class="number">10</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		d=<span class="string">"0"</span>+<span class="keyword">String</span>.valueOf(<span class="built_in">day</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		d=<span class="keyword">String</span>.valueOf(<span class="built_in">day</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="built_in">image</span>=Image.<span class="built_in">createImage</span>(<span class="string">"/2.png"</span>);</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"图片导入失败"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	g.drawImage(<span class="built_in">image</span>, <span class="number">0</span>, <span class="number">0</span>, Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(<span class="string">"我的时钟"</span>, getWidth()/<span class="number">2</span>, <span class="number">20</span>, Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(<span class="string">"当前的日期为:"</span>,<span class="number">60</span>,<span class="number">60</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(<span class="string">"星期:"</span>,<span class="number">30</span>,<span class="number">100</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(<span class="string">"当前的时间为:"</span>,<span class="number">60</span>,<span class="number">130</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line"></span><br><span class="line">	g.drawString(<span class="built_in">hour</span>,<span class="number">50</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);<span class="comment">//时间的显示</span></span><br><span class="line">	g.drawString(<span class="string">":"</span>,<span class="number">65</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(<span class="built_in">minute</span>,<span class="number">80</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(<span class="string">":"</span>,<span class="number">95</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(<span class="built_in">second</span>,<span class="number">110</span>,<span class="number">150</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line"></span><br><span class="line">	g.drawString(w,<span class="number">60</span>,<span class="number">100</span>,Graphics.HCENTER|Graphics.TOP);<span class="comment">//星期的显示</span></span><br><span class="line"></span><br><span class="line">	g.drawString(y,<span class="number">50</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);<span class="comment">//年月的显示</span></span><br><span class="line">	g.drawString(<span class="string">"/"</span>,<span class="number">75</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(m,<span class="number">90</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(<span class="string">"/"</span>,<span class="number">105</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	g.drawString(d,<span class="number">120</span>,<span class="number">80</span>,Graphics.HCENTER|Graphics.TOP);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(sec&amp;lt;<span class="number">60</span>)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		sec++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		sec=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">min</span>&amp;lt;<span class="number">60</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">min</span>++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">min</span>=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">if</span>(h&amp;lt;<span class="number">13</span>)</span><br><span class="line">		h++;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		h=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;<span class="keyword">public</span> <span class="keyword">void</span> run() &#123;&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">		<span class="comment">// ex.printStackTrace();</span></span><br><span class="line">		&#125;</span><br><span class="line">	&lt;span style=<span class="string">"color: #ff6600;"</span>&gt;repaint();&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><span style="padding-left: 30px;">备注：以上高亮颜色显示的为重要类与方法，供大家借鉴。我已在自己的java手机上运行过，没有问题的。</span></p>
 
       
     </div>
@@ -594,7 +401,7 @@ Thread.sleep(1000);
   <div class="widget-wrap">
     <h3 class="widget-title">文章档案</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -619,6 +426,10 @@ Thread.sleep(1000);
           </li>
         
           <li>
+            <a href="/2016/01/04/4/">PHP类的自动加载</a>
+          </li>
+        
+          <li>
             <a href="/2015/06/30/5/">不知从何说起</a>
           </li>
         
@@ -628,10 +439,6 @@ Thread.sleep(1000);
         
           <li>
             <a href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
-          </li>
-        
-          <li>
-            <a href="/2015/05/06/49/">PHP的魔术方法</a>
           </li>
         
       </ul>

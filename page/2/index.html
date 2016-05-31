@@ -154,6 +154,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <div style="font-size: 14px;"><span style="padding-left: 30px;">一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">配置php.ini文件 （以上传500M以下大小的文件为例） </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">查找以下选项并修改：</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">1.file_uploads = On ;打开文件上传选项 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">2.upload_max_filesize = 500M ;上传文件上限 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">3.post_max_size = 500M ;post上限 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">4.max_execution_time = 1800 ; 脚本最大执行时间 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">5.max_input_time = 1800 ;  输入最大执行时间 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">6.memory_limit = 128M ; 内存上限</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">记得配置完了后要重启apache等服务器服务，即可成功！</span></div>
+
+
       
     </div>
     <footer class="article-footer">
@@ -211,17 +213,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><div style="font-size: 14px;">Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，<br>  而WebService是在DCOM   CORBA等分布式技术之后发展起来的。WebService有一个国际通用的标准SOAP。具体规范发布在<a href="http://www.w3.org/TR/SOAP/" title="http://www.w3.org/TR/SOAP/" target="_blank" rel="external">http://www.w3.org/TR/SOAP/</a>     </div></p>
-<p>  SOAP是为了在Internet   环境下，实现系统是松散耦合的、跨平台的，与语言无关的，与特定接口无关的，而且要提供对Web   应用程序的可靠访问。   </p>
-<p>  几乎所有的开发工具都可以开发WebService系统，包括Java,C#,甚至基于VCL架构的Delphi。而且   所开发出来的WebService系统，可以方便的被各种客户端调用，包括，浏览器，W32应用程序，还有Java   App。  </p>
-<p>  可以这么说，开发一个WebService系统，把它放到互联网上，生成一个WebService描述文件.wsdl（非常容易）,全世界的任何人，使用几乎任何开发工具，引用了这个wsdl,就像引用了一个动态库的头文件一样，方便的调用你的WebService接口，就像调用本地的方法一样。 </p>
-<p>综上所述: </p>
-<p>  1、WebService通常是基于http的远程方法调用(RMI)，号称是可以反回远程对象，    一般来说客户段可以象调用本地方法一样调用WebService的方法。<br>  2、WebService使用的SOAP是一种通用的格式，不管什么样的客户端都可以。<br>  3、如果你用Servlet返回XML，那个XML的描述框架就是你定的喽？你能确保别人都能看明白你的XML格式含义？<br>  4、WebService并不复杂，开发起来甚至比Servlet还简单。<br>  5、如果客户段需要传递一个复杂的多维数组给服务端，Servlet怎么办？<br>  6。webservice的优点在于可以传递对象（其实是结构化的数据），从而对异构系统来说更有优势<br>  其实最重点要的，是WebService的方法返回消息是有标准的（大家通用，谁都能看懂），如果用Servlet所返回XML，是没有标准的 </p>
-<p>在我们的项目中，一个java web项目要使用另一个java web的方法，这时可以选择servlet和webservice方法，我们使用servlet方法，使用httpclient访问，地址为<a href="http://ip/servlet/servletname" target="_blank" rel="external">http://ip/servlet/servletname</a> 访问成功。<br>关于如何返回数据，out对象输出即可 </p>
-<p>servlet到是也可以传对象 只要能序列化 </p>
-<p>其实 servlet和webservice不是一个层次上的东西 不可比<br>servlet定义的是一套interface<br>目的是实现 java在web上的动态访问（不知局限于http协议的 至少还有ftp协议） </p>
-<p>webservice定义的是一套标准（SOAP/UDDI/WSDL… 比API更抽象）,与语言无关 协议无关 平台无关<br>目的是实现基于service的组件（相对于EJB DCOM ….）<br>从webservice的目的不难看出 他的复杂度还是相当大的 （EJB需要考虑的他都要进行实现） 包括安全性 事务性 等等…. 远不止上面列出的SOAP/UDDI/WSDL</p>
+        <div style="font-size: 14px;">Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，<br>  而WebService是在DCOM   CORBA等分布式技术之后发展起来的。WebService有一个国际通用的标准SOAP。具体规范发布在<a href="http://www.w3.org/TR/SOAP/" title="http://www.w3.org/TR/SOAP/" target="_blank" rel="external">http://www.w3.org/TR/SOAP/</a><br><br>  SOAP是为了在Internet   环境下，实现系统是松散耦合的、跨平台的，与语言无关的，与特定接口无关的，而且要提供对Web   应用程序的可靠访问。<br><br>  几乎所有的开发工具都可以开发WebService系统，包括Java,C#,甚至基于VCL架构的Delphi。而且   所开发出来的WebService系统，可以方便的被各种客户端调用，包括，浏览器，W32应用程序，还有Java   App。<br><br>  可以这么说，开发一个WebService系统，把它放到互联网上，生成一个WebService描述文件.wsdl（非常容易）,全世界的任何人，使用几乎任何开发工具，引用了这个wsdl,就像引用了一个动态库的头文件一样，方便的调用你的WebService接口，就像调用本地的方法一样。<br><br>综上所述:<br>    <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、WebService通常是基于http的远程方法调用(RMI)，号称是可以反回远程对象，    一般来说客户段可以象调用本地方法一样调用WebService的方法。   </span><br><span class="line"><span class="number">2</span>、WebService使用的SOAP是一种通用的格式，不管什么样的客户端都可以。  </span><br><span class="line"><span class="number">3</span>、如果你用Servlet返回<span class="built_in">XML</span>，那个<span class="built_in">XML</span>的描述框架就是你定的喽？你能确保别人都能看明白你的<span class="built_in">XML</span>格式含义？  </span><br><span class="line"><span class="number">4</span>、WebService并不复杂，开发起来甚至比Servlet还简单。  </span><br><span class="line"><span class="number">5</span>、如果客户段需要传递一个复杂的多维数组给服务端，Servlet怎么办？  </span><br><span class="line"><span class="number">6</span>。webservice的优点在于可以传递对象（其实是结构化的数据），从而对异构系统来说更有优势 </span><br><span class="line">其实最重点要的，是WebService的方法返回消息是有标准的（大家通用，谁都能看懂），如果用Servlet所返回<span class="built_in">XML</span>，是没有标准的</span><br></pre></td></tr></table></figure><br><br>在我们的项目中，一个java web项目要使用另一个java web的方法，这时可以选择servlet和webservice方法，我们使用servlet方法，使用httpclient访问，地址为<a href="http://ip/servlet/servletname" target="_blank" rel="external">http://ip/servlet/servletname</a> 访问成功。<br>关于如何返回数据，out对象输出即可<br><br>servlet到是也可以传对象 只要能序列化<br><br>其实 servlet和webservice不是一个层次上的东西 不可比<br>servlet定义的是一套interface<br>目的是实现 java在web上的动态访问（不知局限于http协议的 至少还有ftp协议）<br><br>webservice定义的是一套标准（SOAP/UDDI/WSDL… 比API更抽象）,与语言无关 协议无关 平台无关<br>目的是实现基于service的组件（相对于EJB DCOM ….）<br>从webservice的目的不难看出 他的复杂度还是相当大的 （EJB需要考虑的他都要进行实现） 包括安全性 事务性 等等…. 远不止上面列出的SOAP/UDDI/WSDL</div>
+
 <address>转载出处：<a href="http://xuyuanshuaaa.iteye.com/blog/1134677" title="http://xuyuanshuaaa.iteye.com/blog/1134677" target="_blank" rel="external">http://xuyuanshuaaa.iteye.com/blog/1134677</a></address>
+
+
       
     </div>
     <footer class="article-footer">
@@ -338,6 +334,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <div style="font-size: 14px;"><span style="padding-left: 30px;">每逢佳节倍思亲，月圆之夜你是否会想起家的温暖？独自漂泊在北京，在忙忙人海中，似乎迷失了自己。就是这样，也要去奋斗，去学习，为了自己的事业，还是要拼搏。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">中秋三天假期，玩的也算是不亦乐乎。第一天，和同事们一起去的是颐和园，体验了一下当年慈禧太后的家，感受了一下昆明湖的魅力，走在大桥上，看到雷峰塔，感叹古代人真会享受，也会审美。第二天和大学同学，早早地去参加基督教堂，参加了那里的教会，听说在里边能净化心灵，让你在繁忙的工作中静下心来，让自己好好休息一下，可是我在那，难受死了，因为我不相信，我试着去净化心灵，但是我还是睡着了。下午去玩了在大学一直没机会去的真人CS，体验了一把CS的魅力，作为队长，带领我们的战队，在最后取得胜利，累的虚脱，但是高兴快乐着。晚上烧烤自助，你无法想象。第三天，在宿舍洗刷一上午，下午LOL几局，让自己身体休息一下，看到北京的蓝天，一切都好了。三天的假期，有朋友的存在，你不会感到孤单，有游戏的存在，你可以尽情的享受。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">休息结束后又要启程，继续奋斗，珍惜在北京的日子，你会学到很多，过好自己的生活，对于关心你的人就是最大的回报。</span></div>
+
+
       
     </div>
     <footer class="article-footer">
@@ -396,6 +394,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <div style="font-size: 14px;"><span style="padding-left: 30px;">还记得那是大学时候的电影，宿舍的哥们说是要看看这个电影，说是电影和我的过去很相似，那时的我淡淡一笑，答应一定要去看看，但是一放下就没有再去看这个电影。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">今天，上班了，休息的时候，无所事事，想起来了看看这个电影。电影的情节不时让我心中一震，太多的相似，我不得不承认我那时真的是懵懂，只是语言的巨人，行动的矮子，太多的不了解，太多的不懂，电影的情节，让我明白了一些，让我为之颤抖。真正喜欢一个人时，就是当她成为了别人的新娘时，是发自内心真心的祝福。爱情最美好的时候就是你在追女孩时候的懵懂，没有任何的物质掺杂。看完电影后，总觉得自己要写点什么，可是写着写着，就没有了话语，就像有些人聊着聊着就没有了主题，只有寒暄的问候。哎，写到这吧，就是想表达一下今天下午的心情。</span></div>
+
+
       
     </div>
     <footer class="article-footer">
@@ -456,6 +456,8 @@
         <div style="font-size: 14px;"><span style="padding-left: 30px;">EJB 是运行在独立服务器上的组件，客户端是通过网络对EJB 对象进行调用的。在Java中，能够实现远程对象调用的技术是RMI，而EJB 技术基础正是RMI。通过RMI 技术，J2EE将EJB 组件创建为远程对象，客户端就可以通过网络调用EJB 对象了。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">a.EJB实现原理： 就是把原来放到客户端实现的代码放到服务器端，并依靠RMI进行通信。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">b.RMI实现原理 ：就是通过Java对象可序列化机制实现分布计算。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">c.服务器集群： 就是通过RMI的通信，连接不同功能模块的服务器，以实现一个完整的功能。</span></div>
 
 <div style="font-size: 14px;"><span style="padding-left: 30px;">参考博客：<a href="http://blog.csdn.net/jojo52013145/article/details/5783677" title="EJB到底是什么" target="_blank" rel="external">http://blog.csdn.net/jojo52013145/article/details/5783677</a></span></div>
+
+
       
     </div>
     <footer class="article-footer">
@@ -573,6 +575,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <div style="font-size: 14px;"><span style="padding-left: 30px;">DWR的Session Error问题，前台页面跳出session error的对话框而控制台则输出:2014-2-23 11:58:53 org.directwebremoting.util.CommonsLoggingOutput error。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">严重: A request has been denied as a potential CSRF attack的错误信息.请求被拒绝因为可能存在csrf(cross-site request forgeries,跨站请求伪造)攻击.也就是说页面URL可能被跨站了的服务所调用。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">在web.xml配置文件中dwr的配置加入corssDomainSessionSecurity这个配置选项，这个参数是在dwr版本2.0才有的.默认值为true,也就是禁止其他域发送请求。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">corssDomainSessionSecurity:设置成false能够从其他域进行请求.注意这样做会在安全性上有一些冒险。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">参考网址：<a href="http://my.oschina.net/u/566829/blog/81935" target="_blank" rel="external">http://my.oschina.net/u/566829/blog/81935</a></span></div>
+
+
       
     </div>
     <footer class="article-footer">
@@ -632,6 +636,8 @@
       
         <div style="font-size: 14px;"><span style="padding-left: 30px;">看完了《幸福终点站》这个电影，感觉平平淡淡的，简简单单的，但是往往就是简单平淡中蕴含着伟大。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">首先还是先赞一下主人公的适应能力和应变能力，以及观察能力，再就是个人技能。一个人能够在社会上生存下来，必须有自己的一技之长，比如说男主人公的粉刷技能。敏锐的洞察力才会让自己在关键时刻把握好机会，灵活的应变，才能让自己在关键时刻镇定自如。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">其次赞一下男女主人公的爱情火花的碰撞吧，一个憨厚的男主人公，却含着细腻的爱情细胞，以自己特有的方式去打动对方，前提是对女主人公有了一定的了解。做的事情做到了女主人公的心里，是真心让对方感受到了爱的气息，一种无法抗拒的爱情。而女主人公更是为了男人的梦想，牺牲了自己，离开了懂自己的人，默默的祝福着男主人公，这就是女主人公的表达爱情的方式。两个相爱的人，不一定要在一起，彼此爱着对方，为了对方甘愿牺牲一切，这才是最纯真的爱情，也是最珍贵的。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">再者谈一下，两个主人公的等待，等待是缘分，等待是彼此的吸引。男主人公正是自己不懈的坚持，最终等到了自由的一天，等到了自己对上眼的女人，而这其中不乏自己努力的追求，是让人心动的追求。一个憨厚的人，也能做到浪漫的表白，只是每个人表达的方式不同而已。遇到了就不应该轻易放弃，两个人相互了解中，难免会有分歧，求同存异是最好的良药。要懂得对方的良苦用心，并给与支持，给对方最大的支持，才会有安全感。</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">最后呢，幸福终点站，塞翁失马焉知非福。当你感觉这是结束时，其实这才是刚刚开始。总之，不轻易放弃，为了值得的人等待，幸福就在眼前！</span></div>
 
+
+
       
     </div>
     <footer class="article-footer">
@@ -685,7 +691,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章档案</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -710,6 +716,10 @@
           </li>
         
           <li>
+            <a href="/2016/01/04/4/">PHP类的自动加载</a>
+          </li>
+        
+          <li>
             <a href="/2015/06/30/5/">不知从何说起</a>
           </li>
         
@@ -719,10 +729,6 @@
         
           <li>
             <a href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
-          </li>
-        
-          <li>
-            <a href="/2015/05/06/49/">PHP的魔术方法</a>
           </li>
         
       </ul>

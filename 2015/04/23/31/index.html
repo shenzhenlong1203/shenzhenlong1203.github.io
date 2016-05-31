@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://longlongblog.cn/2015/04/23/31/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
 <meta property="og:description" content="前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。1、 Redis和Memcache都是将数据存放在内">
-<meta property="og:updated_time" content="2016-05-30T05:45:05.456Z">
+<meta property="og:updated_time" content="2016-05-31T05:55:26.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Redis与Memcache的异同点">
 <meta name="twitter:description" content="前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。1、 Redis和Memcache都是将数据存放在内">
@@ -88,17 +88,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。<br>1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。<br>2、 数据类型–Memcache在添加数据时就要指定数据的字节长度，例如：</p>
-<pre><code>set key3 0 0 8
-lxsymcto
-STORED
-</code></pre><p>而redis不需要，如：</p>
-<pre><code>redis 127.0.0.1:6379&gt;set key2 &quot;lxsymblog&quot;
-OK
-
-redis 127.0.0.1:6379&gt;get key2
-&quot;lxsymblog&quot;
-</code></pre><p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。<br>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。<br>   Redis可以通过例如expire 设定，例如expire name 10<br>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。<br>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。<br>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。<br>以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。</p>
+        <p>前段时间参加PHP的面试，几乎每个公司都会涉及到Nosql的问题，当前Nosql以高效存储，高效查询等优势迅速成为数据库的辅助工具，最为应用广泛的是Redis，Memcache，Mongodb等，其中Redis与Memcache是key-value型的数据存储，MongoDB是json格式的存储，以下浅谈以下redis与memcache的异同点。<br>1、 Redis和Memcache都是将数据存放在内存中，都是内存数据库。不过memcache还可用于缓存其他东西，例如图片、视频等等。<br>2、 数据类型–Memcache在添加数据时就要指定数据的字节长度，例如：<br>    <figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> key3 <span class="comment">0 0 8</span></span><br><span class="line">lxsymcto</span><br><span class="line">STORED</span><br></pre></td></tr></table></figure></p>
+<p>而redis不需要，如：<br>    <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">redis</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:6379</span>&gt;<span class="selector-tag">set</span> <span class="selector-tag">key2</span> "<span class="selector-tag">lxsymblog</span>"</span><br><span class="line"><span class="selector-tag">OK</span></span><br><span class="line"><span class="selector-tag">redis</span> 127<span class="selector-class">.0</span><span class="selector-class">.0</span><span class="selector-class">.1</span><span class="selector-pseudo">:6379</span>&gt;<span class="selector-tag">get</span> <span class="selector-tag">key2</span></span><br><span class="line">"<span class="selector-tag">lxsymblog</span>"</span><br></pre></td></tr></table></figure></p>
+<p>3、虚拟内存–Redis当物理内存用完时，可以将一些很久没用到的value 交换到磁盘,而memcache不会。<br>4、过期策略–memcache在set时就指定，例如set key1 0 0 8,即永不过期。<br>   Redis可以通过例如expire 设定，例如expire name 10<br>5、分布式–设定memcache集群，利用magent做一主多从;redis可以做一主多从。都可以一主一从。<br>6、存储数据安全–memcache挂掉后，数据没了；redis可以定期保存到磁盘（持久化）。<br>7、灾难恢复–memcache挂掉后，数据不可恢复; redis数据丢失后可以通过aof恢复。</p>
+<p>以上是对该两种数据库的分析，但是不论怎样都有优缺点，根据项目需求具体确定用哪种类型数据库才是最关键的。</p>
 
       
     </div>
@@ -183,7 +176,7 @@ redis 127.0.0.1:6379&gt;get key2
   <div class="widget-wrap">
     <h3 class="widget-title">文章档案</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -208,6 +201,10 @@ redis 127.0.0.1:6379&gt;get key2
           </li>
         
           <li>
+            <a href="/2016/01/04/4/">PHP类的自动加载</a>
+          </li>
+        
+          <li>
             <a href="/2015/06/30/5/">不知从何说起</a>
           </li>
         
@@ -217,10 +214,6 @@ redis 127.0.0.1:6379&gt;get key2
         
           <li>
             <a href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
-          </li>
-        
-          <li>
-            <a href="/2015/05/06/49/">PHP的魔术方法</a>
           </li>
         
       </ul>

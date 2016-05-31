@@ -15,7 +15,7 @@
 <meta property="og:description" content="PHP中的魔术方法总结 :construct, destruct , call, callStatic,get, set, isset, unset , sleep, wakeup, toString, set_state, clone and autoload
 1、get、set
 这两个方法是为在类和他们的父类中没有声明的属性而设计的get( $property ) 当调用一个未定义的属性时访问">
-<meta property="og:updated_time" content="2016-05-30T05:41:08.063Z">
+<meta property="og:updated_time" content="2016-05-31T06:01:49.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP的魔术方法">
 <meta name="twitter:description" content="PHP中的魔术方法总结 :construct, destruct , call, callStatic,get, set, isset, unset , sleep, wakeup, toString, set_state, clone and autoload
@@ -109,12 +109,12 @@
 </strong>destruct 析构方法，PHP将在对象被销毁前（即从内存中清除前）调用这个方法<br>默认情况下,PHP仅仅释放对象属性所占用的内存并销毁对象相关的资源.<br>析构函数允许你在使用一个对象之后执行任意代码来清除内存.<br>当PHP决定你的脚本不再与对象相关时,析构函数将被调用.<br>在一个函数的命名空间内,这会发生在函数return的时候.<br>对于全局变量,这发生于脚本结束的时候.如果你想明确地销毁一个对象,你可以给指向该对象的变量分配任何其它值.通常将变量赋值勤为NULL或者调用unset.</p>
 <p>6、<strong>clone<br>PHP5中的对象赋值是使用的引用赋值，如果想复制一个对象则需要使用clone方法，在调用此方法是对象会自动调用</strong>clone魔术方法<br>如果在对象复制需要执行某些初始化操作，可以在__clone方法实现</p>
 <p>7、<strong>toString 
-</strong>toString方法在将一个对象转化成字符串时自动调用，比如使用echo打印对象时<br>如果类没有实现此方法，则无法通过echo打印对象，否则会显示：Catchable fatal error: Object of class test could not be converted to string in<br>此方法必须返回一个字符串</p>
-<p>在PHP 5.2.0之前，<strong>toString方法只有结合使用echo() 或 print()时 才能生效。PHP 5.2.0之后，则可以在任何字符串环境生效（例如通过printf()，使用%s修饰符），但 不能用于非字符串环境（如使用%d修饰符）。从PHP 5.2.0，如果将一个未定义</strong>toString方法的对象 转换为字符串，会报出一个E_RECOVERABLE_ERROR错误。</p>
+</strong>toString方法在将一个对象转化成字符串时自动调用，比如使用echo打印对象时<br>如果类没有实现此方法，则无法通过echo打印对象，否则会显示：Catchable fatal error: Object of class test could not be converted to string in<br>此方法必须返回一个字符串<br>在PHP 5.2.0之前，<strong>toString方法只有结合使用echo() 或 print()时 才能生效。PHP 5.2.0之后，则可以在任何字符串环境生效（例如通过printf()，使用%s修饰符），但 不能用于非字符串环境（如使用%d修饰符）。从PHP 5.2.0，如果将一个未定义</strong>toString方法的对象 转换为字符串，会报出一个E_RECOVERABLE_ERROR错误。</p>
 <p>8、<strong>sleep、</strong>wakeup<br><strong>sleep 串行化的时候用
 </strong>wakeup 反串行化的时候调用<br>serialize() 检查类中是否有魔术名称 <strong>sleep 的函数。如果这样，该函数将在任何序列化之前运行。它可以清除对象并应该返回一个包含有该对象中应被序列化的所有变量名的数组。<br>使用 </strong>sleep 的目的是关闭对象可能具有的任何数据库连接，提交等待中的数据或进行类似的清除任务。此外，如果有非常大的对象而并不需要完全储存下来时此函数也很有用。<br>相反地，unserialize() 检查具有魔术名称 <strong>wakeup 的函数的存在。如果存在，此函数可以重建对象可能具有的任何资源。<br>使用 </strong>wakeup 的目的是重建在序列化中可能丢失的任何数据库连接以及处理其它重新初始化的任务。</p>
 <p>9、__set_state<br>当调用var_export()时，这个静态 方法会被调用（自PHP 5.1.0起有效）。<br>本方法的唯一参数是一个数组，其中包含按array(’property’ =&gt; value, …)格式排列的类属性。</p>
-<p>10、<strong>invoke<br>当尝试以调用函数的方式调用一个对象时，</strong>invoke 方法会被自动调用。<br>PHP5.3.0以上版本有效<br>11、<strong>callStatic<br>它的工作方式类似于 </strong>call() 魔术方法，<strong>callStatic() 是为了处理静态方法调用，<br>PHP5.3.0以上版本有效<br>PHP 确实加强了对 </strong>callStatic() 方法的定义；它必须是公共的，并且必须被声明为静态的。同样，__call() 魔术方法必须被定义为公共的，所有其他魔术方法都必须如此。</p>
+<p>10、<strong>invoke<br>当尝试以调用函数的方式调用一个对象时，</strong>invoke 方法会被自动调用。<br>PHP5.3.0以上版本有效</p>
+<p>11、<strong>callStatic<br>它的工作方式类似于 </strong>call() 魔术方法，<strong>callStatic() 是为了处理静态方法调用，<br>PHP5.3.0以上版本有效<br>PHP 确实加强了对 </strong>callStatic() 方法的定义；它必须是公共的，并且必须被声明为静态的。同样，__call() 魔术方法必须被定义为公共的，所有其他魔术方法都必须如此。</p>
 <p>原文出处：<a href="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html" title="http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html" target="_blank" rel="external">http://www.cnblogs.com/xiaochaohuashengmi/archive/2011/09/22/2185034.html</a></p>
 
       
@@ -200,7 +200,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">文章档案</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">八月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">三月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">九月 2013</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -225,6 +225,10 @@
           </li>
         
           <li>
+            <a href="/2016/01/04/4/">PHP类的自动加载</a>
+          </li>
+        
+          <li>
             <a href="/2015/06/30/5/">不知从何说起</a>
           </li>
         
@@ -234,10 +238,6 @@
         
           <li>
             <a href="/2015/05/07/20/">定时自动启动任务crontab命令用法</a>
-          </li>
-        
-          <li>
-            <a href="/2015/05/06/49/">PHP的魔术方法</a>
           </li>
         
       </ul>
