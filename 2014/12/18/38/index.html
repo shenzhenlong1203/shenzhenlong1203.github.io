@@ -5,16 +5,31 @@
   
   <title>解决PHP上传文件大小限制 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：配置php.ini文件 （以上传500M以下大小的文件为例） 查找以下选项并修改：1.file_uploads = On ;打开文件上传选项 2.upload_max_filesize = 500M ;上传文件上限 如果要上传比较大的文件，仅仅以上">
+  <meta name="description" content="一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：
+配置php.ini文件 （以上传500M以下大小的文件为例）查找以下选项并修改：
+
+file_uploads = On ;打开文件上传选项。
+
+upload_max_filesize = 500M ;上传文件上限。如果要上传比较大的文件，仅仅以上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决PHP上传文件大小限制">
 <meta property="og:url" content="http://longlongblog.cn/2014/12/18/38/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：配置php.ini文件 （以上传500M以下大小的文件为例） 查找以下选项并修改：1.file_uploads = On ;打开文件上传选项 2.upload_max_filesize = 500M ;上传文件上限 如果要上传比较大的文件，仅仅以上">
-<meta property="og:updated_time" content="2016-05-31T05:56:06.961Z">
+<meta property="og:description" content="一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：
+配置php.ini文件 （以上传500M以下大小的文件为例）查找以下选项并修改：
+
+file_uploads = On ;打开文件上传选项。
+
+upload_max_filesize = 500M ;上传文件上限。如果要上传比较大的文件，仅仅以上">
+<meta property="og:updated_time" content="2016-06-01T05:56:53.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决PHP上传文件大小限制">
-<meta name="twitter:description" content="一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：配置php.ini文件 （以上传500M以下大小的文件为例） 查找以下选项并修改：1.file_uploads = On ;打开文件上传选项 2.upload_max_filesize = 500M ;上传文件上限 如果要上传比较大的文件，仅仅以上">
+<meta name="twitter:description" content="一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：
+配置php.ini文件 （以上传500M以下大小的文件为例）查找以下选项并修改：
+
+file_uploads = On ;打开文件上传选项。
+
+upload_max_filesize = 500M ;上传文件上限。如果要上传比较大的文件，仅仅以上">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -88,8 +103,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div style="font-size: 14px;"><span style="padding-left: 30px;">一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">配置php.ini文件 （以上传500M以下大小的文件为例） </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">查找以下选项并修改：</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">1.file_uploads = On ;打开文件上传选项 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">2.upload_max_filesize = 500M ;上传文件上限 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">3.post_max_size = 500M ;post上限 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">4.max_execution_time = 1800 ; 脚本最大执行时间 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">5.max_input_time = 1800 ;  输入最大执行时间 </span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">6.memory_limit = 128M ; 内存上限</span></div><br><div style="font-size: 14px;"><span style="padding-left: 30px;">记得配置完了后要重启apache等服务器服务，即可成功！</span></div>
-
+        <p>一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：</p>
+<p>配置php.ini文件 （以上传500M以下大小的文件为例）<br>查找以下选项并修改：</p>
+<ol>
+<li><p>file_uploads = On ;打开文件上传选项。</p>
+</li>
+<li><p>upload_max_filesize = 500M ;上传文件上限。<br>如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长 </p>
+</li>
+<li><p>post_max_size = 500M ;post上限 </p>
+</li>
+<li><p>max_execution_time = 1800 ; 脚本最大执行时间 </p>
+</li>
+<li><p>max_input_time = 1800 ;  输入最大执行时间 </p>
+</li>
+<li><p>memory_limit = 128M ; 内存上限</p>
+</li>
+</ol>
+<p>记得配置完了后要重启apache等服务器服务，即可成功！</p>
 
       
     </div>

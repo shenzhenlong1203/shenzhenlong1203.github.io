@@ -454,15 +454,32 @@
     <link href="http://longlongblog.cn/2014/12/18/38/"/>
     <id>http://longlongblog.cn/2014/12/18/38/</id>
     <published>2014-12-18T14:52:03.000Z</published>
-    <updated>2016-05-31T05:56:06.961Z</updated>
+    <updated>2016-06-01T05:56:53.556Z</updated>
     
-    <content type="html">&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;配置php.ini文件 （以上传500M以下大小的文件为例） &lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;查找以下选项并修改：&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;1.file_uploads = On ;打开文件上传选项 &lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;2.upload_max_filesize = 500M ;上传文件上限 &lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长 &lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;3.post_max_size = 500M ;post上限 &lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;4.max_execution_time = 1800 ; 脚本最大执行时间 &lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;5.max_input_time = 1800 ;  输入最大执行时间 &lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;6.memory_limit = 128M ; 内存上限&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;记得配置完了后要重启apache等服务器服务，即可成功！&lt;/span&gt;&lt;/div&gt;
-
+    <content type="html">&lt;p&gt;一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：&lt;/p&gt;
+&lt;p&gt;配置php.ini文件 （以上传500M以下大小的文件为例）&lt;br&gt;查找以下选项并修改：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;file_uploads = On ;打开文件上传选项。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;upload_max_filesize = 500M ;上传文件上限。&lt;br&gt;如果要上传比较大的文件，仅仅以上两条还不够，必须把服务器缓存上限调大，把脚本最大执行时间变长 &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;post_max_size = 500M ;post上限 &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;max_execution_time = 1800 ; 脚本最大执行时间 &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;max_input_time = 1800 ;  输入最大执行时间 &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;memory_limit = 128M ; 内存上限&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;记得配置完了后要重启apache等服务器服务，即可成功！&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;padding-left: 30px;&quot;&gt;一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：
+      &lt;p&gt;一般情况下，php的上传文件大小都是在php.ini中配置好的，但是有时我们要上传比较大的文件，默认是不可以的，不能达到我们的需求，故修改配置文件如下：&lt;/p&gt;
+&lt;p&gt;配置php.ini文件 （以上传500M以下大小的文件为例）&lt;br&gt;查找以下选项并修改：&lt;/p&gt;
+&lt;ol&gt;
     
     </summary>
     
