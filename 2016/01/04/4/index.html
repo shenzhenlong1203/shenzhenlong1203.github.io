@@ -20,10 +20,10 @@ require()和include()语句是语言结构，不是真正的函数。
 require()和include()语句也可以不加圆括号而直接加参数。
 require_once() 判断并加载文件。
 include_once() 判断并加载文件。   123456789相同点：在脚本执行期间包括运行指定文件不同点： 1.incluce在用到时加载，require在一开始就加载		2.inclu">
-<meta property="og:image" content="http://123.56.234.128/szl/flow.png">
-<meta property="og:image" content="http://123.56.234.128/szl/composer.png">
-<meta property="og:image" content="http://123.56.234.128/szl/autoload.png">
-<meta property="og:updated_time" content="2016-05-31T06:05:42.621Z">
+<meta property="og:image" content="http://longlongblog.cn/img/flow.png">
+<meta property="og:image" content="http://longlongblog.cn/img/composer.png">
+<meta property="og:image" content="http://longlongblog.cn/img/autoload.png">
+<meta property="og:updated_time" content="2016-06-28T12:34:49.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP类的自动加载">
 <meta name="twitter:description" content="类的加载
@@ -31,7 +31,7 @@ require()和include()语句是语言结构，不是真正的函数。
 require()和include()语句也可以不加圆括号而直接加参数。
 require_once() 判断并加载文件。
 include_once() 判断并加载文件。   123456789相同点：在脚本执行期间包括运行指定文件不同点： 1.incluce在用到时加载，require在一开始就加载		2.inclu">
-<meta name="twitter:image" content="http://123.56.234.128/szl/flow.png">
+<meta name="twitter:image" content="http://longlongblog.cn/img/flow.png">
   
     <link rel="alternative" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
   
@@ -289,7 +289,7 @@ include_once() 判断并加载文件。   123456789相同点：在脚本执行�
 <pre><code>缺陷： __autoload的最大缺陷是无法有多个autoload方法 
 </code></pre></li>
 </ul>
-<h3 id="MVC加载原理"><a href="#MVC加载原理" class="headerlink" title="MVC加载原理"></a>MVC加载原理</h3><p><img src="http://123.56.234.128/szl/flow.png" alt="http://123.56.234.128/szl/flow.png"></p>
+<h3 id="MVC加载原理"><a href="#MVC加载原理" class="headerlink" title="MVC加载原理"></a>MVC加载原理</h3><p><img src="/img/flow.png" alt="/img/flow.png"></p>
 <ol>
 <li><p>include 配置</p>
  <figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">'include'</span> =&gt; <span class="built_in">array</span>( <span class="symbol">'application</span>/catalog/controllers',</span><br><span class="line"><span class="symbol">'application</span>/catalog/models', ),</span><br><span class="line">$<span class="keyword">include</span> =&gt; <span class="built_in">array</span>(<span class="symbol">'application</span>/controllers', <span class="symbol">'application</span>/models', <span class="symbol">'application</span>/library'); </span><br><span class="line">set_include_path(get_include_path<span class="literal">()</span> . <span class="type">PATH_SEPARATOR</span> .implode(<span class="type">PATH_SEPARATOR</span>, $config[<span class="symbol">'include'</span>]));</span><br></pre></td></tr></table></figure>
@@ -307,7 +307,7 @@ include_once() 判断并加载文件。   123456789相同点：在脚本执行�
 <li><p>composer（包管理器）的应用</p>
 </li>
 </ul>
-<p><img src="http://123.56.234.128/szl/composer.png" alt="http://123.56.234.128/szl/composer.png"></p>
+<p><img src="/img/composer.png" alt="/img/composer.png"></p>
 <ol>
 <li><p>psr-0</p>
  <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"autoload"</span>: &#123;</span><br><span class="line">	 <span class="string">"psr-0"</span>: &#123;</span><br><span class="line">	 <span class="string">"Foo\\"</span>: <span class="string">"src/"</span>,</span><br><span class="line">	 &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">路径生成： <span class="string">"Foo\\Bar\\Baz.php"</span></span><br></pre></td></tr></table></figure>
@@ -325,7 +325,7 @@ include_once() 判断并加载文件。   123456789相同点：在脚本执行�
 <ul>
 <li>加载原理</li>
 </ul>
-<p><img src="http://123.56.234.128/szl/autoload.png" alt="http://123.56.234.128/szl/autoload.png"></p>
+<p><img src="/img/autoload.png" alt="/img/autoload.png"></p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>composer加载第三方库的演示</p>
 <h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
 <li><a href="&quot;http://www.cnblogs.com/xia520pi/p/3697099.html&quot;">http://www.cnblogs.com/xia520pi/p/3697099.html</a></li>
