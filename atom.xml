@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://longlongblog.cn/"/>
-  <updated>2017-11-01T09:54:11.000Z</updated>
+  <updated>2017-11-01T12:26:00.000Z</updated>
   <id>http://longlongblog.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://longlongblog.cn/2017/11/01/58/"/>
     <id>http://longlongblog.cn/2017/11/01/58/</id>
     <published>2017-11-01T09:12:40.000Z</published>
-    <updated>2017-11-01T09:54:11.000Z</updated>
+    <updated>2017-11-01T12:26:00.000Z</updated>
     
-    <content type="html"><![CDATA[<h4 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h4><p>Flush是一个极少用到的操作，不过既然碰到过诡异的现象，也记录在此。</p><p>问题场景是在Reids Cluster中使用主从模式，向主节点发送flush命令，预期主从节点都会清空数据库。但是诡异的现象出现了，我们得到的结果是主从节点发生了切换，并且数据并没有被清空。</p><h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p>分析以上case，Redis采用单线程模型，flush操作执行的时候会阻塞所有其它操作，包括集群间心跳包。当Redis中有大量数据的时候，flush操作会消耗较长时间。所以该节点较长时间不能跟集群通信，当达到一定阈值的时候，集群会判定该节点为fail，并且会切换主从状态。</p><p>Redis采用异步的方式进行主从同步，flush操作在主节点执行完成之后，才会将命令同步到从节点。此时老的从节点变为了主节点，它不会再接受来自老的主节点的删除数据的操作。</p><p>当老的主节点flush完成的时候，它恢复与集群中其它节点的通讯，得知自己被变成了从节点，所又会把数据同步过来。最终造成了主从节点发生了切换，并且数据没有被清空的现象。</p><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>解决方式：临时调大集群中所有节点的cluster-node-timeout参数。</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h4><p>Flush是一个极少用到的操作，不过既然碰到过诡异的现象，也记录在此。</p><p>问题场景是在Reids Cluster中使用主从模式，向主节点发送flush命令，预期主从节点都会清空数据库。但是诡异的现象出现了，我们得到的结果是主从节点发生了切换，并且数据并没有被清空。</p><h4 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h4><p>分析以上case，Redis采用单线程模型，flush操作执行的时候会阻塞所有其它操作，包括集群间心跳包。当Redis中有大量数据的时候，flush操作会消耗较长时间。所以该节点较长时间不能跟集群通信，当达到一定阈值的时候，集群会判定该节点为fail，并且会切换主从状态。</p><p>Redis采用异步的方式进行主从同步，flush操作在主节点执行完成之后，才会将命令同步到从节点。此时老的从节点变为了主节点，它不会再接受来自老的主节点的删除数据的操作。</p><p>当老的主节点flush完成的时候，它恢复与集群中其它节点的通讯，得知自己被变成了从节点，所又会把数据同步过来。最终造成了主从节点发生了切换，并且数据没有被清空的现象。</p><h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>解决方式：临时调大集群中所有节点的cluster-node-timeout参数</p><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">port <span class="number">7000</span>  <span class="comment">//7000-7005</span></div><div class="line">cluster-enabled yes   <span class="comment">//开启集群</span></div><div class="line">cluster-config-file nodes.conf  <span class="comment">//保存节点配置，自动创建，自动更新</span></div><div class="line">cluster-node-timeout <span class="number">5000</span>    <span class="comment">//集群超时时间，节点超过这个时间没反应就断定是宕机</span></div><div class="line">appendonly yes   <span class="comment">//存储方式，aof，将写操作记录保存到日志中</span></div></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
