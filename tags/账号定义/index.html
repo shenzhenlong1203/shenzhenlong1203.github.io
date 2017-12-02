@@ -4,25 +4,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause | Dragon_SZ</title>
+  <title>Tag: 账号定义 | Dragon_SZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Set render engine for 360 browser -->
   <meta name="renderer" content="webkit">
   <!-- No Baidu Siteapp-->
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <meta name="description" content="今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，    1UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT Fid from house WHERE">
-<meta name="keywords" content="学习">
-<meta property="og:type" content="article">
-<meta property="og:title" content="问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause">
-<meta property="og:url" content="http://longlongblog.cn/2015/04/29/42/index.html">
+  <meta name="description" content="Dragon的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dragon_SZ">
+<meta property="og:url" content="http://longlongblog.cn/tags/账号定义/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
-<meta property="og:description" content="今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，    1UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT Fid from house WHERE">
+<meta property="og:description" content="Dragon的个人博客">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2016-05-31T05:56:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause">
-<meta name="twitter:description" content="今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，    1UPDATE house h SET h.Fuser_id = 79063 WHERE h.Fid IN (SELECT Fid from house WHERE">
+<meta name="twitter:title" content="Dragon_SZ">
+<meta name="twitter:description" content="Dragon的个人博客">
 <meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
 <link rel="publisher" href="https://plus.google.com/u/0/">
   
@@ -114,93 +112,40 @@ var _hmt = _hmt || [];
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-42" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/04/29/42/" class="article-date">
-  <time datetime="2015-04-29T08:30:29.000Z" itemprop="datePublished">2015-04-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/SQL/">SQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+      <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2017/11/22/59/" class="archive-article-date">
+  <time datetime="2017-11-22T09:12:40.000Z" itemprop="datePublished">11-22</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/11/22/59/">微信开发之初体验</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p>今天在处理一个表的数据时，想直接把某个人对应的数据，对应到另一个人上去，思想很简单，就是把第一个人的对应的ID查出来，然后再用更新语句将所有ID在这里边的做一个更新操作，思路很清晰，操作很简单。好的，代码写好了直接操作数据库，<br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> house h <span class="keyword">SET</span> h.Fuser_id = <span class="number">79063</span> <span class="keyword">WHERE</span> h.Fid <span class="keyword">IN</span> (<span class="keyword">SELECT</span> Fid <span class="keyword">from</span> house <span class="keyword">WHERE</span> Fuser_id = <span class="number">79056</span> <span class="keyword">AND</span> Fdistrict1 = <span class="string">''</span> <span class="keyword">AND</span> Fis_process = <span class="number">0</span>);</div></pre></td></tr></table></figure></p>
-<p>但是在具体操作的过程中，问题出现了，问题是You can’t specify target table ‘A’ for update in FROM clause,问题出在哪了，一查资料原因是在更新这个表和数据时又查询了它，而查询的数据又做了更新的条件。<br>解决方案呢就是先将查出的表作为一个第三方表，然后查询第三方表实现隔离操作。<br>    <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> house h <span class="keyword">SET</span> h.Fuser_id = <span class="number">79063</span> <span class="keyword">WHERE</span> h.Fid <span class="keyword">IN</span> (<span class="keyword">SELECT</span> temp.Fid <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> Fid <span class="keyword">from</span> house <span class="keyword">WHERE</span> Fuser_id = <span class="number">79056</span> <span class="keyword">AND</span> Fdistrict1 = <span class="string">''</span> <span class="keyword">AND</span> Fis_process = <span class="number">0</span>) temp );</div></pre></td></tr></table></figure></p>
-<p>当然这种做法是最佳的选择，还有一个笨方法就是建立一个temp临时表，插入临时表，然后查询临时表，当然该方法的优点是在遇到数据量大的情况下，可以避免数据库内存不够用而导致的宕机。</p>
-
-      
-      
-  <div class="article-statement">
-    <hr>  
-    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
-    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
-    3.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
+    </header>
   </div>
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="http://longlongblog.cn/2015/04/29/42/" data-id="cjapelqpg0035ch3kz38jfo2x" class="article-share-link" data-share="baidu" data-title="问题 :You can&#39;t specify target table &#39;A&#39; for update in FROM clause">分享到</a>
-      
-
-      
-        <a href="http://longlongblog.cn/2015/04/29/42/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习/">学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2015/05/06/49/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          PHP的魔术方法
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/04/27/30/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">浅谈PHP大数据处理</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
-
-  <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
 </section>
       
       <aside id="sidebar">
@@ -358,13 +303,11 @@ var _hmt = _hmt || [];
 <script>
   var disqus_shortname = 'longlong';
   
-  var disqus_url = 'http://longlongblog.cn/2015/04/29/42/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
