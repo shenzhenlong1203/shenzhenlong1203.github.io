@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Dragon_SZ">
 <meta property="og:description" content="前言众所周知，SQL存在注入的风险，所以mybatis 在默认情况下会使用预编译的方式，并会设置PreparedStatement参数，并进行了必要的安全检查和字符的转义。 PreparedStatement预编译 Mapper配置，默认是预编译  1&amp;lt;select id=&quot;getList&quot; resultType=&quot;Map&quot; &amp;gt;select * from A where age = #">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-12-14T11:23:52.000Z">
+<meta property="og:updated_time" content="2017-12-14T11:26:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MyBatis Mapper变量引用方式#{}与${}差别">
 <meta name="twitter:description" content="前言众所周知，SQL存在注入的风险，所以mybatis 在默认情况下会使用预编译的方式，并会设置PreparedStatement参数，并进行了必要的安全检查和字符的转义。 PreparedStatement预编译 Mapper配置，默认是预编译  1&amp;lt;select id=&quot;getList&quot; resultType=&quot;Map&quot; &amp;gt;select * from A where age = #">
@@ -147,12 +147,16 @@ var _hmt = _hmt || [];
 <li><p>Mapper配置，默认是预编译</p>
  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getList"</span> <span class="attr">resultType</span>=<span class="string">"Map"</span> &gt;</span>select * from A where age = #&#123;age&#125; ORDER BY #&#123;age&#125;<span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
+</ol>
+<ol>
 <li><p>SQL举例</p>
  <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> A <span class="keyword">where</span> age = #&#123;age&#125;</div></pre></td></tr></table></figure>
 </li>
 </ol>
 <ol>
-<li>解释<br>参数：age=&gt;5<br>解析后执行的SQL：select * from A where age = ？<br>然后在SQL的执行中进行值的替换。</li>
+<li><p>解释</p>
+<p> 参数：age=&gt;5<br> 解析后执行的SQL：select * from A where age = ？<br> 然后在SQL的执行中进行值的替换。</p>
+</li>
 </ol>
 <h3 id="Statement直接拼接"><a href="#Statement直接拼接" class="headerlink" title="Statement直接拼接"></a>Statement直接拼接</h3><ol>
 <li><p>Mapper配置 statementType</p>
@@ -163,7 +167,10 @@ var _hmt = _hmt || [];
 <li><p>SQL举例</p>
  <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> B <span class="keyword">where</span> age = $&#123;age&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>解释<br>参数：age传入值为：5<br>解析后执行的SQL：select * from B where age =5</p>
+</ol>
+<ol>
+<li><p>解释</p>
+<p> 参数：age传入值为：5<br> 解析后执行的SQL：select * from B where age =5</p>
 </li>
 </ol>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
@@ -186,7 +193,7 @@ var _hmt = _hmt || [];
     
     <footer class="article-footer">
       
-        <a data-url="http://longlongblog.cn/2017/09/14/60/" data-id="cjb6ecxqv004wxg3kar5h98m3" class="article-share-link" data-share="baidu" data-title="MyBatis Mapper变量引用方式#{}与${}差别">分享到</a>
+        <a data-url="http://longlongblog.cn/2017/09/14/60/" data-id="cjb6eg9aa004v003kogg6ljka" class="article-share-link" data-share="baidu" data-title="MyBatis Mapper变量引用方式#{}与${}差别">分享到</a>
       
 
       
