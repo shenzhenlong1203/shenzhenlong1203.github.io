@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://longlongblog.cn/"/>
-  <updated>2018-03-04T13:32:56.000Z</updated>
+  <updated>2019-08-09T05:59:53.000Z</updated>
   <id>http://longlongblog.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018 该有个总结</title>
+    <link href="http://longlongblog.cn/2019/01/01/64/"/>
+    <id>http://longlongblog.cn/2019/01/01/64/</id>
+    <published>2019-01-01T14:02:24.000Z</published>
+    <updated>2019-08-09T05:59:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>2018年是一个值得纪念的一年，生活步入正轨，事业稳步上升，有值得庆幸的，也有值得总结的，五味杂陈。<br><a id="more"></a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2018年是一个值得纪念的一年，生活步入正轨，事业稳步上升，有值得庆幸的，也有值得总结的，五味杂陈。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Note" scheme="http://longlongblog.cn/categories/Note/"/>
+    
+    
+      <category term="生活" scheme="http://longlongblog.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="感悟" scheme="http://longlongblog.cn/tags/%E6%84%9F%E6%82%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>2017 该有个总结</title>
@@ -42,30 +66,6 @@
       <category term="心理" scheme="http://longlongblog.cn/tags/%E5%BF%83%E7%90%86/"/>
     
       <category term="回忆" scheme="http://longlongblog.cn/tags/%E5%9B%9E%E5%BF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2018 该有个总结</title>
-    <link href="http://longlongblog.cn/2018/01/01/64/"/>
-    <id>http://longlongblog.cn/2018/01/01/64/</id>
-    <published>2018-01-01T14:02:24.000Z</published>
-    <updated>2019-08-09T05:59:01.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>2018年是一个值得纪念的一年，生活步入正轨，事业稳步上升，有值得庆幸的，也有值得总结的，五味杂陈。<br><a id="more"></a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;2018年是一个值得纪念的一年，生活步入正轨，事业稳步上升，有值得庆幸的，也有值得总结的，五味杂陈。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Note" scheme="http://longlongblog.cn/categories/Note/"/>
-    
-    
-      <category term="生活" scheme="http://longlongblog.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-      <category term="感悟" scheme="http://longlongblog.cn/tags/%E6%84%9F%E6%82%9F/"/>
     
   </entry>
   
