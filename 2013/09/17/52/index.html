@@ -1,468 +1,165 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-
-<script type='text/javascript'>
-!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.growingio.com/2.1/gio.js","gio");
-  gio('init','b42bee32ec9ef0d0', {});
-
-
-gio('send');
-
-</script>
-
-
-  
-  <script>
-    (function(){
-        if('' !== 'undefined'){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                window.location = '/';
-            }
-        }
-    })();
-  </script>
-  <title>Shell中ctrl+z 与ctrl+c的区别 | Dragon_SZ</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Set render engine for 360 browser -->
-  <meta name="renderer" content="webkit">
-  <!-- No Baidu Siteapp-->
-  <meta http-equiv="Cache-Control" content="no-siteapp"/>
-  <meta name="description" content="在使用shell的日子里，运行一个服务时，经常用到CTRL+Z和CTRL+C来中断服务，有时会出现莫名奇妙的问题，原因可能是你的一个小小的习惯导致的。现在说一下CTRL+Z与CTRL+C的区别：CTRL+Z和CTRL+C都是中断命令,但是他们的作用却不一样.CTRL+C是强制中断程序的执行,而CTRL+Z的是将任务中断,但是此任务并没有结束,他仍然在进程中他只是维持挂起的状态,用户可以使用fg&amp;#">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Shell中ctrl+z 与ctrl+c的区别 | Dragon_SZ</title><meta name="author" content="Dragon_SZ"><meta name="copyright" content="Dragon_SZ"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在使用shell的日子里，运行一个服务时，经常用到CTRL+Z和CTRL+C来中断服务，有时会出现莫名奇妙的问题，原因可能是你的一个小小的习惯导致的。现在说一下CTRL+Z与CTRL+C的区别：CTRL+Z和CTRL+C都是中断命令,但是他们的作用却不一样.CTRL+C是强制中断程序的执行,而CTRL+Z的是将任务中断,但是此任务并没有结束,他仍然在进程中他只是维持挂起的状态,用户可以使用fg&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shell中ctrl+z 与ctrl+c的区别">
 <meta property="og:url" content="https://xiaoshenlong.cc/2013/09/17/52/index.html">
 <meta property="og:site_name" content="Dragon_SZ">
 <meta property="og:description" content="在使用shell的日子里，运行一个服务时，经常用到CTRL+Z和CTRL+C来中断服务，有时会出现莫名奇妙的问题，原因可能是你的一个小小的习惯导致的。现在说一下CTRL+Z与CTRL+C的区别：CTRL+Z和CTRL+C都是中断命令,但是他们的作用却不一样.CTRL+C是强制中断程序的执行,而CTRL+Z的是将任务中断,但是此任务并没有结束,他仍然在进程中他只是维持挂起的状态,用户可以使用fg&amp;#">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaoshenlong.cc/img/butterfly-icon.png">
 <meta property="article:published_time" content="2013-09-17T04:27:47.000Z">
 <meta property="article:modified_time" content="2016-05-31T06:03:40.000Z">
 <meta property="article:author" content="Dragon_SZ">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:creator" content="@https:&#x2F;&#x2F;twitter.com&#x2F;Dragon__SZ">
-  
-  
-    <link rel="icon" href="/img/logo.jpg">
-    <meta name="mobile-web-app-capable" content="yes">
-    <!-- Add to homescreen for Chrome on Android -->    
-    <link rel="icon" sizes="192x192" href="/img/logo.jpg">
-    <!-- Add to homescreen for Safari on iOS -->
-    <link rel="apple-touch-icon-precomposed" href="/img/logo.jpg">    
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="/img/logo.jpg">
-    <meta name="msapplication-TileColor" content="#0e90d2">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
-  
-<!-- Google Analytics -->
-<script type="text/javascript">
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-105380317-1', 'auto');
-ga('send', 'pageview');
-
-</script>
-<!-- End Google Analytics -->
-
-  
-<script type="text/javascript">
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?10f2720e6f47d1b4a5ebc811df8dc361";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
-</head>
-
-<body>
-<div id="container">
-  <div id="wrap">
-    <header id="header">
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-4090430472919209",
-              enable_page_level_ads: true
-                });
-    </script>
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Dragon_SZ</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">首页</a>
-        
-          <a class="main-nav-link" href="/archives">文章</a>
-        
-          <a class="main-nav-link" href="/atom.xml">rss</a>
-        
-          <a class="main-nav-link" href="http://wiki.longlongblog.cn">wiki</a>
-        
-      </nav>
-      <!--
-      <nav id="sub-nav">
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
-          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
-          <input type="submit" value="" class="search-form-submit">
-          <input name=tn type=hidden value="bds">
-          <input name=cl type=hidden value="3">
-          <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="xiaoshenlong.cc">
-        </form>
-      </div>
-      -->
-    </div>
-  </div>
-</header>
-
-    <div class="outer">
-      <section id="main"><article id="post-52" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/17/52/" class="article-date">
-  <time datetime="2013-09-17T04:27:47.000Z" itemprop="datePublished">2013-09-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Shell中ctrl+z 与ctrl+c的区别
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- Table of Contents -->
-        
-        <p><span style="padding-left: 30px;font-size: 14px;">在使用shell的日子里，运行一个服务时，经常用到CTRL+Z和CTRL+C来中断服务，有时会出现莫名奇妙的问题，原因可能是你的一个小小的习惯导致的。现在说一下CTRL+Z与CTRL+C的区别：<br><span style="color: #993300;padding-left: 30px;font-size: 14px;">CTRL+Z和CTRL+C都是中断命令,但是他们的作用却不一样.</span><br><span style="color: #993300;padding-left: 30px;font-size: 14px;">CTRL+C是强制中断程序的执行,</span><br><span style="color: #993300;padding-left: 30px;font-size: 14px;">而CTRL+Z的是将任务中断,但是此任务并没有结束,他仍然在进程中他只是维持挂起的状态,用户可以使用fg&#x2F;bg操作继续前台或后台的任务,fg命令重新启动前台被中断的任务,bg命令把被中断的任务放在后台执行.</span></span></p>
-<p><span style="padding-left: 30px;font-size: 14px;">所以在以后的使用时，要注意怎样结束一个后台服务，不要仅仅结束前台的，服务还在运行，严重影响系统的运行。</span></p>
-
-      
-      
-  <div class="article-statement">
-    <hr>  
-    1.如果本文帮到了您，不妨点一下右下角的 <a>分享到</a> 按钮。<br>
-    2.除非注明，本博文章均为原创，转载请以链接形式标明本文地址。<br>
-    3.本博文章只代表博主当时的观点或结论，与博主公司没有任何关系。<br>
-  </div>
-
-    </div>
-    
-    <footer class="article-footer">
-      
-        <a data-url="https://xiaoshenlong.cc/2013/09/17/52/" data-id="cmo2aujvg0050k59u8i4th7uh" class="article-share-link" data-share="baidu" data-title="Shell中ctrl+z 与ctrl+c的区别">分享到</a>
-      
-
-      
-        <a href="https://xiaoshenlong.cc/2013/09/17/52/#disqus_thread" class="article-comment-link">评论</a>
-      
-
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0/" rel="tag">学习</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2013/09/22/54/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          Ubuntu清理垃圾
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2013/09/11/12/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">即兴的感想</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-  <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-</section>
-      
-      <aside id="sidebar">
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">来关注我</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        
-          <div style="text-align: center;">
-            <img src="/img/wechat.png" style="width: 100%; max-width: 250px;">
-          </div>
-        
-        <li>
-          <a href="/img/wechat.png" target="_blank">1. 我的「微信」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://weibo.com/shenzhenlong" target="_blank">2. 我的「微博」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.zhihu.com/people/shenzhenlong/activities" target="_blank">3. 我的「知乎」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="http://www.jianshu.com/users/437da251a0bd/timeline" target="_blank">4. 我的「简书」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://www.v2ex.com/member/longlong" target="_blank">5. 我的「V2EX」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://github.com/shenzhenlong1203" target="_blank">6. 我的「GitHub」</a>
-        </li>
-      
-        
-        
-        <li>
-          <a href="https://segmentfault.com/u/shenzhenlong" target="_blank">7. 我的「SegmentFault」</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-  <h3 class="widget-title">推荐文章</h3>
-  <div class="widget">
-    <ul>
-      
-      
-        
-        <li>
-          <a href="/2021/01/01/66/" target="_blank">1. 2020该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2015/01/04/3/" target="_blank">2. 2014该有个总结</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/01/04/4/" target="_blank">3. PHP类的自动加载</a>
-        </li>
-      
-        
-        <li>
-          <a href="/2016/05/30/56/" target="_blank">4. 监控系统工具对比</a>
-        </li>
-      
-    </ul>
-  </div>
-</div>
-  
-    <div class="widget-wrap">
-	<h3 class="widget-title">微信公众号</h3>
-	<div class="widget">
-		<div style="text-align: center;">
-			<img src="/img/wechat_public.png" style="width: 100%; max-width: 250px;">
-			<div style="margin-top: -15px;">订阅「龙猫公众号」</div>
-		</div>
-	</div>
-</div>
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Cluster/" style="font-size: 10px;">Cluster</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/mapper/" style="font-size: 10px;">mapper</a> <a href="/tags/mybatis/" style="font-size: 10px;">mybatis</a> <a href="/tags/wechat/" style="font-size: 10px;">wechat</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E9%9A%8F%E8%AE%B0/" style="font-size: 10px;">个人随记</a> <a href="/tags/%E5%9B%9E%E5%BF%86/" style="font-size: 10px;">回忆</a> <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 15px;">学习</a> <a href="/tags/%E5%B0%8F%E7%94%9F%E5%91%BD/" style="font-size: 10px;">小生命</a> <a href="/tags/%E5%BE%AE%E4%BF%A1/" style="font-size: 10px;">微信</a> <a href="/tags/%E5%BF%83%E7%90%86/" style="font-size: 10px;">心理</a> <a href="/tags/%E6%84%9F%E6%82%9F/" style="font-size: 20px;">感悟</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 20px;">生活</a> <a href="/tags/%E7%96%AB%E6%83%85/" style="font-size: 10px;">疫情</a> <a href="/tags/%E8%B4%A6%E5%8F%B7%E5%AE%9A%E4%B9%89/" style="font-size: 10px;">账号定义</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">2020年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">2019年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">2018年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">2017年 11月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">2017年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">2016年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年 06月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年 05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年 04月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年 01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年 12月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">2014年 11月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年 09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年 08月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年 04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年 03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年 01月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年 12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年 11月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年 10月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年 09月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年 08月</a><span class="archive-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://honglu.me" target="_blank">独奏</a>
-          </li>
-        
-          <li>
-            <a href="http://mumu.longlongblog.cn" target="_blank">慕小懒</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-      
-    </div>
-    <footer id="footer">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-  </script>
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      Copyright &copy; 2012 - 2026 <a href="/" target="_blank">Dragon_SZ</a>.
-      &nbsp;
-      <span id="busuanzi_container_site_pv">
-        总访问量 <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_pv"></span></a> 次
-      </span>
-      <span id="busuanzi_container_site_uv">
-        <a href="http://service.ibruce.info/" target="_blank"><span id="busuanzi_value_site_uv"></span></a> 人.
-      </span>
-      
-        &nbsp;
-        <span>
-          <a href="http://www.miibeian.gov.cn" >京ICP备15013245号-1</a>.
-        </span>
-      
-    </div>
-  </div>
-</footer>
-
-  </div>
-  <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">首页</a>
-  
-    <a href="/archives" class="mobile-nav-link">文章</a>
-  
-    <a href="/atom.xml" class="mobile-nav-link">rss</a>
-  
-    <a href="http://wiki.longlongblog.cn" class="mobile-nav-link">wiki</a>
-  
-</nav>
-  <!-- totop start -->
-<div id="totop">
-<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-</div>
-
-<!-- totop end -->
-
-<script>
-  var disqus_shortname = 'longlong';
-  
-  var disqus_url = 'https://xiaoshenlong.cc/2013/09/17/52/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
-
-<!-- 百度分享 start -->
-
-<div id="article-share-box" class="article-share-box">
-  <div id="bdshare" class="bdsharebuttonbox article-share-links">
-    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
-    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
-    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
-    <a class="article-share-more" data-cmd="more" title="更多"></a>
-  </div>
-</div>
-<script>
-  function SetShareData(cmd, config) {
-    if (shareDataTitle && shareDataUrl) {
-      config.bdText = shareDataTitle;
-      config.bdUrl = shareDataUrl;
+<meta name="twitter:image" content="https://xiaoshenlong.cc/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Shell中ctrl+z 与ctrl+c的区别",
+  "url": "https://xiaoshenlong.cc/2013/09/17/52/",
+  "image": "https://xiaoshenlong.cc/img/butterfly-icon.png",
+  "datePublished": "2013-09-17T04:27:47.000Z",
+  "dateModified": "2016-05-31T06:03:40.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dragon_SZ",
+      "url": "https://xiaoshenlong.cc"
     }
-    return config;
-  }
-  window._bd_share_config={
-    "common":{onBeforeClick: SetShareData},
-    "share":{"bdCustomStyle":"/css/bdshare.css"}
-  };
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://xiaoshenlong.cc/2013/09/17/52/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-<!-- 百度分享 end -->
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-</div>
-</body>
-</html>
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Shell中ctrl+z 与ctrl+c的区别',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Dragon_SZ" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dragon_SZ</span></a><a class="nav-page-title" href="/"><span class="site-name">Shell中ctrl+z 与ctrl+c的区别</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Shell中ctrl+z 与ctrl+c的区别</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2013-09-17T04:27:47.000Z" title="发表于 2013-09-17 12:27:47">2013-09-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2016-05-31T06:03:40.000Z" title="更新于 2016-05-31 14:03:40">2016-05-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><span style="padding-left: 30px;font-size: 14px;">在使用shell的日子里，运行一个服务时，经常用到CTRL+Z和CTRL+C来中断服务，有时会出现莫名奇妙的问题，原因可能是你的一个小小的习惯导致的。现在说一下CTRL+Z与CTRL+C的区别：<br><span style="color: #993300;padding-left: 30px;font-size: 14px;">CTRL+Z和CTRL+C都是中断命令,但是他们的作用却不一样.</span><br><span style="color: #993300;padding-left: 30px;font-size: 14px;">CTRL+C是强制中断程序的执行,</span><br><span style="color: #993300;padding-left: 30px;font-size: 14px;">而CTRL+Z的是将任务中断,但是此任务并没有结束,他仍然在进程中他只是维持挂起的状态,用户可以使用fg&#x2F;bg操作继续前台或后台的任务,fg命令重新启动前台被中断的任务,bg命令把被中断的任务放在后台执行.</span></span></p>
+<p><span style="padding-left: 30px;font-size: 14px;">所以在以后的使用时，要注意怎样结束一个后台服务，不要仅仅结束前台的，服务还在运行，严重影响系统的运行。</span></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://xiaoshenlong.cc">Dragon_SZ</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://xiaoshenlong.cc/2013/09/17/52/">https://xiaoshenlong.cc/2013/09/17/52/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://xiaoshenlong.cc" target="_blank">Dragon_SZ</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2013/09/22/54/" title="Ubuntu清理垃圾"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Ubuntu清理垃圾</div></div><div class="info-2"><div class="info-item-1">Ubuntu中使用一段时间会产生很多垃圾，影响系统的运行，经常使得系统崩溃。这不像时windows系统有很多清理垃圾的软件，所以我们要用命令来处理。下面介绍处理垃圾的命令：1.可以使用以下命令清理系统垃圾	123sudo apt-get autoclean 清理旧版本的软件缓存sudo apt-get clean 清理所有软件缓存sudo apt-get autoremove 删除系统不再使用的孤立软件&lt;/span&gt;2，清理opera firefox的缓存文件：	12ls ~/.opera/cache4ls ~/.mozilla/firefox/*.default/Cache3，删除多余的内核：一定不要删错哦，切记！！打开终端敲命令：dpkg –get-selections|grep linux有image的就是内核文件删除老的内核文件：	1sudo apt-get remove 内核文件名 （例如：linux-image-2.6.27-2-generic）内核删除，释放空间了，应该能释放130－140M空间。最后不要忘了看看当前内核：uname -a 4,安装包临时...</div></div></div></a><a class="pagination-related" href="/2013/09/11/12/" title="即兴的感想"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">即兴的感想</div></div><div class="info-2"><div class="info-item-1">在大四的开始阶段，我遇到一个与自己在某些方面很相似的老师，他在上课的时候总会给我们讲一些自己的经历和所感所想，老师的经历是丰富的，让我听起来的他的故事是那样的精彩，又是那样的令人回味。李老师，一个负责研究生工作好几年的老资格教师多多少少会在我们的大四的课上与我们聊一些考研的问题，讲一些研究生的就业形式，让我们对研究生有了一些深刻的了解。这样的的老师不仅仅是传道授道解惑的师者，也是育人的良师，这是我在大学里边遇到的第二个真心为学生着想，为学生的学习花尽心思的老师，非常的佩服，从心底里佩服。 听了老师的一席话，真是胜读十年书。我们大四的找工作就得靠自己的实力，什么才是自己的实力呢？也许老师幽默的言语会提醒你。“当你面试时，将自己的图形学在电脑上展现出来，也学会让面试官们眼前一亮，这就是实力。”这样简单的一句话，道出了找工作的真谛。就是你自己的特长，让你的实力大增，让你有了他人没有的魅力，这就是大学里边该培养出来的能力。 大学里的学习，真的是要靠自己的学习。老师的讲课将你带上正轨，接下来就是你自己开上人生的火车，一路拾取自己想要的东西，努力争取自己的想要的，实现自己的梦想。要有自己的目...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2013/09/04/15/" title="关于PHP对初学者学习的几点建议"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-09-04</div><div class="info-item-2">关于PHP对初学者学习的几点建议</div></div><div class="info-2"><div class="info-item-1">鉴于自己学习PHP，想跟大家分享一下自己的经验，希望能够帮助你走出学习的迷茫的阶段，开始新的征程。首先，以前学习PHP时是按照一本书学习下来，书上说的什么自己就学什么，就是先学习书上的理论知识，先将理论知识学到位之后，对一种语言或者一种技术有个大概的了解，虽然知识了解，但是这一步是很重要的，这就好比对一个人的了解，当你想认识一个人时，首先是一个大体的整体的印象。 其次，当你大体认识这种技术时，接下来就是慢慢的了解它。慢慢了解时就要一点一点的深入。自己按照书上的例子，一点一点自己敲代码，其实在这其中你会有迷茫困惑，但是当你看到自己写的密密麻麻的英文字母能够通过浏览器很好的展现出来时，你会很有满足感和幸福感，这就是我当时继续学下去的动力。学习的过程中不要仅仅局限与书本上的知识，要举一反三，试着将一些自己的想法加进去，这样慢慢的就培养了你自己的兴趣和创新能力。系统的将知识学习下来，不要想学那一点就学哪一点，其实书本的内容安排顺序是不无道理的。 再者也是最重要的一点就是付诸于实践，要尽自己的最大努力参加项目的开发，这是你提升自己最佳的时机，当你做项目时，才能正真的认识到书本上的知识是那么...</div></div></div></a><a class="pagination-related" href="/2013/11/29/13/" title="卸载 Oracle11g"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-11-29</div><div class="info-item-2">卸载 Oracle11g</div></div><div class="info-2"><div class="info-item-1">完全卸载oracle11g步骤:1、 开始－＞设置－＞控制面板－＞管理工具－＞服务 停止所有Oracle服务。2、 开始－＞程序－＞Oracle - OraHome81－＞Oracle Installation Products－＞ Universal Installer，单击“卸载产品”-“全部展开”，选中除“OraDb11g_home1”外的全部目录，删除。5、 运行regedit，选择HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE，按del键删除这个入口。6、 运行regedit，选择HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services，滚动这个列表，删除所有Oracle入口(以oracle或OraWeb开头的键)。7、 运行refedit，HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eventlog\Application，删除所有Oracle入口。8、 删除HKEY_CLASSES_ROOT目录下所有以Ora、Oracle、Orcl或E...</div></div></div></a><a class="pagination-related" href="/2013/11/09/11/" title="久违的睡眠"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-11-09</div><div class="info-item-2">久违的睡眠</div></div><div class="info-2"><div class="info-item-1"> 不知你是否向往过一个阴天下去的下午，在你忙碌一上午后想象着睡一个舒服的午觉，没有任何人打扰，睡到自然醒，一觉醒来，却发现已经是傍晚了，到了该吃饭的时候了。  为什么有这样的憧憬？为什么这个看似简单的实现对某些人来说很艰难？因为我们都大了，已经过了这个做梦的年纪，我们没有时间去这样享受，我们必须为了就业而奋斗，为了生存而牺牲掉自己的享受。我们大四了，应该是荣誉满身，能力很强的，面试毫无压力的时候，但是当我看到我同学的简历时，我懵了，彻底的弱爆了，人家的才叫简历，人家的能力不是说出来的，是真真实实的能力体现。我们还有什么理由在这个毕业的年纪，去睡整个下午觉，我们还剩多少时间去浪费，没有了，这就毕业了，马上就毕业了。当我看着自习室的同学在努力的学习时，当我看到自习室的同学学到很晚时，我必须也学习他们坚持一下，哪怕再坚持一点点，我也是进步的。他们一直坚持着过着三点一线的生活，已经坚持了很久了，我都无法说去具体的时间，他们甚至中午睡在自习室，为的就是节省在路上的时间，以便爬起来再学习，我打心眼里佩服他们。  我回来的目的就是在大学的最后一年弥补自己没在大学好好学习的遗憾，想在大学的这片沃...</div></div></div></a><a class="pagination-related" href="/2014/12/13/55/" title="Webservice与Servlet的区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2014-12-13</div><div class="info-item-2">Webservice与Servlet的区别</div></div><div class="info-2"><div class="info-item-1">Servlet是Java对于Web开发而产生的一项技术，可以说Servlet技术是Java专有的，它是服务器端的技术，客户端通常是浏览器，       而WebService是在DCOM   CORBA等分布式技术之后发展起来的。WebService有一个国际通用的标准SOAP。具体规范发布在[http://www.w3.org/TR/SOAP/](http://www.w3.org/TR/SOAP/ "http://www.w3.org/TR/SOAP/")         SOAP是为了在Internet   环境下，实现系统是松散耦合的、跨平台的，与语言无关的，与特定接口无关的，而且要提供对Web   应用程序的可靠访问。      几乎所有的开发工具都可以开发WebService系统，包括Java,C#,甚至基于VCL架构的Delphi。而且   所开发出来的WebService系统，可以方便的被各种客户端调用，包括，浏览器，W32应用程序，还有Java   App。     可以这么说，开发一个WebService系统，把它放到互联网上，生成一个WebService描述...</div></div></div></a><a class="pagination-related" href="/2015/04/27/30/" title="浅谈PHP大数据处理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2015-04-27</div><div class="info-item-2">浅谈PHP大数据处理</div></div><div class="info-2"><div class="info-item-1">新换的公司，一个表中的数据竟然有29G之大，我顿时就懵了，更让我惊讶的是，还与另一个1G多的表做关联查询，真是让我摸不着头脑，尤其这是mysql数据库，也是惊出了我一身冷汗，好在还有优化的解决方案，下面简单谈一下我的解决方案。  尽量不要用inner join，内连接查询速度慢，建议为left jion。 建立索引，两个表中关联的字段都要加上key，可以为主键索引，唯一索引，普通索引等。 limit 分段处理，每次取2000条，处理完之后再取数据处理。 mysql数据库优化，将InnoDB的类型改为MyISAM,MyISAM数据引擎更适合大数据的搜索查询。 优化数据库，使用存储过程式查询，存储过程优势是查询一次后再次查询会很快。 利用Explain获取的信息来实现mysql优化，参考地址：http://www.cnblogs.com/promise-7/archive/2012/05/25/2517356.html  其实归根结底是数据库方面的优化，当然数据量很大的情况下，要提前预知好，更换数据库是避免查询宕机的关键，如果提前预知用oracle数据库的话，就不会出现现在的情况，现...</div></div></div></a><a class="pagination-related" href="/2013/11/20/53/" title="ubuntu备份与恢复"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2013-11-20</div><div class="info-item-2">ubuntu备份与恢复</div></div><div class="info-2"><div class="info-item-1">在 使用Ubuntu之前，相信很多人都有过使用Windows系统的经历。如果你备份过Windows系统，那么你一定记忆犹新：首先需要找到一个备份工 具(通常都是私有软件)，然后重启电脑进入备份工具提供的软件环境，在这里备份或者恢复Windows系统。Norton Ghost是备份Windows系统时经常使用的备份工具。 在备份Windows系统的时候你可能想过，我能不能把整个C盘都放到一个ZIP文件里去呢。这在Windows下是不可能的，因为在Windows中有很多文件在它们运行时是不允许拷贝或覆盖的，因此你需要专门的备份工具对Windows系统进行特殊处理。 和 备份Windows系统不同，如果你要备份Ubuntu系统(或者其它任何Linux系统)，你不再需要像Ghost这类备份工具。事实上，Ghost 这类备份工具对于Linux文件系统的支持很糟糕，例如一些Ghost版本只能完善地支持Ext2文件系统，如果你用它来备份Ext3文件系统，你可能会 丢失一些宝贵的数据。 1. 备份系统 我该如何备份我的Ubuntu系统呢？很简单，就像你备份或压缩其它东西一样，使用TAR。和Win...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dragon_SZ</div><div class="author-info-description">Dragon的个人博客</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/11/11/66/" title="2020 该有个总结">2020 该有个总结</a><time datetime="2020-11-11T07:19:10.000Z" title="发表于 2020-11-11 15:19:10">2020-11-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2020/01/01/65/" title="2019 该有个总结">2019 该有个总结</a><time datetime="2020-01-01T02:02:24.000Z" title="发表于 2020-01-01 10:02:24">2020-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2019/01/01/64/" title="2018 该有个总结">2018 该有个总结</a><time datetime="2019-01-01T14:02:24.000Z" title="发表于 2019-01-01 22:02:24">2019-01-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2018/01/06/61/" title="2017 该有个总结">2017 该有个总结</a><time datetime="2018-01-06T10:02:24.000Z" title="发表于 2018-01-06 18:02:24">2018-01-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2017/11/22/59/" title="微信开发之初体验">微信开发之初体验</a><time datetime="2017-11-22T09:12:40.000Z" title="发表于 2017-11-22 17:12:40">2017-11-22</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Dragon_SZ</span><span class="framework-info"><span>框架 </span><a href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5-b1"></script><script src="/js/main.js?v=5.5.5-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
