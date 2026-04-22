@@ -1,49 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
-  <defs>
-    <linearGradient id="emotionBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffecd2;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#fcb69f;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ff9a9e;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  
-  <!-- 背景 -->
-  <rect width="800" height="400" fill="url(#emotionBg)"/>
-  
-  <!-- 道路 -->
-  <path d="M 350 400 Q 370 300 400 250 Q 430 200 500 150" stroke="white" stroke-width="80" fill="none" opacity="0.3"/>
-  
-  <!-- 树木 -->
-  <g opacity="0.6">
-    <g transform="translate(150, 200)">
-      <rect x="-6" y="0" width="12" height="60" fill="#8b7355"/>
-      <circle cx="0" cy="-10" r="40" fill="#4a7c59"/>
-      <circle cx="-25" cy="10" r="35" fill="#5a8c69"/>
-      <circle cx="25" cy="10" r="35" fill="#5a8c69"/>
-    </g>
-    <g transform="translate(650, 220)">
-      <rect x="-5" y="0" width="10" height="50" fill="#8b7355"/>
-      <circle cx="0" cy="-8" r="35" fill="#4a7c59"/>
-      <circle cx="-20" cy="8" r="30" fill="#5a8c69"/>
-      <circle cx="20" cy="8" r="30" fill="#5a8c69"/>
-    </g>
+  <defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6c757d;stop-opacity:1"/><stop offset="100%" style="stop-color:#adb5bd;stop-opacity:1"/></linearGradient></defs>
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <!-- 迷雾 -->
+  <ellipse cx="190" cy="150" rx="200" ry="80" fill="white" opacity="0.08"/>
+  <ellipse cx="159" cy="200" rx="180" ry="60" fill="white" opacity="0.06"/>
+  <ellipse cx="86" cy="100" rx="150" ry="70" fill="white" opacity="0.07"/>
+  <!-- 岔路口 -->
+  <path d="M 400 350 L 400 250" stroke="white" stroke-width="4" opacity="0.3"/>
+  <path d="M 400 250 Q 200 220 100 280" stroke="white" stroke-width="3" opacity="0.2" fill="none"/>
+  <path d="M 400 250 Q 600 220 700 280" stroke="white" stroke-width="3" opacity="0.2" fill="none"/>
+  <!-- 思考的人 -->
+  <g transform="translate(370, 200)" opacity="0.5">
+    <circle cx="30" cy="0" r="18" fill="white"/>
+    <path d="M 30 18 L 30 70" stroke="white" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 30 35 L 10 55" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 30 35 L 50 25" stroke="white" stroke-width="8" stroke-linecap="round"/>
   </g>
-  
-  <!-- 花朵点缀 -->
-  <g fill="white" opacity="0.5">
-    <circle cx="100" cy="300" r="5"/>
-    <circle cx="250" cy="320" r="4"/>
-    <circle cx="550" cy="310" r="5"/>
-    <circle cx="700" cy="290" r="4"/>
-  </g>
-  
-  <!-- 年份徽章 -->
-  <g transform="translate(660, 40)">
-    <rect width="90" height="32" rx="16" fill="white" opacity="0.85"/>
-    <text x="45" y="21" text-anchor="middle" font-size="14" font-weight="bold" fill="#fcb69f">2015</text>
-  </g>
-  
-  <!-- 描述文字 -->
+  <!-- 问号 -->
+  <text x="460" y="180" font-size="60" font-weight="bold" fill="white" opacity="0.2">?</text>
+  <text x="320" y="150" font-size="40" font-weight="bold" fill="white" opacity="0.15">?</text>
+  <g transform="translate(660, 40)"><rect width="90" height="32" rx="16" fill="white" opacity="0.85"/><text x="45" y="21" text-anchor="middle" font-size="14" font-weight="bold" fill="#6c757d">2015</text></g>
   <text x="400" y="365" text-anchor="middle" font-size="16" font-weight="bold" fill="white" opacity="0.95">2015年初的迷茫</text>
   <text x="400" y="385" text-anchor="middle" font-size="11" fill="white" opacity="0.6">Dragon_SZ Blog</text>
 </svg>

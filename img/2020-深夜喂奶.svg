@@ -1,49 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
   <defs>
-    <linearGradient id="emotionBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffecd2;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#fcb69f;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ff9a9e;stop-opacity:1" />
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0c1445;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#1a237e;stop-opacity:1"/>
     </linearGradient>
+    <radialGradient id="lamp" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" style="stop-color:#fff3cd;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#fff3cd;stop-opacity:0"/>
+    </radialGradient>
   </defs>
-  
-  <!-- 背景 -->
-  <rect width="800" height="400" fill="url(#emotionBg)"/>
-  
-  <!-- 道路 -->
-  <path d="M 350 400 Q 370 300 400 250 Q 430 200 500 150" stroke="white" stroke-width="80" fill="none" opacity="0.3"/>
-  
-  <!-- 树木 -->
-  <g opacity="0.6">
-    <g transform="translate(150, 200)">
-      <rect x="-6" y="0" width="12" height="60" fill="#8b7355"/>
-      <circle cx="0" cy="-10" r="40" fill="#4a7c59"/>
-      <circle cx="-25" cy="10" r="35" fill="#5a8c69"/>
-      <circle cx="25" cy="10" r="35" fill="#5a8c69"/>
-    </g>
-    <g transform="translate(650, 220)">
-      <rect x="-5" y="0" width="10" height="50" fill="#8b7355"/>
-      <circle cx="0" cy="-8" r="35" fill="#4a7c59"/>
-      <circle cx="-20" cy="8" r="30" fill="#5a8c69"/>
-      <circle cx="20" cy="8" r="30" fill="#5a8c69"/>
-    </g>
-  </g>
-  
-  <!-- 花朵点缀 -->
+  <rect width="800" height="400" fill="url(#bg)"/>
+  <!-- 星星 -->
   <g fill="white" opacity="0.5">
-    <circle cx="100" cy="300" r="5"/>
-    <circle cx="250" cy="320" r="4"/>
-    <circle cx="550" cy="310" r="5"/>
-    <circle cx="700" cy="290" r="4"/>
+    <circle cx="100" cy="40" r="1.5"/><circle cx="200" cy="70" r="1"/><circle cx="350" cy="30" r="1.5"/>
+    <circle cx="550" cy="50" r="1"/><circle cx="680" cy="35" r="1.5"/><circle cx="750" cy="80" r="1"/>
   </g>
-  
-  <!-- 年份徽章 -->
-  <g transform="translate(660, 40)">
-    <rect width="90" height="32" rx="16" fill="white" opacity="0.85"/>
-    <text x="45" y="21" text-anchor="middle" font-size="14" font-weight="bold" fill="#fcb69f">2020</text>
+  <!-- 月亮 -->
+  <circle cx="680" cy="60" r="25" fill="#f5f5f5" opacity="0.7"/>
+  <circle cx="690" cy="52" r="22" fill="#0c1445" opacity="0.8"/>
+  <!-- 台灯光晕 -->
+  <circle cx="350" cy="120" r="150" fill="url(#lamp)"/>
+  <!-- 摇椅剪影 -->
+  <g transform="translate(300, 150)" opacity="0.4">
+    <ellipse cx="50" cy="100" rx="60" ry="8" fill="white"/>
+    <path d="M 20 100 L 30 40 L 70 40 L 80 100" stroke="white" stroke-width="4" fill="none"/>
+    <path d="M 35 40 L 35 20" stroke="white" stroke-width="3" fill="none"/>
+    <circle cx="35" cy="15" r="12" fill="white"/>
   </g>
-  
-  <!-- 描述文字 -->
+  <!-- 奶瓶 -->
+  <g transform="translate(450, 200)" opacity="0.3">
+    <rect x="0" y="0" width="20" height="50" rx="5" fill="white"/>
+    <rect x="3" y="-15" width="14" height="20" rx="3" fill="white"/>
+  </g>
+  <g transform="translate(660, 40)"><rect width="90" height="32" rx="16" fill="white" opacity="0.85"/><text x="45" y="21" text-anchor="middle" font-size="14" font-weight="bold" fill="#4facfe">2020</text></g>
   <text x="400" y="365" text-anchor="middle" font-size="16" font-weight="bold" fill="white" opacity="0.95">深夜里抱着婴儿喂奶的温馨画面</text>
   <text x="400" y="385" text-anchor="middle" font-size="11" fill="white" opacity="0.6">Dragon_SZ Blog</text>
 </svg>
