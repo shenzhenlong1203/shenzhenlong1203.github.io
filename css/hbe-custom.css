@@ -448,24 +448,22 @@
    ========================================================== */
 
 /* Site title in banner */
-#page-header #site-info h1,
-#page-header #site-info .site_title {
+#page-header #site-title {
   color: rgba(232, 220, 255, 0.92) !important;
   text-shadow: 0 2px 12px rgba(102, 126, 234, 0.3),
                0 1px 3px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Subtitle / typed text in banner */
-#page-header #site-info .site-sub-title,
-#page-header #site-info .subtitle,
-#page-header #site-info #subtitle {
+#page-header #site-subtitle,
+#page-header #site-subtitle span {
   color: rgba(210, 195, 240, 0.8) !important;
   text-shadow: 0 1px 8px rgba(102, 126, 234, 0.25),
                0 1px 2px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Typed cursor */
-#page-header #site-info .typed-cursor {
+#page-header #site-subtitle .typed-cursor {
   color: rgba(180, 160, 230, 0.7) !important;
 }
 
@@ -481,16 +479,14 @@
 }
 
 /* ===== Dark mode - banner text slightly brighter ===== */
-[data-theme="dark"] #page-header #site-info h1,
-[data-theme="dark"] #page-header #site-info .site_title {
+[data-theme="dark"] #page-header #site-title {
   color: rgba(220, 205, 255, 0.9) !important;
   text-shadow: 0 2px 16px rgba(140, 160, 255, 0.35),
                0 1px 4px rgba(0, 0, 0, 0.3) !important;
 }
 
-[data-theme="dark"] #page-header #site-info .site-sub-title,
-[data-theme="dark"] #page-header #site-info .subtitle,
-[data-theme="dark"] #page-header #site-info #subtitle {
+[data-theme="dark"] #page-header #site-subtitle,
+[data-theme="dark"] #page-header #site-subtitle span {
   color: rgba(195, 180, 235, 0.75) !important;
 }
 
