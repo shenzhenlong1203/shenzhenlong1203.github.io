@@ -1,0 +1,159 @@
+/* Custom hexo-blog-encrypt password form styling */
+
+.hbe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  padding: 2rem 1rem;
+}
+
+.hbe-content {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  padding: 1.5em 0;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+#hexo-blog-encrypt .hbe-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.hbe-input {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 1.5em auto;
+}
+
+.hbe-input-field {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  float: none;
+}
+
+.hbe-input-field:focus {
+  border-color: #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.15);
+  transform: translateY(-1px);
+}
+
+.hbe-input-field::placeholder {
+  color: #bbb;
+}
+
+.hbe-input-label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  float: none;
+  padding: 0;
+  margin-bottom: 0.5em;
+}
+
+.hbe-input-label-content {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #555;
+  padding: 0.5em 0;
+  letter-spacing: 0.5px;
+}
+
+.hbe-button {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 0.8em auto 0;
+  padding: 13px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  letter-spacing: 1px;
+}
+
+.hbe-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.hbe-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.hbe-error {
+  margin-top: 1em;
+  padding: 0.6em 1.2em;
+  font-size: 0.9rem;
+  color: #e74c3c;
+  background: #fdf0ef;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 360px;
+}
+
+.hbe-error:empty {
+  display: none;
+}
+
+/* Dark mode support for Butterfly theme */
+[data-theme="dark"] .hbe-input-field {
+  background: #2d2d2d;
+  border-color: #444;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .hbe-input-field:focus {
+  border-color: #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.25);
+}
+
+[data-theme="dark"] .hbe-input-label-content {
+  color: #bbb;
+}
+
+[data-theme="dark"] .hbe-content {
+  color: #999;
+}
+
+[data-theme="dark"] .hbe-error {
+  background: #3d2020;
+  color: #ff6b6b;
+}
+
+/* Lock icon before the form */
+.hbe-container::before {
+  content: "\f023";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 3rem;
+  color: #667eea;
+  margin-bottom: 0.5em;
+  opacity: 0.8;
+}
