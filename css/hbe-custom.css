@@ -283,3 +283,162 @@
     padding: 13px 24px !important;
   }
 }
+
+/* ==========================================================
+   Article List Card Beautification
+   ========================================================== */
+
+/* Card container: rounded corners, elevated shadow, subtle border */
+#recent-posts > .recent-post-item {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.06),
+    0 1px 4px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  margin-bottom: 1.5rem !important;
+  background: #fff !important;
+}
+
+#recent-posts > .recent-post-item:hover {
+  transform: translateY(-6px) !important;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.1),
+    0 8px 24px rgba(0, 0, 0, 0.06) !important;
+  border-color: rgba(102, 126, 234, 0.15) !important;
+}
+
+/* Cover image: smooth zoom on hover */
+#recent-posts > .recent-post-item .post-bg {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+#recent-posts > .recent-post-item:hover .post-bg {
+  transform: scale(1.05) !important;
+}
+
+/* Title: gradient text effect */
+#recent-posts .recent-post-info .article-title {
+  font-weight: 700 !important;
+  font-size: 1.3rem !important;
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  transition: all 0.3s ease !important;
+  line-height: 1.5 !important;
+}
+
+#recent-posts > .recent-post-item:hover .recent-post-info .article-title {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Meta info: softer, with better spacing */
+#recent-posts .recent-post-info .article-meta-wrap {
+  color: #94a3b8 !important;
+  font-size: 0.85rem !important;
+}
+
+/* Content preview text */
+#recent-posts .recent-post-info .content {
+  color: #64748b !important;
+  line-height: 1.8 !important;
+  font-size: 0.92rem !important;
+}
+
+/* Category/tag badges */
+#recent-posts .recent-post-info .article-meta-wrap a {
+  color: #667eea !important;
+  font-weight: 500 !important;
+  transition: color 0.3s ease !important;
+}
+
+#recent-posts .recent-post-info .article-meta-wrap a:hover {
+  color: #764ba2 !important;
+}
+
+/* Info section padding */
+#recent-posts .recent-post-info {
+  padding: 1.5rem 1.8rem !important;
+}
+
+/* Pagination beautification */
+#pagination .page-number {
+  border-radius: 10px !important;
+  transition: all 0.3s ease !important;
+}
+
+#pagination .page-number.current {
+  background: linear-gradient(135deg, #667eea, #764ba2) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+}
+
+#pagination .page-number:hover:not(.current) {
+  background: rgba(102, 126, 234, 0.08) !important;
+  border-color: rgba(102, 126, 234, 0.3) !important;
+  color: #667eea !important;
+}
+
+/* ===== Dark mode support for article cards ===== */
+[data-theme="dark"] #recent-posts > .recent-post-item {
+  background: rgba(30, 30, 46, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.2),
+    0 1px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-theme="dark"] #recent-posts > .recent-post-item:hover {
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.2) !important;
+  border-color: rgba(102, 126, 234, 0.25) !important;
+}
+
+[data-theme="dark"] #recent-posts .recent-post-info .article-title {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="dark"] #recent-posts > .recent-post-item:hover .recent-post-info .article-title {
+  background: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+[data-theme="dark"] #recent-posts .recent-post-info .content {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap {
+  color: #64748b !important;
+}
+
+[data-theme="dark"] #recent-posts .recent-post-info .article-meta-wrap a {
+  color: #a78bfa !important;
+}
+
+/* ===== Responsive for cards ===== */
+@media (max-width: 768px) {
+  #recent-posts > .recent-post-item {
+    border-radius: 12px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  #recent-posts .recent-post-info {
+    padding: 1.2rem 1.4rem !important;
+  }
+
+  #recent-posts .recent-post-info .article-title {
+    font-size: 1.1rem !important;
+  }
+}
